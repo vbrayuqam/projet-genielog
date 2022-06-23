@@ -1,0 +1,25 @@
+@startuml Classes
+
+class Dossier{
+    -nom:String
+    -prenom:String
+    -dateNaissance:String
+    -genre:String
+    -mere:Optional<String>
+    -pere:Optional<String>
+    -villeNaissance:String
+    -coordonnees
+    -NAS
+}
+
+class Antecedent{
+    -diagnostique
+    -traitement
+    -medecin
+    -debut:Optional<String>
+    -fin:Optional<String>
+}
+
+Dossier o-- Antecedent
+
+@enduml
