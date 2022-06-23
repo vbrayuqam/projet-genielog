@@ -1,25 +1,110 @@
 @startuml Classes
 
 class Dossier{
+    - Patient:Patient
+
+
+
+
+}
+
+class Antecedent{
+    - diagnostic:String?
+    - traitement:String?
+    - medecin:Medecin
+    - debut : Optional<Date>
+    - fin : Optional<Date>
+}
+
+class Visite{
+    -Etablissement:String
+    - medecin: Medecin
+    - date: String
+    - diagnostic: Optional<String>?
+    - traitement: Optional<String>?
+    - resume: String
+    - notes: String
+}
+
+' class Etablissement{
+    '     -nom:String
+    '
+'}
+
+
+' class Carte{
+    '     -numeroDossier
+    '
+'}
+
+class Medecin{
+    modifierDossier()
+
+
+}
+
+class Coordonnees{
+    -adresse:String
+    -telephone:String
+    -courriel:String
+}
+
+class pasMedecin{}
+
+class Patient{
     -nom:String
     -prenom:String
     -dateNaissance:String
     -genre:String
-    -mere:Optional<String>
-    -pere:Optional<String>
+    -mere:String
+    -pere:String
     -villeNaissance:String
-    -coordonnees
-    -NAS
+    -coordonnees:Coordonnees
+    -numeroAssuranceMaladie:String
+    modifierCoordonnees()
+    lireDossier()
 }
 
-class Antecedent{
-    -diagnostique
-    -traitement
-    -medecin
-    -debut:Optional<String>
-    -fin:Optional<String>
+abstract Utilisateur{
+    lireDossier()
 }
 
-Dossier o-- Antecedent
+' class Diagnostic{
+    ' -Medicament:String
+
+    '
+'}
+' class Traitement{}
+
+
+
+' Interface Consultable{
+
+
+    '
+'}
+
+' Interface Modifiable{
+
+
+    '
+'}
+
+baseDonnee *-- Dossier
+
+Patient -- Utilisateur
+Medecin -- Utilisateur
+pasMedecin -- Utilisateur
+
+' Visite -- Etablissement
+
+' Dossier -- Consultable
+' Dossier -- Modifiable
+
+Dossier "1" o-- "0..*" Antecedent
+
+Dossier "1" o-- "0..*" Visite
+' Antecedent .. Medecin
+' Visite .. Medecin
 
 @enduml
