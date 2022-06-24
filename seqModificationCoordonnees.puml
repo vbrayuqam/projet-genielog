@@ -1,0 +1,17 @@
+@startuml seqModificationCoordonnees
+
+participant Patient as P
+participant Dossier as D
+participant InfoPatient as I
+participant Coordonnees as C
+
+P -> D: lireDossier(numero)
+D --> P
+P -> D: modificationCoordonnees(numero, info)
+D -> I: modifCoordonnees(info)
+I -> C: creerCoordonnees(info)
+C --> I
+I --> D
+D --> P: confirmation
+
+@enduml

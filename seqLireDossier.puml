@@ -1,0 +1,28 @@
+@startuml sequenceLireDossier
+
+
+title Lire Dossier
+
+participant Utilisateur as U
+participant Dossier as D
+participant InfoPatient as I
+participant Antecedent as A
+participant Visite as V
+
+
+U -> D: lireDossier()
+activate D
+D -> I: toString()
+I --> D
+loop "pour chaque antecedent"
+    D -> A: toString()
+    A --> D
+end
+loop "pour chaque visite"
+    D -> V: toString()
+    V --> D
+end
+D --> U
+
+
+@enduml

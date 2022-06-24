@@ -1,0 +1,26 @@
+@startuml UC3
+
+@startuml UC2
+
+title Modifier Dossier
+
+actor Medecin as U
+participant “Interface Utilisateur” as IU
+participant "Systeme Dossier Medical" as S
+participant “Base de Donnees” as BD
+
+U -> IU: Entrer numero dossier
+IU -> S: Demande Dossier
+S -> BD: Demande Dossier
+BD --> S: Retour Dossier 
+S --> IU: Retour Dossier
+IU --> U : Affiche Dossier
+U -> IU: Changement Dossier
+IU -> S: Demande Changement Dossier
+S -> BD: Demande Changement Dossier
+BD --> S : Confirmation Dossier
+S --> IU : Confirmation Dossier
+IU --> U : Confirmation Dossier
+
+
+@enduml

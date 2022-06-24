@@ -1,0 +1,22 @@
+@startuml casUtilisationGeneral
+
+
+left to right direction
+actor "Medecin" as m
+actor Patient as p
+actor profMedical as pm
+rectangle SystemeDossierMedical {
+  usecase "Lire dossier" as UC1
+  usecase "Modifier coordonnees" as UC2
+  usecase "Modifier dossier" as UC3
+}
+m --> UC1
+m --> UC3
+
+p --> UC1
+p --> UC2
+
+pm --> UC1
+
+
+@enduml

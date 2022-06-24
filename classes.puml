@@ -1,45 +1,32 @@
 @startuml Classes
 
 class Dossier{
-    - Patient:Patient
-
-
-
-
+    - code: String
+    - Patient: infoPatient
+    - dateVersion
 }
 
 class Antecedent{
-    - diagnostic:String?
-    - traitement:String?
-    - medecin:Medecin
-    - debut : Optional<Date>
-    - fin : Optional<Date>
+    - diagnostic: String
+    - traitement: String
+    - medecin: Medecin
+    - debut: Optional<Date>
+    - fin: Optional<Date>
 }
 
 class Visite{
-    -Etablissement:String
+    - etablissement: String
     - medecin: Medecin
     - date: String
-    - diagnostic: Optional<String>?
-    - traitement: Optional<String>?
+    - diagnostic: Optional<String>
+    - traitement: Optional<String>
     - resume: String
     - notes: String
 }
 
-' class Etablissement{
-    '     -nom:String
-    '
-'}
-
-
-' class Carte{
-    '     -numeroDossier
-    '
-'}
 
 class Medecin{
     modifierDossier()
-
 
 }
 
@@ -49,9 +36,15 @@ class Coordonnees{
     -courriel:String
 }
 
-class pasMedecin{}
+class professionnelMedical{}
 
 class Patient{
+
+    modifierCoordonnees()
+    lireDossier()
+}
+
+class infoPatient{
     -nom:String
     -prenom:String
     -dateNaissance:String
@@ -61,50 +54,32 @@ class Patient{
     -villeNaissance:String
     -coordonnees:Coordonnees
     -numeroAssuranceMaladie:String
-    modifierCoordonnees()
-    lireDossier()
 }
+
 
 abstract Utilisateur{
     lireDossier()
 }
 
-' class Diagnostic{
-    ' -Medicament:String
-
-    '
-'}
-' class Traitement{}
-
-
-
-' Interface Consultable{
-
-
-    '
-'}
-
-' Interface Modifiable{
-
-
-    '
-'}
-
-baseDonnee *-- Dossier
+class Etablissement{
+    - nom: String
+}
 
 Patient -- Utilisateur
 Medecin -- Utilisateur
-pasMedecin -- Utilisateur
+professionnelMedical -- Utilisateur
 
-' Visite -- Etablissement
+Utilisateur .. Dossier
 
-' Dossier -- Consultable
-' Dossier -- Modifiable
+
+Etablissement "1" *-- "1" Coordonnees
+infoPatient "1" *-- "1" Coordonnees
+
+
+Dossier "1" *-- "1" infoPatient
 
 Dossier "1" o-- "0..*" Antecedent
 
 Dossier "1" o-- "0..*" Visite
-' Antecedent .. Medecin
-' Visite .. Medecin
 
 @enduml

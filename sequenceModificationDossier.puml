@@ -1,0 +1,27 @@
+@startuml sequenceModificationPatient
+
+participant Utilisateur as U
+participant Dossier as D
+participant InfoPatient as I
+participant Antecedent as A
+participant Visite as V
+participant Coordonnees as C
+
+U -> D: lireDossier(numero)
+D --> U
+U -> D: modificationDossier(info)
+D -> I: creerInfoPatient(info)
+I -> C: creerCoordonnees(info)
+C --> I
+I --> D
+loop
+    D -> A: creerAntecedent(info)
+    A --> D
+end
+loop
+    D -> V: creeVisite(info)
+    V --> D
+end
+D --> U: confirmation
+
+@enduml
