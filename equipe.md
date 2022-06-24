@@ -1,3 +1,4 @@
+<<<<<<< equipe.md
 # Membres de l'équipe
 
 ## Poirier, Lucas
@@ -16,4 +17,10 @@ Pour rejoindre: par courriel / sur mattermost
 Disponibilités: en soirée
 ``` 
 
-## (remplir pour alex)
+## (Soares, Alex)
+=======
+Code permanent: SOAA01037905
+Courriel: soares_costa.alex@courrier.uqam.ca
+Pour rejoindre: sur discord et courriel
+Disponibilités: Lundi après 19h00, Mercredi après 15h00, Jeudi après 19h00, Vendredi après 10am, Weekend après 20h00 
+>>>>>>> equipe.md
