@@ -16,8 +16,7 @@ Pour rejoindre: par courriel / sur mattermost
 Disponibilités: en soirée
 ``` 
 
-## (Soares, Alex)
-=======
+## Soares, Alex
 ``` 
 Code permanent: SOAA01037905
 Courriel: soares_costa.alex@courrier.uqam.ca
