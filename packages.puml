@@ -1,0 +1,42 @@
+@startuml
+
+package "Couche de présentation web" #DDDDDD {
+  class ModeleWeb {}
+  class ControlleurWeb{}
+  class VueWeb{}
+}
+
+package "Couche de présentation mobile" #DDDDDD {
+  class ModeleMobile {}
+  class ControlleurMobile{}
+  class VueMobile{}
+}
+
+package "Couche logique" #DDDDDD  {
+  class "Patient" {}
+  class "Dossier" {}
+  class "Antécédent" {}
+  class "Visite" {}
+  class "Médecin" {}
+  class "Coordonées" {}
+  class "ProfessionnelMédical" {}
+  class "inforPatient" {}
+  abstract "Utilisateur" {}
+  class "Établissement" {}
+}
+
+package "Couche donnees"  #DDDDDD  {
+  class "ConnecteurDonnées" {}
+}
+
+package "Base de données"  #DDDDDD  {}
+
+"Couche logique" ..> "Couche donnees"
+"Couche de présentation web" ..> "Couche logique"
+"ConnecteurDonnées" ..> "Base de données"
+"Couche de présentation mobile" ..> "Couche logique"
+"Patient" -- "Utilisateur"
+"Médecin" -- "Utilisateur"
+"ProfessionnelMédical" -- "Utilisateur"
+
+@enduml
