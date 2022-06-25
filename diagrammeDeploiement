@@ -1,0 +1,22 @@
+@startuml diagrammeDeploiement
+
+actor Utilisateurs
+node NavigateurWeb
+node ApplicationMobile
+cloud Internet
+node ServeurWeb {
+    component couchePrésentation
+    component coucheLogique
+}
+database BaseDeDonnée {
+    storage SQLite3
+}
+
+Utilisateurs -> NavigateurWeb
+Utilisateurs -> ApplicationMobile
+NavigateurWeb --> Internet
+ApplicationMobile --> Internet
+Internet --> ServeurWeb
+ServeurWeb --> BaseDeDonnée
+
+@enduml
