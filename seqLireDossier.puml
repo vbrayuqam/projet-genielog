@@ -1,4 +1,4 @@
-@startuml sequenceLireDossier
+@startuml seqLireDossier
 
 
 title Lire Dossier

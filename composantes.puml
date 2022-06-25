@@ -1,0 +1,16 @@
+@startuml composantes
+
+() "Application Medecin" as AM
+[Base de donnees] as BD
+[Carte Assurance-Maladie] as C
+[Systeme Dossier] as S
+() "Site Web" as WWW
+
+
+S *-- BD
+C - AM
+AM - S
+S - WWW
+
+
+@enduml
