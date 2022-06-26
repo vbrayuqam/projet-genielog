@@ -13,7 +13,7 @@ Remis dans le cadre du cours INM5153
 6. [Justificaiton GRASP](#grasp)
 
 ## Diagramme(s) de cas d'utilisation <a name="cas"></a>
-Some introduction text, formatted in heading 2 style
+![Diagramme de cas d'utilisation](/diagrammes/CAS.png "Diagramme de cas d'utilisation")
 
 ## Diagramme(s) de classe <a name="classe"></a>
 The first paragraph text
