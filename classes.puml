@@ -84,4 +84,6 @@ Dossier "1" o-- "0..*" Antecedent
 
 Dossier "1" o-- "0..*" Visite
 
+Etablissement "1" -- "*" Visite
+
 @enduml
