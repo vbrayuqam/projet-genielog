@@ -30,15 +30,15 @@ Remis dans le cadre du cours INM5153
 
 
 ## Diagramme(s) de séquence <a name="sequence"></a>
-T![Diagramme de séquence LIRE](/diagrammes/SEQLIRE.png "Diagramme de séquence LIRE")
-T![Diagramme de séquence MOD](/diagrammes/SEQMOD.png "Diagramme de séquence MOD")
-T![Diagramme de séquence COORD](/diagrammes/SEQCOORD.png "Diagramme de séquence COORD")
+![Diagramme de séquence LIRE](/diagrammes/SEQLIRE.png "Diagramme de séquence LIRE")
+![Diagramme de séquence MOD](/diagrammes/SEQMOD.png "Diagramme de séquence MOD")
+![Diagramme de séquence COORD](/diagrammes/SEQCOORD.png "Diagramme de séquence COORD")
 
 ## Diagramme(s) de package <a name="package"></a>
-The first paragraph text
+![Diagramme de package](/diagrammes/PACK.png "Diagramme de package")
 
 ## Diagramme(s) de composants <a name="comp"></a>
-The first paragraph text
+![Diagramme de composants](/diagrammes/COMP.png "Diagramme de composants")
 
 ## Diagramme(s) de déploiement <a name="dep"></a>
 The first paragraph text
