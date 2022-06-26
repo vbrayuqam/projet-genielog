@@ -81,7 +81,7 @@ contiennent plusieurs données internes. Ces données sont donc encapsuler dans 
 peuvent poser des actions envers celles-ci (les données) car ce sont elles (les classes) qui 
 les connaissent.
 
-### Patron créateur
+### Patron Créateur
 
 Pour la majorité des classes qui contiennemt des objets issue d'autre classes 
 (aggrégations, références), nous utilisons le patron de créateur. La classe contenant les objets
