@@ -29,5 +29,5 @@ The first paragraph text
 ## Diagramme(s) de déploiement <a name="dep"></a>
 The first paragraph text
 
-## Justificaiton GRASP <a name="grasp"></a>
+## Justification GRASP <a name="grasp"></a>
 The first paragraph text
