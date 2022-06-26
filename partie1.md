@@ -10,7 +10,7 @@ Remis dans le cadre du cours INM5153
 4. [Diagramme(s) de package](#package)
 5. [Diagramme(s) de composants](#comp)
 6. [Diagramme(s) de déploiement](#dep)
-6. [Justificaiton GRASP](#grasp)
+6. [Justificaitons GRASP](#grasp)
 
 # Contenu
 
