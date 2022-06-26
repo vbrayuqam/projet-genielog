@@ -4,7 +4,7 @@ Cas utilisation
 - Patient modifie coordonnees
 - acces lecture seule
 
-
+```plantuml
 @startuml UC1
 
 title Lire Dossier
@@ -22,3 +22,4 @@ S --> IU: Retour Dossier
 IU --> U : Affiche Dossier
 
 @enduml
+```
