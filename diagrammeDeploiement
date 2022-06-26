@@ -1,9 +1,12 @@
 @startuml diagrammeDeploiement
 
 actor Utilisateurs
-node NavigateurWeb
-node ApplicationMobile
 cloud Internet
+node Ordinateurs {
+    node NavigateurWeb
+    node LogicielDeGestion
+    node ApplicationMobile
+}
 node ServeurWeb {
     component couchePrésentation
     component coucheLogique
@@ -12,10 +15,8 @@ database BaseDeDonnée {
     storage SQLite3
 }
 
-Utilisateurs -> NavigateurWeb
-Utilisateurs -> ApplicationMobile
-NavigateurWeb --> Internet
-ApplicationMobile --> Internet
+Utilisateurs --> Ordinateurs
+Ordinateurs --> Internet
 Internet --> ServeurWeb
 ServeurWeb --> BaseDeDonnée
 
