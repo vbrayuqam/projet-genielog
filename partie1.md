@@ -28,6 +28,19 @@ Remis dans le cadre du cours INM5153
 
 
 ## Diagramme(s) de classe <a name="classe"></a>
+
+### Explications
+Nous étions un peu confus sur quoi modélisé exactement dû à note manque d'expérience, nous 
+avons donc décidéde modélise la logique d'affaire interne du programme (couche logique). Nous
+avons commencé par constater que nous avons besoin du classe utilisateur, ainsi les différentes
+classes d'utilisateur vont hérité de celle-ci et implémenter leurs comportements distincts. Le 
+concept largement manipulé par le système nous semblait être un dossier, nous l'avons donc
+représenté par une classe. Un dossier, à notre sens, est constituer d'une liste de visites, d'une liste
+d'antécédent ainsi que des informations d'un patient. Chacun de ces concepts à donc été représenter
+sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonées et
+d'établissement sous forme de classe. Car ceux-ci implique plusieurs informations distinctes.
+
+### Diagramme
 ![Diagramme de classe](/diagrammes/CLASSE.png "Diagramme de classe")
 
 
