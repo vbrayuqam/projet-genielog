@@ -57,7 +57,7 @@ qui servira de connecteur à la base de données du système.
 
 
 ## Diagramme(s) de déploiement <a name="dep"></a>
-
+![Diagramme de déploiement](/diagrammes/DEP.png "Diagramme de déploiement")
 
 ## Justification GRASP <a name="grasp"></a>
 
@@ -92,8 +92,3 @@ est donc responsable de les créer. Un bon exemple de ceci serait notre classe D
 Nous utilisons le patron forte cohésion dans notre conception. Ainsi plusieurs de nos classes
 peuvent être utilisées a des fins que nous n'avons pas prévus. Par exemple, la classe coordonées
 peut être utilisé pour représenter des coordonées autres que celle d'établissements ou de patients.
-=======
-![Diagramme de déploiement](/diagrammes/DEP.png "Diagramme de déploiement")
-
-## Justification GRASP <a name="grasp"></a>
-(insert stuff here)
