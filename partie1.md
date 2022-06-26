@@ -59,7 +59,7 @@ qui servira de connecteur à la base de données du système.
 ## Diagramme(s) de déploiement <a name="dep"></a>
 ![Diagramme de déploiement](/diagrammes/DEP.png "Diagramme de déploiement")
 
-## Justification GRASP <a name="grasp"></a>
+## Justifications GRASP <a name="grasp"></a>
 
 ### Patron Contrôleur
 
