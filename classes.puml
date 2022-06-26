@@ -17,7 +17,6 @@ class Antecedent{
 }
 
 class Visite{
-    - etablissement: String
     - medecin: Medecin
     - date: String
     - diagnostic: Optional<String>
@@ -54,7 +53,6 @@ class infoPatient{
     -mere:String
     -pere:String
     -villeNaissance:String
-    -coordonnees:Coordonnees
     -numeroAssuranceMaladie:String
 }
 
