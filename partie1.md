@@ -13,19 +13,32 @@ Remis dans le cadre du cours INM5153
 6. [Justificaiton GRASP](#grasp)
 
 ## Diagramme(s) de cas d'utilisation <a name="cas"></a>
-Some introduction text, formatted in heading 2 style
+![Diagramme de cas d'utilisation](/diagrammes/CAS.png "Diagramme de cas d'utilisation")
+
+
+![Diagramme de cas d'utilisation détaillé 1](/diagrammes/CU1.png "Diagramme de cas d'utilisation détaillé 1")
+
+
+![Diagramme de cas d'utilisation détaillé 2](/diagrammes/CU2.png "Diagramme de cas d'utilisation détaillé 2")
+
+
+![Diagramme de cas d'utilisation détaillé 3](/diagrammes/CU3.png "Diagramme de cas d'utilisation détaillé 3")
+
 
 ## Diagramme(s) de classe <a name="classe"></a>
-The first paragraph text
+![Diagramme de classe](/diagrammes/CLASSE.png "Diagramme de classe")
+
 
 ## Diagramme(s) de séquence <a name="sequence"></a>
-The first paragraph text
+![Diagramme de séquence LIRE](/diagrammes/SEQLIRE.png "Diagramme de séquence LIRE")
+![Diagramme de séquence MOD](/diagrammes/SEQMOD.png "Diagramme de séquence MOD")
+![Diagramme de séquence COORD](/diagrammes/SEQCOORD.png "Diagramme de séquence COORD")
 
 ## Diagramme(s) de package <a name="package"></a>
-The first paragraph text
+![Diagramme de package](/diagrammes/PACK.png "Diagramme de package")
 
 ## Diagramme(s) de composants <a name="comp"></a>
-The first paragraph text
+![Diagramme de composants](/diagrammes/COMP.png "Diagramme de composants")
 
 ## Diagramme(s) de déploiement <a name="dep"></a>
 The first paragraph text
