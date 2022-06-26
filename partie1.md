@@ -38,7 +38,7 @@ concept largement manipulé par le système nous semblait être un dossier, nous
 représenté par une classe. Un dossier, à notre sens, est constituer d'une liste de visites, d'une liste
 d'antécédent ainsi que des informations d'un patient. Chacun de ces concepts à donc été représenter
 sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonées et
-d'établissement sous forme de classe. Car ceux-ci implique plusieurs informations distinctes.
+d'établissement sous forme de classe. Car ceux-ci implique plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites et les antécédents eux, auront un établissement.
 
 ### Diagramme
 ![Diagramme de classe](/diagrammes/CLASSE.png "Diagramme de classe")
