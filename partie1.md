@@ -41,7 +41,7 @@ Remis dans le cadre du cours INM5153
 ![Diagramme de composants](/diagrammes/COMP.png "Diagramme de composants")
 
 ## Diagramme(s) de déploiement <a name="dep"></a>
-The first paragraph text
+![Diagramme de déploiement](/diagrammes/DEP.png "Diagramme de déploiement")
 
 ## Justification GRASP <a name="grasp"></a>
-The first paragraph text
+(insert stuff here)
