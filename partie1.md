@@ -26,10 +26,13 @@ Remis dans le cadre du cours INM5153
 
 
 ## Diagramme(s) de classe <a name="classe"></a>
-The first paragraph text
+![Diagramme de classe](/diagrammes/CLASSE.png "Diagramme de classe")
+
 
 ## Diagramme(s) de séquence <a name="sequence"></a>
-The first paragraph text
+T![Diagramme de séquence LIRE](/diagrammes/SEQLIRE.png "Diagramme de séquence LIRE")
+T![Diagramme de séquence MOD](/diagrammes/SEQMOD.png "Diagramme de séquence MOD")
+T![Diagramme de séquence COORD](/diagrammes/SEQCOORD.png "Diagramme de séquence COORD")
 
 ## Diagramme(s) de package <a name="package"></a>
 The first paragraph text
