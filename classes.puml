@@ -1,5 +1,7 @@
 @startuml Classes
 
+title Classes
+
 class Dossier{
     - code: String
     - Patient: infoPatient

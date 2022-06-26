@@ -1,5 +1,6 @@
 @startuml casUtilisationGeneral
 
+title Cas d'utilisation general
 
 left to right direction
 actor "Medecin" as m

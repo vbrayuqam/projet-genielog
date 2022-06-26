@@ -1,5 +1,7 @@
 @startuml seqModificationCoordonnees
 
+Title Sequence - Modification des Coordonnees
+
 participant Patient as P
 participant Dossier as D
 participant InfoPatient as I

@@ -1,5 +1,7 @@
 @startuml sequenceModificationPatient
 
+title Sequence - Modification des dossiers
+
 participant Utilisateur as U
 participant Dossier as D
 participant InfoPatient as I

@@ -1,5 +1,7 @@
 @startuml
 
+title Packages
+
 package "Couche de présentation web" #DDDDDD {
   class ModeleWeb {}
   class ControlleurWeb{}

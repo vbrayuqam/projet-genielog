@@ -1,5 +1,7 @@
 @startuml composantes
 
+title Composantes
+
 () "Application Medecin" as AM
 [Base de donnees] as BD
 [Carte Assurance-Maladie] as C
