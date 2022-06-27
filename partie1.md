@@ -38,7 +38,7 @@ Date de remise: 3 juillet 2022
 6. [Diagramme(s) de déploiement](#dep)
 
 
-7. [Justificaitons GRASP](#grasp)
+7. [Justifications GRASP](#grasp)
 
 # Contenu
 
