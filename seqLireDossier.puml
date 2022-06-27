@@ -10,7 +10,6 @@ participant Visite as V
 
 
 U -> D: lireDossier()
-activate D
 D -> I: toString()
 I --> D
 loop "pour chaque antecedent"
