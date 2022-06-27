@@ -1,4 +1,3 @@
-
 # Page de présentation
 
 ### Rapport 1
@@ -59,7 +58,7 @@ Date de remise: 3 juillet 2022
 
 ### Explications
 
-Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'expérience, nous avons donc décidé de modéliser la logique d'affaire interne du programme (couche logique). Nous avons commencé par constater que nous avions besoin du classe utilisateur,  ainsi les différentes classes d'utilisateur vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un dossier, nous l'avons donc représenté par une classe. Un dossier, à notre sens, est constitué d'une liste de visites, d'une liste d'antécédents ainsi que des informations d'un patient. Chacun de ces concepts à donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe. Car ceux-ci impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement.
+Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'expérience, nous avons donc décidé de modéliser la logique d'affaire interne du programme (couche logique). Nous avons commencé par constater que nous avions besoin du classe utilisateur,  ainsi les différentes classes d'utilisateur vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un dossier, nous l'avons donc représenté par une classe. Un dossier, à notre sens, est constitué d'une liste de visites, d'une liste d'antécédents ainsi que des informations d'un patient. Chacun de ces concepts à donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe. Car ceux-ci impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement. Pour ce qui est de la documentation des changements nous créons un nouveau dossier à chaque fois que celui-ci est modifié.
 
 
 ### Diagramme
