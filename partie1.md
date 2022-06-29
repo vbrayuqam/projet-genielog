@@ -58,7 +58,7 @@ Date de remise: 3 juillet 2022
 
 ### Explications
 
-Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'expérience, nous avons donc décidé de modéliser la logique d'affaire interne du programme (couche logique). Nous avons commencé par constater que nous avions besoin du classe utilisateur,  ainsi les différentes classes d'utilisateur vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un dossier, nous l'avons donc représenté par une classe. Un dossier, à notre sens, est constitué d'une liste de visites, d'une liste d'antécédents ainsi que des informations d'un patient. Chacun de ces concepts a donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe car ceux-ci impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement. Pour ce qui est de la documentation des changements, nous créons un nouveau dossier à chaque fois que celui-ci est modifié.
+Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'expérience, nous avons donc décidé de modéliser la logique d'affaire interne du programme (couche logique). Nous avons commencé par constater que nous avions besoin d'une classe *Utilisateur*,  ainsi les différentes classes d'utilisateurs vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un dossier, nous l'avons donc représenté par une classe. Un dossier, à notre sens, est constitué d'une liste de visites, d'une liste d'antécédents ainsi que des informations d'un patient. Chacun de ces concepts a donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe car ceux-ci impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement. Pour ce qui est de la documentation des changements, nous créons un nouveau dossier à chaque fois que celui-ci est modifié.
 
 
 ### Diagramme
@@ -70,7 +70,7 @@ Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'
 
 ### Sequence pour la lecture d'un dossier
 
-L'utilisateur va appeler sa methode lireDossier avec un numero de dossier en paramètre. Le Dossier en question va transformer toutes les informations qu'il contient en structure texte et retourner le tout pour que celui-ci puisse être affiché.
+L'utilisateur va appeler sa methode *lireDossier* avec un numero de dossier en paramètre. Le *Dossier* en question va transformer toutes les informations qu'il contient en structure texte et retourner le tout pour que celui-ci puisse être affiché.
 
 
 ### Diagramme
@@ -81,7 +81,7 @@ L'utilisateur va appeler sa methode lireDossier avec un numero de dossier en par
 ### Séquence de modification d'un dossier d'un patient
 
 
-Il s'agit ici de la séquence de modification du dossier d'un patient par un médecin dans le dossier du patient. Le médecin accède au dossier du patient par le logiciel de gestion (par exemple) avec le numéro d'assurance maladie du patient. Ayant obtenu les informations du dossier, il fait la demande de modification du dossier dans le dossier du patient. La classe Dossier genère une nouvelle instance pour le patient avec les nouvelles informations. Ensuite, elle crée des instances d'antécédents, de visites et de coordonnées ainsi qu'infoPatient pour le nouveau dossier. Une confirmation de la modification est finalement acheminée à l'utilisateur.
+Il s'agit ici de la séquence de modification du dossier d'un patient par un médecin dans le dossier du patient. Le médecin accède au dossier du patient par le logiciel de gestion (par exemple) avec le numéro d'assurance maladie du patient. Ayant obtenu les informations du dossier, il fait la demande de modification du dossier dans le dossier du patient. La classe *Dossier* génère une nouvelle instance pour le patient avec les nouvelles informations. Ensuite, elle crée des instances d'antécédents, de visites et de coordonnées ainsi qu'*InfoPatient* pour le nouveau dossier. Une confirmation de la modification est finalement acheminée à l'utilisateur.
 
 ### Diagramme
 
@@ -91,7 +91,7 @@ Il s'agit ici de la séquence de modification du dossier d'un patient par un mé
 
 ### Sequence de modification des coordonnees
 
-Il s'agit ici de la séquence de modification des coordonnées d'un patient par celui-ci. Le patient accède au dossier à travers le site web avec son numéro d'assurance maladie. Ayant obtenu les informations du dossier, il fait la demande de modification des coordonnées dans le dossier du patient. Une instance infoPatient est générée par la suite et c'est celle-ci qui se charge de la création des nouvelles coordonnées. Par la suite, les antécédent et les visites sont mise à jour. Une confirmation de la modification est finalement acheminée à l'utilisateur.
+Il s'agit ici de la séquence de modification des coordonnées d'un patient par celui-ci. Le patient accède au dossier à travers le site web avec son numéro d'assurance maladie. Ayant obtenu les informations du dossier, il fait la demande de modification des coordonnées dans le dossier du patient. Une instance *InfoPatient* est générée par la suite et c'est celle-ci qui se charge de la création des nouvelles coordonnées. Par la suite, les antécédents et les visites sont mise à jour. Une confirmation de la modification est finalement acheminée à l'utilisateur.
 
 ### Diagramme
 
@@ -102,7 +102,7 @@ Il s'agit ici de la séquence de modification des coordonnées d'un patient par 
 
 ### Explications
 
-Nous avons décidé de couper notre programme en plusieurs couches. Chacune de ces couches sera encapsulée dans son propre package. Ceci nous permet de réutiliser/réusiner une couche pour l'utiliser dans une autre conception plus tard. Nous avons deux couches de présentation: une pour le coté web et une pour le côté mobile. Chacune d'elles encapsule un modèle MVC. La logique d'affaire du programme se trouve dans la couche logique. Dans la couche données nous avons mis la classe qui servira de connecteur à la base de données du système.
+Nous avons décidé de couper notre programme en plusieurs couches. Chacune de ces couches sera encapsulée dans son propre package. Ceci nous permet de réutiliser/réusiner une couche pour l'utiliser dans une autre conception plus tard. Nous avons deux couches de présentation: une pour le côté web et une pour le côté mobile. Chacune d'elles encapsule un modèle MVC. La logique d'affaire du programme se trouve dans la couche logique. Dans la couche données nous avons mis la classe qui servira de connecteur à la base de données du système.
 
 ### Diagramme
 
@@ -152,4 +152,4 @@ Pour la majorité des classes qui contiennent des objets issus d'autre classes (
 
 ### Patron Forte cohésion
 
-Nous utilisons le patron forte cohésion dans notre conception. Ainsi plusieurs de nos classes peuvent être utilisées à des fins que nous n'avons pas prévus. Par exemple, la classe coordonnées peut être utiliser pour représenter des coordonnées autres que celle d'établissements ou de patients.
+Nous utilisons le patron forte cohésion dans notre conception. Ainsi, plusieurs de nos classes peuvent être utilisées à des fins que nous n'avons pas prévus. Par exemple, la classe *Coordonnées* peut être utiliser pour représenter des coordonnées autres que celle d'établissements ou de patients.
