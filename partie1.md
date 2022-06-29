@@ -38,7 +38,7 @@ Date de remise: 3 juillet 2022
 6. [Diagramme(s) de déploiement](#dep)
 
 
-7. [Justificaitons GRASP](#grasp)
+7. [Justifications GRASP](#grasp)
 
 # Contenu
 
@@ -58,7 +58,7 @@ Date de remise: 3 juillet 2022
 
 ### Explications
 
-Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'expérience, nous avons donc décidé de modéliser la logique d'affaire interne du programme (couche logique). Nous avons commencé par constater que nous avions besoin du classe utilisateur,  ainsi les différentes classes d'utilisateur vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un dossier, nous l'avons donc représenté par une classe. Un dossier, à notre sens, est constitué d'une liste de visites, d'une liste d'antécédents ainsi que des informations d'un patient. Chacun de ces concepts à donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe. Car ceux-ci impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement. Pour ce qui est de la documentation des changements nous créons un nouveau dossier à chaque fois que celui-ci est modifié.
+Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'expérience, nous avons donc décidé de modéliser la logique d'affaire interne du programme (couche logique). Nous avons commencé par constater que nous avions besoin d'une classe *Utilisateur*,  ainsi les différentes classes d'utilisateurs vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un dossier, nous l'avons donc représenté par une classe. Un dossier, à notre sens, est constitué d'une liste de visites, d'une liste d'antécédents ainsi que des informations d'un patient. Chacun de ces concepts a donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe car ceux-ci impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement. Pour ce qui est de la documentation des changements, nous créons un nouveau dossier à chaque fois que celui-ci est modifié.
 
 
 ### Diagramme
@@ -70,7 +70,7 @@ Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'
 
 ### Sequence pour la lecture d'un dossier
 
-L'utilisateur va appeler sa methode lireDossier avec un numero de dossier en paramètre. Le Dossier en question va transformer toutes les informations qu'il contient en structure texte et retourner le tout pour que celui-ci puisse etre affiché.
+L'utilisateur va appeler sa methode *lireDossier* avec un numero de dossier en paramètre. Le *Dossier* en question va transformer toutes les informations qu'il contient en structure texte et retourner le tout pour que celui-ci puisse être affiché.
 
 
 ### Diagramme
@@ -81,7 +81,7 @@ L'utilisateur va appeler sa methode lireDossier avec un numero de dossier en par
 ### Séquence de modification d'un dossier d'un patient
 
 
-Il s'agit ici de la séquence de modification du dossier d'un patient par un médecin dans le dossier du patient. Le médecin accède au dossier du patient par le logiciel de gestion (par exemple) avec le numéro d'assurance maladie du patient. Ayant obtenu les informations du dossier, il fait la demande de modification du dossier dans le dossier du patient. La classe Dossier genère une nouvelle instance pour le patient avec les nouvelles informations. Elle, ensuite, crée des instances d'antécedents, visites et coordonnées ainsi qu'infoPatient pour le nouveau dossier. Une confirmation de la modification est finalement acheminée à l'utilisateur.
+Il s'agit ici de la séquence de modification du dossier d'un patient par un médecin dans le dossier du patient. Le médecin accède au dossier du patient par le logiciel de gestion (par exemple) avec le numéro d'assurance maladie du patient. Ayant obtenu les informations du dossier, il fait la demande de modification du dossier dans le dossier du patient. La classe *Dossier* génère une nouvelle instance pour le patient avec les nouvelles informations. Ensuite, elle crée des instances d'antécédents, de visites et de coordonnées ainsi qu'*InfoPatient* pour le nouveau dossier. Une confirmation de la modification est finalement acheminée à l'utilisateur.
 
 ### Diagramme
 
@@ -91,7 +91,7 @@ Il s'agit ici de la séquence de modification du dossier d'un patient par un mé
 
 ### Sequence de modification des coordonnees
 
-Il s'agit ici de la séquence de modification des coordonnées d'un patient par celui-ci. Le patient accède au dossier à travers le site web avec son numéro d'assurance maladie. Ayant obtenu les informations du dossier, il fait la demande de modification des coordonnées dans le dossier du patient. Une instance infoPatient est générée par la suite et c'est celle-ci qui se charge de la création des nouvelles coordonnées. Par la suite, les antécédent et les visites sont mise à jour. Une confirmation de la modification est finalement acheminée à l'utilisateur.
+Il s'agit ici de la séquence de modification des coordonnées d'un patient par celui-ci. Le patient accède au dossier à travers le site web avec son numéro d'assurance maladie. Ayant obtenu les informations du dossier, il fait la demande de modification des coordonnées dans le dossier du patient. Une instance *InfoPatient* est générée par la suite et c'est celle-ci qui se charge de la création des nouvelles coordonnées. Par la suite, les antécédents et les visites sont mise à jour. Une confirmation de la modification est finalement acheminée à l'utilisateur.
 
 ### Diagramme
 
@@ -102,7 +102,7 @@ Il s'agit ici de la séquence de modification des coordonnées d'un patient par 
 
 ### Explications
 
-Nous avons décidé de couper notre programme en plusieurs couches. Chacune de ces couches sera encapsulée dans son propre package. Ceci nous permet de réutiliser/réusiner une couche pour l'utiliser dans une autre conception plus tard. Nous avons deux couches de présentation: une pour le coté web et une pour le coté mobile. Chacune d'elles encapsule un modèle MVC. La logique d'affaire du programme se trouve dans la couche logique. Dans la couche données nous avons mis la classe qui servira de connecteur à la base de données du système.
+Nous avons décidé de couper notre programme en plusieurs couches. Chacune de ces couches sera encapsulée dans son propre package. Ceci nous permet de réutiliser/réusiner une couche pour l'utiliser dans une autre conception plus tard. Nous avons deux couches de présentation: une pour le côté web et une pour le côté mobile. Chacune d'elles encapsule un modèle MVC. La logique d'affaire du programme se trouve dans la couche logique. Dans la couche données nous avons mis la classe qui servira de connecteur à la base de données du système.
 
 ### Diagramme
 
@@ -114,7 +114,7 @@ Nous avons décidé de couper notre programme en plusieurs couches. Chacune de c
 
 ### Explications
 
-La carte d'assurance-maladie permet, à travers l'application medecin, d'accéder à un dossier et de le lire ou y faire des modifications, tout dependant des privilèges de l'utilisateur. Le site web permet au patient d'accéder à une partie du dossier et en modifier les coordonnées.
+La carte d'assurance-maladie permet, à travers l'application médecin, d'accéder à un dossier et de le lire ou y faire des modifications, tout dépendant des privilèges de l'utilisateur. Le site web permet au patient d'accéder à une partie du dossier et en modifier les coordonnées.
 
 ### Diagramme
 
@@ -136,20 +136,20 @@ Un diagramme de déploiement est une représentation de la topologie des composa
 
 ### Patron Contrôleur
 
-Dans nos couches de présentation nous utilisons le patron de contrôleur dans le cadre d'un modèle MVC (Modèle/Vue/Contrôleur). Le contrôlleur propre à chacune des couches coordonne les messages externes sans se coupler aux objet internes.
+Dans nos couches de présentation nous utilisons le patron de contrôleur dans le cadre d'un modèle MVC (Modèle/Vue/Contrôleur). Le contrôleur, propre à chacune des couches, coordonne les messages externes sans se coupler aux objet internes.
 
 ### Patron Polymorphisme
 
-Nos sous-classes de la classe abstraite Utilisateur utilisent le patron de polymorphisme. Nous pouvons ainsi leur donner des comportements différent lorsque la même fonction est appelée sur les classes ainsi que dans les divers contextes d'utilisation.
+Nos sous-classes de la classe abstraite *Utilisateur* utilisent le patron de polymorphisme. Nous pouvons ainsi leur donner des comportements différents lorsque la même fonction est appelée sur les classes ainsi que dans les divers contextes d'utilisation.
 
 ### Patron Spécialiste de l'information
 
-Pour les classes Établissement, Coordonnées, infoPatient, Visite et Antécédent nous utilisons le patron de spécialiste de l'information. Toute ces classes représentent des concepts distincts qui contiennent plusieurs données internes. Ces données sont donc encapsulée dans ces classes et elles peuvent poser des actions envers celles-ci (les données) car ce sont elles (les classes) qui les connaissent.
+Pour les classes *Établissement*, *Coordonnées*, *InfoPatient*, *Visite* et *Antécédent* nous utilisons le patron de spécialiste de l'information. Toutes ces classes représentent des concepts distincts qui contiennent plusieurs données internes. Ces données sont donc encapsulées dans ces classes et elles peuvent poser des actions envers celles-ci (les données) car se sont elles (les classes) qui les connaissent.
 
 ### Patron Créateur
 
-Pour la majorité des classes qui contiennemt des objets issus d'autre classes (aggrégations, références), nous utilisons le patron de créateur. La classe contenant les objets est donc responsable de les créer. Un bon exemple de ceci serait notre classe Dossier, qui construit les objets de type Antécédent, Visite et InfoPatient.
+Pour la majorité des classes qui contiennent des objets issus d'autre classes (aggrégations, références), nous utilisons le patron de créateur. La classe contenant les objets est donc responsable de les créer. Un bon exemple de ceci serait notre classe *Dossier*, qui construit les objets de type *Antécédent*, *Visite* et *InfoPatient*.
 
 ### Patron Forte cohésion
 
-Nous utilisons le patron forte cohésion dans notre conception. Ainsi plusieurs de nos classes peuvent être utilisées à des fins que nous n'avons pas prévus. Par exemple, la classe coordonnées peut être utiliser pour représenter des coordonnées autres que celle d'établissements ou de patients.
+Nous utilisons le patron forte cohésion dans notre conception. Ainsi, plusieurs de nos classes peuvent être utilisées à des fins que nous n'avons pas prévus. Par exemple, la classe *Coordonnées* peut être utiliser pour représenter des coordonnées autres que celle d'établissements ou de patients.

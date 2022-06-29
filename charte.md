@@ -2,16 +2,16 @@
 
 ## Répartition des tâches
 ```
-Les tâches seront départis suite à une discussion les concernants. La taille de 
-chaque tâche sera évalué et puis les tâches seront divisé entre les membres de 
-l'équipe dans le but d'offrir un travail de taille égal à chacun selon ses
+Les tâches seront réparties suite à une discussion les concernants. La taille de 
+chaque tâche sera évaluée et puis les tâches seront divisées entre les membres
+de l'équipe dans le but d'offrir un travail de taille égale à chacun selon ses
 compétences et acquis.
 ```
 
 ## Méthode de travail
 ``` 
-Des tâches seront répartis entre les membres et ceux-ci devront être éffectuées 
-avant la prochain rencontre établie par les membres. Les petites modifications 
+Des tâches seront réparties entre les membres et ceux-ci devront être éffectuées 
+avant la prochaine rencontre établie par les membres. Les petites modifications 
 de fichiers d'informations peuvent être poussé sur la branche principale du 
 "repo", les fonctionnalités seront développées sur leurs propres branches et 
 fusionner à la branche principale lorsque terminée.
@@ -25,14 +25,14 @@ La résolution de conflit se fera "ad hoc" entre les membres de l'équipe.
 ## Sanctions
 ```
 Les sanctions seront déterminées lors de la résolution de conflit et seront 
-proportionelles aux offenses qui les motivent.
+proportionnelles aux offenses qui les motivent.
 ```
 
 ## Définition de "Terminé"
 ```
-Terminé dans le cadre de notre équipe signifie que l'objectif du sujet en 
-question est déclaré comme atteint par tous les membre de l'équipe. Si un 
-membre n'est pas satisfait pour une raison valable, le travailse vera continué 
-jusqu'à ce que l'objectif soit atteint.
+La définition "Terminé" dans le cadre de notre projet signifie que l'objectif 
+du sujet en question est déclaré comme atteint par tous les membre de l'équipe. 
+Si un membre n'est pas satisfait pour une raison valable, le travail doit se 
+poursuivre jusqu'à ce que l'objectif soit atteint.
 ```
 
