@@ -3,6 +3,7 @@
 title Cas d'utilisation general
 
 left to right direction
+actor EmployeRAMQ as RAMQ
 actor "Medecin" as m
 actor Patient as p
 actor profMedical as pm
@@ -10,14 +11,27 @@ rectangle SystemeDossierMedical {
   usecase "Lire dossier" as UC1
   usecase "Modifier coordonnees" as UC2
   usecase "Modifier dossier" as UC3
+  usecase "Creer Dossier" as UC4
+  usecase "Reconstruire Dossier" as UC5
+  usecase "Connection Application Mobile" as UC6
+  usecase "Connection Application Medecin" as UC7
+  usecase "Connection Site Web" as UC8
+
 }
 m --> UC1
 m --> UC3
+m --> UC7
 
 p --> UC1
 p --> UC2
+p --> UC8
+p --> UC6
 
 pm --> UC1
+
+RAMQ--> UC1
+RAMQ --> UC4
+RAMQ --> UC5
 
 
 @enduml
