@@ -2,11 +2,35 @@
 
 title Classes
 
+class SystemeDossier{
+    creerDossier()
+    lireDossier()
+    modifierDossier()
+    modifierCoordonnees()
+    reconstruireDossier()
+
+
+}
+
+class ConnecteurDB{
+    ecrireBaseDonnees()
+    lireBaseDonnees()
+}
+
+ConnecteurDB -- SystemeDossier
+
+
 class Dossier{
     - code: String
     - Patient: infoPatient
     - dateVersion
 }
+
+interface Lisible{}
+interface Modifiable{}
+
+Dossier --|> Lisible
+Dossier --|> Modifiable
 
 class Antecedent{
     - diagnostic: String
@@ -15,6 +39,9 @@ class Antecedent{
     - debut: Optional<Date>
     - fin: Optional<Date>
 }
+
+Antecedent --|> Lisible
+Antecedent --|> Modifiable
 
 class Visite{
     - medecin: Medecin
@@ -25,6 +52,8 @@ class Visite{
     - notes: String
 }
 
+Visite --|> Lisible
+Visite --|> Modifiable
 
 class Medecin{
     modifierDossier()
@@ -37,15 +66,15 @@ class Coordonnees{
     -courriel:String
 }
 
-class professionnelMedical{}
+Coordonnees --|> Lisible
+Coordonnees --|> Modifiable
 
-class Patient{
-
-    modifierCoordonnees()
-    lireDossier()
+class professionnelMedical{
+    -nom:String
+    -coordonnees:Coordonnees
 }
 
-class infoPatient{
+class Patient{
     -nom:String
     -prenom:String
     -dateNaissance:String
@@ -54,29 +83,52 @@ class infoPatient{
     -pere:String
     -villeNaissance:String
     -numeroAssuranceMaladie:String
+    modifierCoordonnees()
+    lireDossier()
 }
+
+class RAMQ{}
+
+RAMQ *-- EmployeRAMQ
+
+class EmployeRAMQ{
+    creerDossier()
+    reconstruireDossier()
+}
+
+class SalleEvaluation{}
+class PosteDeTravail{}
 
 
 abstract Utilisateur{
     lireDossier()
 }
 
-class Etablissement{
+class Hopital{}
+class Clinique{}
+
+abstract Etablissement{
     - nom: String
 }
 
-Patient -- Utilisateur
-Medecin -- Utilisateur
-professionnelMedical -- Utilisateur
+Patient --|> Utilisateur
+professionnelMedical --|> Utilisateur
 
-Utilisateur .. Dossier
+Utilisateur .. SystemeDossier
 
 
+Hopital --|> Etablissement
+Clinique --|> Etablissement
+EmployeRAMQ --|> Utilisateur
 Etablissement "1" *-- "1" Coordonnees
-infoPatient "1" *-- "1" Coordonnees
+Etablissement "1" *-- "0..*" SalleEvaluation
+SalleEvaluation "1" *-- "1..*" PosteDeTravail
+Patient "1" o-- "0..1" Coordonnees
+Medecin --|> professionnelMedical
+professionnelMedical "0..*" --o "1" PosteDeTravail
+SystemeDossier "1" o-- "0..*" Dossier
 
-
-Dossier "1" *-- "1" infoPatient
+Patient "1" o-- "0..1" Dossier
 
 Dossier "1" o-- "0..*" Antecedent
 
