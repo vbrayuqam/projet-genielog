@@ -19,6 +19,33 @@ class ConnecteurDB{
 
 ConnecteurDB -- SystemeDossier
 
+class SiteWeb{
+
+}
+
+
+Utilisateur *-- Identifiants
+
+
+
+class ApplicationMedecin{
+
+}
+
+class ApplicationMobile{
+
+}
+
+abstract InterfaceUtilisateur{
+    connection()
+}
+
+ApplicationMedecin --|> InterfaceUtilisateur
+ApplicationMobile --|> InterfaceUtilisateur
+SiteWeb --|> InterfaceUtilisateur
+
+InterfaceUtilisateur .. SystemeDossier
+
 
 class Dossier{
     - code: String
@@ -114,7 +141,7 @@ abstract Etablissement{
 Patient --|> Utilisateur
 professionnelMedical --|> Utilisateur
 
-Utilisateur .. SystemeDossier
+Utilisateur .. InterfaceUtilisateur
 
 
 Hopital --|> Etablissement
