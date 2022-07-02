@@ -27,9 +27,9 @@ deactivate DB
 
 S -> D: lire()
 activate D
-D --> P: lire(info)
+D --> P: lire()
 activate P
-P --> C: lire(info)
+P --> C: lire()
 activate C
 C --> P
 deactivate C
@@ -37,14 +37,14 @@ deactivate C
 
 
 loop "pour chaque antecedent"
-  P -> A: lire(info)
+  P -> A: lire()
   activate A
   A --> P
   deactivate A
 end loop
 
 loop "pour chaque antecedent"
-  P -> V: lire(info)
+  P -> V: lire()
   activate V
   V --> P
   deactivate V
