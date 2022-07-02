@@ -13,20 +13,8 @@ participant Coordonnees as C
 participant ConnecteurDB as DB
 
 
-M -> U: lireDossier(numero)
-activate M
-activate U
-U -> S: lireDossier(numero)
-activate S
-S -> D: lireDossier(numero)
-activate D
-D --> S
-deactivate D
-S --> U
-deactivate S
-U --> M
-deactivate U
 M -> U: modifierDossier(info)
+activate M
 activate U
 U -> S: modifierDossier(info)
 activate S
