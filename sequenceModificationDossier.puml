@@ -5,8 +5,7 @@ title Sequence - Modification des dossiers
 participant Medecin as M
 participant InterfaceUtilisateur as U
 participant SystemeDossier as S
-participant "ancien:Dossier" as D
-participant "nouveau:Dossier" as D2
+participant Dossier as D
 participant Patient as P
 participant Antecedent as A
 participant Visite as V
@@ -31,15 +30,11 @@ M -> U: modifierDossier(info)
 activate U
 U -> S: modifierDossier(info)
 activate S
-S -> D2: creerDossier()
-activate D2
-D2 --> S
-deactivate D2
-S -> D2: modifierDossier(info)
-activate D2
-D2 -> P: creerInfoPatient(info)
+S -> D: modifierDossier(info)
+activate D
+D --> P: creerInfoPatient(info)
 activate P
-P -> C: creeCoordonnees(info)
+P --> C: creeCoordonnees(info)
 activate C
 C --> P
 deactivate C
@@ -58,10 +53,10 @@ loop "pour chaque antecedent"
   deactivate V
 end loop
 
-P --> D2
+P --> D
 deactivate P
-D2 --> S
-deactivate D2
+D --> S
+deactivate D
 S -> DB: ecrireBaseDonnees(dossier)
 activate DB
 DB --> S
