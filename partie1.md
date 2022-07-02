@@ -48,12 +48,6 @@ Date de remise: 3 juillet 2022
 ![Diagramme de cas d'utilisation](/diagrammes/CAS.png "Diagramme de cas d'utilisation")
 
 
-![Diagramme de cas d'utilisation détaillé 1](/diagrammes/CU1.png "Diagramme de cas d'utilisation détaillé 1")
-
-![Diagramme de cas d'utilisation détaillé 2](/diagrammes/CU2.png "Diagramme de cas d'utilisation détaillé 2")
-
-![Diagramme de cas d'utilisation détaillé 3](/diagrammes/CU3.png "Diagramme de cas d'utilisation détaillé 3")
-
 ## Diagramme(s) de classe <a name="classe"></a>
 
 ### Explications
