@@ -2,28 +2,74 @@
 
 title Sequence - Modification des dossiers
 
-participant Utilisateur as U
-participant Dossier as D
-participant InfoPatient as I
+participant Medecin as M
+participant InterfaceUtilisateur as U
+participant SystemeDossier as S
+participant "ancien:Dossier" as D
+participant "nouveau:Dossier" as D2
+participant Patient as P
 participant Antecedent as A
 participant Visite as V
 participant Coordonnees as C
+participant ConnecteurDB as DB
 
-U -> D: lireDossier(numero)
-D --> U
-U -> D: modificationDossier(info)
-D -> I: creerInfoPatient(info)
-I -> C: creerCoordonnees(info)
-C --> I
-I --> D
-loop
-    D -> A: creerAntecedent(info)
-    A --> D
-end
-loop
-    D -> V: creeVisite(info)
-    V --> D
-end
-D --> U: confirmation
+
+M -> U: lireDossier(numero)
+activate M
+activate U
+U -> S: lireDossier(numero)
+activate S
+S -> D: lireDossier(numero)
+activate D
+D --> S
+deactivate D
+S --> U
+deactivate S
+U --> M
+deactivate U
+M -> U: modifierDossier(info)
+activate U
+U -> S: modifierDossier(info)
+activate S
+S -> D2: creerDossier()
+activate D2
+D2 --> S
+deactivate D2
+S -> D2: modifierDossier(info)
+activate D2
+D2 -> P: creerInfoPatient(info)
+activate P
+P -> C: creeCoordonnees(info)
+activate C
+C --> P
+deactivate C
+
+loop "pour chaque antecedent"
+  P -> A: creerAntecedent(info)
+  activate A
+  A --> P
+  deactivate A
+end loop
+
+loop "pour chaque antecedent"
+  P -> V: creerVisite(info)
+  activate V
+  V --> P
+  deactivate V
+end loop
+
+P --> D2
+deactivate P
+D2 --> S
+deactivate D2
+S -> DB: ecrireBaseDonnees(dossier)
+activate DB
+DB --> S
+deactivate DB
+S --> U
+deactivate S
+U --> M
+deactivate U
+deactivate M
 
 @enduml
