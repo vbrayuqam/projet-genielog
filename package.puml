@@ -2,19 +2,15 @@
 
 title Packages
 
-package "Couche de présentation web" #DDDDDD {
-  class ModeleWeb {}
-  class ControlleurWeb{}
-  class VueWeb{}
-}
-
-package "Couche de présentation mobile" #DDDDDD {
-  class ModeleMobile {}
-  class ControlleurMobile{}
-  class VueMobile{}
+package "Couche de présentation" #DDDDDD {
+  abstract "InterfaceUtilisateur"{}
+  class "SiteWeb"{}
+  class "ApplicationMedecin"{}
+  class "ApplicationMobile"{}
 }
 
 package "Couche logique" #DDDDDD  {
+  class "SystemeDossier"
   class "Patient" {}
   class "Dossier" {}
   class "Antécédent" {}
@@ -22,23 +18,30 @@ package "Couche logique" #DDDDDD  {
   class "Médecin" {}
   class "Coordonées" {}
   class "ProfessionnelMédical" {}
-  class "inforPatient" {}
   abstract "Utilisateur" {}
   class "Établissement" {}
+  class "Hopital" {}
+  class "Clinique" {}
+  class "SalleEvaluation" {}
+  class "PosteDeTravail" {}
+  class "Identfiants" {}
+  class "RAMQ" {}
+  class "EmployeRAMQ" {}
+  interface "Lisible" {}
+  interface "modifiable" {}
 }
 
 package "Couche donnees"  #DDDDDD  {
-  class "ConnecteurDonnées" {}
+  class "ConnecteurDB" {}
 }
 
-package "Base de données"  #DDDDDD  {}
+database "Base de données" {
+}
+
 
 "Couche logique" ..> "Couche donnees"
-"Couche de présentation web" ..> "Couche logique"
-"ConnecteurDonnées" ..> "Base de données"
-"Couche de présentation mobile" ..> "Couche logique"
-"Patient" -- "Utilisateur"
-"Médecin" -- "Utilisateur"
-"ProfessionnelMédical" -- "Utilisateur"
+"ConnecteurDB" ..> "Base de données"
+"Couche de présentation" ..> "Couche logique"
+
 
 @enduml
