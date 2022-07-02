@@ -1,19 +1,43 @@
-@startuml seqModificationCoordonnees
+@startuml sequenceModificationPatient
 
-Title Sequence - Modification des Coordonnees
+title Sequence - Modification des dossiers
 
-participant Patient as P
+participant Patient as M
+participant InterfaceUtilisateur as U
+participant SystemeDossier as S
 participant Dossier as D
-participant InfoPatient as I
+participant Patient as P
+participant Antecedent as A
+participant Visite as V
 participant Coordonnees as C
+participant ConnecteurDB as DB
 
-P -> D: lireDossier(numero)
-D --> P
-P -> D: modificationCoordonnees(numero, info)
-D -> I: modifCoordonnees(info)
-I -> C: creerCoordonnees(info)
-C --> I
-I --> D
-D --> P: confirmation
+
+M -> U: modifierCoordonnees(info)
+activate M
+activate U
+U -> S: modifierCoordonnees(info)
+activate S
+S -> D: modifierCoordonnees(info)
+activate D
+D --> P: modifierCoordonnees(info)
+activate P
+P --> C: modifierCoordonnees(info)
+activate C
+C --> P
+deactivate C
+P --> D
+deactivate P
+D --> S
+deactivate D
+S -> DB: ecrireBaseDonnees(dossier)
+activate DB
+DB --> S
+deactivate DB
+S --> U
+deactivate S
+U --> M
+deactivate U
+deactivate M
 
 @enduml
