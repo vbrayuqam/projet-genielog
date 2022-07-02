@@ -28,7 +28,7 @@ package "Couche logique" #DDDDDD  {
   class "RAMQ" {}
   class "EmployeRAMQ" {}
   interface "Lisible" {}
-  interface "modifiable" {}
+  interface "Modifiable" {}
 }
 
 package "Couche donnees"  #DDDDDD  {
