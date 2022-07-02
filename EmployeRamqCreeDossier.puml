@@ -1,0 +1,28 @@
+@startuml EmployeRamqCreeDossier
+
+Title Sequence - Création d'un dossier par un employé de la RAMQ
+
+participant EmployeeRAMQ as ER
+participant SystemeDossier as SD 
+participant Dossier as D 
+
+ER -> SD : connexion(Identifiant)
+
+alt connexion etablie
+
+  SD --> ER : connexion confirmee
+  ER -> SD : creerDossier(info)
+  SD -> D : creerDossier(info)
+  activate D
+  D --> SD
+  deactivate D
+  SD --> ER : confirmation
+
+else connexion refusee
+
+  SD --> ER : connexion refusee
+
+end
+
+
+@enduml

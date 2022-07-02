@@ -1,0 +1,54 @@
+@startuml EmployeRamqReconstructionDossier
+
+Title Sequence - Reconstruction d'un dossier par la RAMQ
+
+participant EmployeeRAMQ as ER
+participant SystemeDossier as SD 
+participant Dossier as D 
+participant Visite as V
+participant Antecedent as A 
+
+ER -> SD : connexion(Identifiant)
+
+alt connexion etablie
+
+    SD --> ER : connexion confirmee
+    ER -> SD : lireDossier(info)
+    SD -> D : lireDossier(info)
+    activate D
+    alt dossier existe
+        D --> SD
+        SD --> ER : confirmation
+        ER -> SD : reconstruireDossier(info)
+        SD -> D : reconstruireDossier(info)
+
+        loop
+            D -> V : creerVisite(info)
+            activate V
+            V --> D
+            deactivate V
+        end
+
+        loop
+            D -> A : creerAntecedent(info)
+            activate A
+            A --> D
+            deactivate A
+        end
+        
+        D --> SD
+        SD --> ER : dossier reconstruit
+    else dossier inexistant
+        D --> SD
+        SD --> ER : dossier inexistant
+
+    end
+    deactivate D
+else connexion refusee
+
+    SD --> ER : connexion refusee
+
+end
+
+
+@enduml

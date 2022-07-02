@@ -1,23 +1,44 @@
 @startuml diagrammeDeploiement
 
-actor Utilisateurs
+Title Diagramme de Déploiement
+
+actor Patient 
+actor ProfessionnelMedical
+actor EmployeRAMQ
 cloud Internet
-node Ordinateurs {
-    node NavigateurWeb
+node Ordinateur {
     node LogicielDeGestion
-    node ApplicationMobile
 }
+
+node PC {
+    node NavigateurWeb
+}
+
+node Telephone {
+    node applicationMobile
+}
+
 node ServeurWeb {
     component couchePrésentation
+}
+
+node ServeurApplication {
     component coucheLogique
 }
+
 database BaseDeDonnée {
     storage SQLite3
 }
 
-Utilisateurs --> Ordinateurs
-Ordinateurs --> Internet
+Patient --> PC
+Patient --> Telephone
+ProfessionnelMedical --> Ordinateur
+EmployeRAMQ --> Ordinateur
+Ordinateur --> Internet
+PC --> Internet
+Telephone --> Internet
 Internet --> ServeurWeb
-ServeurWeb --> BaseDeDonnée
+ServeurWeb --> ServeurApplication
+ServeurApplication --> BaseDeDonnée
 
 @enduml
