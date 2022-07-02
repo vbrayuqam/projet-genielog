@@ -20,9 +20,9 @@ U -> S: modifierDossier(info)
 activate S
 S -> D: modifierDossier(info)
 activate D
-D --> P: creerInfoPatient(info)
+D --> P: modifierInfoPatient(info)
 activate P
-P --> C: creeCoordonnees(info)
+P --> C: modifierCoordonnees(info)
 activate C
 C --> P
 deactivate C
