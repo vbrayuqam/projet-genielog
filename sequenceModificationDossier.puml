@@ -18,24 +18,24 @@ activate M
 activate U
 U -> S: modifierDossier(info)
 activate S
-S -> D: modifierDossier(info)
+S -> D: modifier(info)
 activate D
-D --> P: modifierInfoPatient(info)
+D --> P: modifier(info)
 activate P
-P --> C: modifierCoordonnees(info)
+P --> C: modifier(info)
 activate C
 C --> P
 deactivate C
 
 loop "pour chaque antecedent"
-  P -> A: creerAntecedent(info)
+  P -> A: modifier(info)
   activate A
   A --> P
   deactivate A
 end loop
 
 loop "pour chaque antecedent"
-  P -> V: creerVisite(info)
+  P -> V: modifier(info)
   activate V
   V --> P
   deactivate V

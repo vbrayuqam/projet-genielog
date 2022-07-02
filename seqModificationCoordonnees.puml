@@ -22,7 +22,7 @@ S -> D: modifierCoordonnees(info)
 activate D
 D --> P: modifierCoordonnees(info)
 activate P
-P --> C: modifierCoordonnees(info)
+P --> C: modifier(info)
 activate C
 C --> P
 deactivate C

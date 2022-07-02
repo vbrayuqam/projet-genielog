@@ -1,26 +1,64 @@
-@startuml seqLireDossier
+@startuml sequenceModificationPatient
 
-title Lire Dossier
+title Sequence - Modification des dossiers
 
-participant Utilisateur as U
+participant Medecin as M
+participant InterfaceUtilisateur as U
+participant SystemeDossier as S
 participant Dossier as D
-participant InfoPatient as I
+participant Patient as P
 participant Antecedent as A
 participant Visite as V
+participant Coordonnees as C
+participant ConnecteurDB as DB
 
 
-U -> D: lireDossier()
-D -> I: toString()
-I --> D
+M -> U: lireDossier(numeroDossier)
+activate M
+activate U
+U -> S: lireDossier(numeroDossier)
+activate S
+
+S -> DB: lireBaseDonnees(numeroDossier)
+activate DB
+DB --> S
+deactivate DB
+
+
+S -> D: lire()
+activate D
+D --> P: lire(info)
+activate P
+P --> C: lire(info)
+activate C
+C --> P
+deactivate C
+
+
+
 loop "pour chaque antecedent"
-    D -> A: toString()
-    A --> D
-end
-loop "pour chaque visite"
-    D -> V: toString()
-    V --> D
-end
-D --> U
+  P -> A: lire(info)
+  activate A
+  A --> P
+  deactivate A
+end loop
 
+loop "pour chaque antecedent"
+  P -> V: lire(info)
+  activate V
+  V --> P
+  deactivate V
+end loop
+
+P --> D
+deactivate P
+D --> S
+deactivate D
+
+S --> U
+deactivate S
+U --> M
+deactivate U
+deactivate M
 
 @enduml
