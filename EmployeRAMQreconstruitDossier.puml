@@ -3,52 +3,92 @@
 Title Sequence - Reconstruction d'un dossier par la RAMQ
 
 participant EmployeeRAMQ as ER
+participant InterfaceUtilisateur as IU
 participant SystemeDossier as SD 
 participant Dossier as D 
+participant Patient as P
 participant Visite as V
 participant Antecedent as A 
+participant Coordonnees as C
+participant ConnecteurDB as CDB
 
-ER -> SD : connexion(Identifiant)
+ER -> IU : connexion(Identifiant)
+activate ER
+activate IU
+IU -> SD : connexion(Identifiant)
+activate SD
+
 
 alt connexion etablie
 
-    SD --> ER : connexion confirmee
-    ER -> SD : lireDossier(info)
+    SD --> IU : 
+    IU --> ER : connexion confirmee
+    ER -> IU : lireDossier(info)
+    IU -> SD : lireDossier(info)
     SD -> D : lireDossier(info)
     activate D
     alt dossier existe
         D --> SD
-        SD --> ER : confirmation
-        ER -> SD : reconstruireDossier(info)
+        SD --> IU 
+        IU --> ER : confirmation
+        ER -> IU : reconstruireDossier(info)
+        IU -> SD : reconstruireDossier(info)
         SD -> D : reconstruireDossier(info)
+        D -> P : reconstruireDossier(info)
+        activate P
 
-        loop
-            D -> V : creerVisite(info)
+        P -> C : modifierCoordonnees(info)
+        activate C
+        C --> P 
+        deactivate C
+
+        loop pour chaque visite
+            P -> V : modifierVisite(info)
             activate V
-            V --> D
+            V --> P
             deactivate V
         end
 
-        loop
-            D -> A : creerAntecedent(info)
+        loop  pour chaque antecedents
+            P -> A : modifierAntecedent(info)
             activate A
-            A --> D
+            A --> P
             deactivate A
         end
         
+        P --> D
+        deactivate P
         D --> SD
-        SD --> ER : dossier reconstruit
-    else dossier inexistant
-        D --> SD
-        SD --> ER : dossier inexistant
+        deactivate D
+        SD -> CDB : ecrireBaseDonnees(dossier)
+        activate CDB
+        CDB --> SD
+        deactivate CDB
 
+        SD --> IU 
+        deactivate SD
+        IU --> ER : dossier reconstruit
+    else dossier inexistant
+        activate SD
+        activate D
+        D --> SD
+        deactivate D
+        SD --> IU 
+        
+        IU --> ER : dossier inexistant
     end
     deactivate D
 else connexion refusee
 
-    SD --> ER : connexion refusee
+    
+    SD --> IU 
+    deactivate SD
+    IU --> ER : connexion refusee
 
+    deactivate IU
+    deactivate ER
 end
+
 
 
 @enduml
