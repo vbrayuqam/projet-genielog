@@ -75,7 +75,7 @@ L'utilisateur va appeler sa methode *lireDossier* avec un numero de dossier en p
 ### Séquence de modification d'un dossier d'un patient
 
 
-Il s'agit ici de la séquence de modification du dossier d'un patient par un médecin dans le dossier du patient. Le médecin accède au dossier du patient par le logiciel de gestion (par exemple) avec le numéro d'assurance maladie du patient. Ayant obtenu les informations du dossier, il fait la demande de modification du dossier dans le dossier du patient. La classe *Dossier* génère une nouvelle instance pour le patient avec les nouvelles informations. Ensuite, elle crée des instances d'antécédents, de visites et de coordonnées ainsi que les informations du patient pour le nouveau dossier. Suite, à un engregistrement des modifications dans la base de données, une confirmation de la modification est finalement acheminée à l'utilisateur.
+Il s'agit ici de la séquence de modification du dossier d'un patient par un médecin dans le dossier du patient. Le médecin accède au dossier du patient par le logiciel de gestion (par exemple) avec le numéro d'assurance maladie du patient. Ayant obtenu les informations du dossier, il fait la demande de modification du dossier dans le dossier du patient. À la suite de quoi la méthode modifier() est appelée sur le dossier. Ensuite, les instances d'antécédents, de visites et de coordonnées ainsi que les informations du patient sont modifiés,créés au besoin. Suite, à un engregistrement des modifications dans la base de données, une confirmation de la modification est finalement acheminée à l'utilisateur.
 
 ### Diagramme
 
