@@ -44,7 +44,7 @@ Date de remise: 3 juillet 2022
 
 ## Diagramme(s) de cas d'utilisation <a name="cas"></a>
  
-Le diagramme d'utilisation represente les fonctionnalites offertes au utilisateurs du systeme et precise quels utilisateurs ont acces a quelles fonctionnalites. Par exemple, le patient, bien qu'il puisse lire son propre dossier, n'a pas acces a une vue complete de celui-ci. Aussi il interagit avec le systeme de dossier avec des interfaces (app mobile, site web) qui sont differentes de celles utilisees par le personnel medical et le personnel de la RAMQ (app medecin) 
+Le diagramme de cas d'utilisation représente les fonctionnalités offertes aux utilisateurs du système et précise quels utilisateurs ont accès à quelles fonctionnalités. Il devrait être noté que le patient, bien qu'il puisse lire son propre dossier, n'a pas accès a une vue complète de celui-ci. Aussi il interagit avec le système de dossier avec des interfaces (app mobile, site web) qui sont différentes de celles utilisées par le personnel médical et le personnel de la RAMQ (app médecin) 
 
 ![Diagramme de cas d'utilisation](/diagrammes/CAS.png "Diagramme de cas d'utilisation")
 
@@ -53,8 +53,7 @@ Le diagramme d'utilisation represente les fonctionnalites offertes au utilisateu
 
 ### Explications
 
-Nous avons commencé par constater que nous avions besoin d'une classe *Utilisateur*,  ainsi les différentes classes d'utilisateurs vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un *Dossier*, nous l'avons donc représenté par une classe. Un *Dossier*, à notre sens, est constitué d'une liste de *Visite*s, d'une liste d'*Antécédent*s ainsi que des informations d'un patient. Chacun de ces concepts a donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe car ceux-ci 
-impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement. Chaque *Etablissement* contient plusieurs *SalleEvaluation*, et chaque salle d'evaluation contient un ou plusieurs *PosteDeTravail*, auxquels sont assignes des *Medecin*, un exemple de respect de la loi de Demeter. Pour ce qui est de la documentation des changements, nous créons un nouveau dossier à chaque fois que celui-ci est modifié. Ces dossiers doivent etre geres par un *SystemeDossier* qui gere l'acces aux dossiers et les demandes de modification de ceux-ci faites par les utilisateurs. Le *SystemeDossier* utilise un *ConnecteurDB* pour faire les demandes d'ecriture et de lecture a la base de donnees. Les utilisateurs interagissent tous avec un *InterfaceUtilisateur* pour envoyer des demandes au *SystemeDossier* . Le type d'interface varie selon le type d'utilisateur. Un seul des types d'utilisateur, l'employe RAMQ, a la capacite de creer des nouveaux dossiers. 
+Nous avons commencé par constater que nous avions besoin d'une classe *Utilisateur*,  ainsi les différentes classes d'utilisateurs vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un *Dossier*, nous l'avons donc représenté par une classe. Un *Dossier*, à notre sens, est constitué d'une liste de *Visite*, d'une liste d'*Antécédent* ainsi que des informations d'un patient. Chacun de ces concepts a donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe car ceux-ci impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement. Chaque *Etablissement* contient plusieurs *SalleEvaluation*, et chaque salle d'evaluation contient un ou plusieurs *PosteDeTravail*, auxquels sont assignés des *Medecin*, un exemple de respect de la loi de Demeter. Pour ce qui est de la documentation des changements, nous créons un nouveau dossier à chaque fois que celui-ci est modifié. Ces dossiers doivent etre géres par un *SystemeDossier* qui gère l'accès aux dossiers et les demandes de modification de ceux-ci faites par les utilisateurs. Le *SystemeDossier* utilise un *ConnecteurDB* pour faire les demandes d'écriture et de lecture à la base de données. Les utilisateurs interagissent tous avec un *InterfaceUtilisateur* pour envoyer des demandes au *SystemeDossier*. Le type d'interface varie selon le type d'utilisateur. Un seul des types d'utilisateur, l'employé RAMQ, a la capacité de créer des nouveaux dossiers. 
 
 ### Diagramme
 
@@ -64,26 +63,26 @@ impliquent plusieurs informations distinctes. Les établissements (ainsi que les
 
 ### Sequence pour la connection a un interface
 
- Dans les trois cas, le processus est le meme: l'utilisateur
+ Dans les trois cas, le processus est le même: l'utilisateur
  entre ses identifiants dans l'interface utilisateur, qui 
  ensuite envoie une demande de connexion au Systeme Dossier. Celui-ci 
- envoie une demande de verification des identifiants au connecteur BD,
- qui verifie la validite de ceux-ci et retourne un succes ou un echec.
- Le resultat est ensuite renvoye au Systeme Dossier et finalement a
+ envoie une demande de vérification des identifiants au connecteur BD,
+ qui verifie la validite de ceux-ci et retourne un succès ou un échec.
+ Le résultat est ensuite renvoyé au Système Dossier et finalement à
  l'interface utilisateur, qui affiche un message d'erreur ou connecte l'utilisateur,
- tout dependant du resultat
+ tout dépendant du resultat.
 
  ### Diagrammes
 
- ![Diagramme de connection app medecin](/diagrammes/SEQCONNECTMED.png "Diagramme de connection application medecin")
+![Diagramme de connection app medecin](/diagrammes/SEQCONNECTMED.png "Diagramme de connection application medecin")
 
-  ![Diagramme de connection app mobile](/diagrammes/SEQCONNECTMOBILE.png "Diagramme de connection application mobile")
+![Diagramme de connection app mobile](/diagrammes/SEQCONNECTMOBILE.png "Diagramme de connection application mobile")
 
-   ![Diagramme de connection siter web](/diagrammes/SEQCONNECTWEB.png "Diagramme de connection site web")
+![Diagramme de connection siter web](/diagrammes/SEQCONNECTWEB.png "Diagramme de connection site web")
 
 ### Sequence pour la lecture d'un dossier
 
-L'utilisateur va appeler sa methode *lireDossier* avec un numero de dossier en paramètre. Après avoir été acquéris via la base de données, le *Dossier* en question va transformer toutes les informations qu'il contient en structure texte et retourner le tout pour que celui-ci puisse être affiché.
+L'utilisateur va appeler sa méthode *lireDossier* avec un numéro de dossier en paramètre. Après avoir été acquis via la base de données, le *Dossier* en question va transformer toutes les informations qu'il contient en structure texte et retourner le tout pour que celui-ci puisse être affiché.
 
 
 ### Diagramme
@@ -133,11 +132,7 @@ est envoyé à l'employé de la RAMQ par l'entremise de l'interface utilisateur.
 
 ### Explications
 
-Dans cette séquence, on a un employé de la RAMQ qui tente se connecter au système avec son identifiant à travers un interface utilisateur. Dans le cas d'un refus, l'employé reçoit un message d'une connexion refusée. Dans le cas d'une connexion acceptée,  l'employé de la RAMQ utilise l'interface utilisateur
-pour lire le dossier d'un patient. Si le dossier du patient n'existe pas, un message lui est envoyé de l'inexistence du dossier et l'employé doit suivre la
-séquence de création d'un dossier. Dans le cas où le dossier du patient existe, l'employé utilise l'interface utilisateur pour faire la requête de
-reconstruction d'un dossier à partir des informations qu'il possède (à partir d'une date par exemple). Le système se charge de la création du dossier en communiquant avec dossier et patient qui se charge de la modification des coordonnées, des visites et des antécédents. Par la suite, le dossier est écrit
-dans une base de données. Enfin, un message est envoyé à l'employé de la RAMQ par l'entremise de l'interface utilisateur que le dossier est reconstruit.
+Dans cette séquence, on a un employé de la RAMQ qui tente se connecter au système avec son identifiant à travers un interface utilisateur. Dans le cas d'un refus, l'employé reçoit un message d'une connexion refusée. Dans le cas d'une connexion acceptée,  l'employé de la RAMQ utilise l'interface utilisateur pour lire le dossier d'un patient. Si le dossier du patient n'existe pas, un message lui est envoyé de l'inexistence du dossier et l'employé doit suivre la séquence de création d'un dossier. Dans le cas où le dossier du patient existe, l'employé utilise l'interface utilisateur pour faire la requête de reconstruction d'un dossier à partir des informations qu'il possède (à partir d'une date par exemple). Le système se charge de la création du dossier en communiquant avec dossier et patient qui se charge de la modification des coordonnées, des visites et des antécédents. Par la suite, le dossier est écrit dans une base de données. Enfin, un message est envoyé à l'employé de la RAMQ par l'entremise de l'interface utilisateur que le dossier est reconstruit.
 
 ### Diagramme 
 ![Diagramme de sequence RECON](diagrammes/SEQRAMQRECONSTRUIT.png "Diagramme de sequence de reconstruction de dossier")
@@ -159,7 +154,7 @@ Nous avons décidé de couper notre programme en plusieurs couches. Chacune de c
 
 ### Explications
 
-Les utilisateurs ont acces a plusieurs interfaces d'utilisation pour acceder au *SystemeDossier*. Celui-ci gere les requetes des utilisateurs et fait les appels a la BD.
+Les utilisateurs ont acces a plusieurs interfaces d'utilisation pour acceder au *SystemeDossier*. Celui-ci gère les requêtes des utilisateurs et fait les appels a la BD.
 
 ### Diagramme
 
@@ -189,7 +184,7 @@ Nos sous-classes de la classe abstraite *Utilisateur*, *InterfaceUtilisateur* et
 
 ### Patron Spécialiste de l'information
 
-Nous utilisons le paton de spécialiste de l'information pour la plupart de nos classes. Elles s'occupent de faire les opérations concernant les données qu'elles encapsulent.
+Nous utilisons le patron de spécialiste de l'information pour la plupart de nos classes. Elles s'occupent de faire les opérations concernant les données qu'elles encapsulent.
 
 ### Patron Créateur
 
