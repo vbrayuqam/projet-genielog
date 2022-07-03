@@ -2,17 +2,29 @@
 
 title Composantes
 
-() "Application Medecin" as AM
-[Base de donnees] as BD
-[Carte Assurance-Maladie] as C
+actor "Employe RAMQ" as RAMQ
+actor Medecin as M
+actor Patient as P
+actor "Professionnel non medical" as PM
+[Application Medecin] as AM
+[Site Web] as WWW
+[Application Mobile] as MOB
+database "Base de Donnees" as BD
 [Systeme Dossier] as S
-() "Site Web" as WWW
 
-
-S *-- BD
-C - AM
+RAMQ -- AM
+M -- AM
+PM -- AM
+P -- WWW
+P -- MOB
+S -- BD
+MOB -down- S
 AM - S
 S - WWW
 
 
 @enduml
+
+Les utilisateurs ont acces a plusieurs interfaces
+d'utilisation pour acceder au systeme dossier. Celui-ci gere les
+requetes des utilisateurs et fait les appels a la BD

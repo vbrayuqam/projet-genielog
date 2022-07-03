@@ -37,7 +37,7 @@ class ApplicationMobile{
 }
 
 abstract InterfaceUtilisateur{
-    connection()
+    connexion()
 }
 
 ApplicationMedecin --|> InterfaceUtilisateur
@@ -56,8 +56,8 @@ class Dossier{
 interface Lisible{}
 interface Modifiable{}
 
-Dossier --|> Lisible
-Dossier --|> Modifiable
+Dossier ..|> Lisible
+Dossier ..|> Modifiable
 
 class Antecedent{
     - diagnostic: String
@@ -67,8 +67,8 @@ class Antecedent{
     - fin: Optional<Date>
 }
 
-Antecedent --|> Lisible
-Antecedent --|> Modifiable
+Antecedent ..|> Lisible
+Antecedent ..|> Modifiable
 
 class Visite{
     - medecin: Medecin
@@ -79,8 +79,8 @@ class Visite{
     - notes: String
 }
 
-Visite --|> Lisible
-Visite --|> Modifiable
+Visite ..|> Lisible
+Visite ..|> Modifiable
 
 class Medecin{
     modifierDossier()
@@ -93,8 +93,8 @@ class Coordonnees{
     -courriel:String
 }
 
-Coordonnees --|> Lisible
-Coordonnees --|> Modifiable
+Coordonnees ..|> Lisible
+Coordonnees ..|> Modifiable
 
 class professionnelMedical{
     -nom:String
@@ -164,3 +164,4 @@ Dossier "1" o-- "0..*" Visite
 Etablissement "1" -- "*" Visite
 
 @enduml
+

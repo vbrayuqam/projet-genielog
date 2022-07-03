@@ -52,8 +52,8 @@ Date de remise: 3 juillet 2022
 
 ### Explications
 
-Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'expérience, nous avons donc décidé de modéliser la logique d'affaire interne du programme (couche logique). Nous avons commencé par constater que nous avions besoin d'une classe *Utilisateur*,  ainsi les différentes classes d'utilisateurs vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un dossier, nous l'avons donc représenté par une classe. Un dossier, à notre sens, est constitué d'une liste de visites, d'une liste d'antécédents ainsi que des informations d'un patient. Chacun de ces concepts a donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe car ceux-ci impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement. Pour ce qui est de la documentation des changements, nous créons un nouveau dossier à chaque fois que celui-ci est modifié.
-
+Nous avons commencé par constater que nous avions besoin d'une classe *Utilisateur*,  ainsi les différentes classes d'utilisateurs vont hériter de celle-ci et implémenter leurs comportements distincts. Le concept largement manipulé par le système nous semblait être un *Dossier*, nous l'avons donc représenté par une classe. Un *Dossier*, à notre sens, est constitué d'une liste de *Visite*s, d'une liste d'*Antécédent*s ainsi que des informations d'un patient. Chacun de ces concepts a donc été représenté sous forme de classes qui constituent un dossier. Nous avons aussi modélisé le concept de coordonnées et d'établissement sous forme de classe car ceux-ci 
+impliquent plusieurs informations distinctes. Les établissements (ainsi que les patients) auront donc des coordonnées. Les visites, quant à elles, auront un établissement. Chaque *Etablissement* contient plusieurs *SalleEvaluation*, et chaque salle d'evaluation contient un ou plusieurs *PosteDeTravail*, auxquels sont assignes des *Medecin*, un exemple de respect de la loi de Demeter. Pour ce qui est de la documentation des changements, nous créons un nouveau dossier à chaque fois que celui-ci est modifié. Ces dossiers doivent etre geres par un *SystemeDossier* qui gere l'acces aux dossiers et les demandes de modification de ceux-ci faites par les utilisateurs. Le *SystemeDossier* utilise un *ConnecteurDB* pour faire les demandes d'ecriture et de lecture a la base de donnees. Les utilisateurs interagissent tous avec un *InterfaceUtilisateur* pour envoyer des demandes au *SystemeDossier* . Le type d'interface varie selon le type d'utilisateur. Un seul des types d'utilisateur, l'employe RAMQ, a la capacite de creer des nouveaux dossiers. 
 
 ### Diagramme
 
@@ -61,6 +61,24 @@ Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'
 
 ## Diagramme(s) de séquence <a name="sequence"></a>
 
+### Sequence pour la connection a un interface
+
+ Dans les trois cas, le processus est le meme: l'utilisateur
+ entre ses identifiants dans l'interface utilisateur, qui 
+ ensuite envoie une demande de connexion au Systeme Dossier. Celui-ci 
+ envoie une demande de verification des identifiants au connecteur BD,
+ qui verifie la validite de ceux-ci et retourne un succes ou un echec.
+ Le resultat est ensuite renvoye au Systeme Dossier et finalement a
+ l'interface utilisateur, qui affiche un message d'erreur ou connecte l'utilisateur,
+ tout dependant du resultat
+
+ ### Diagrammes
+
+ ![Diagramme de connection app medecin](/diagrammes/SEQCONNECTMED.png "Diagramme de connection application medecin")
+
+  ![Diagramme de connection app mobile](/diagrammes/SEQCONNECTMOBILE.png "Diagramme de connection application mobile")
+
+   ![Diagramme de connection siter web](/diagrammes/SEQCONNECTWEB.png "Diagramme de connection site web")
 
 ### Sequence pour la lecture d'un dossier
 
@@ -92,6 +110,39 @@ Il s'agit ici de la séquence de modification des coordonnées d'un patient par 
 
 ![Diagramme de séquence COORD](/diagrammes/SEQCOORD.png "Diagramme de séquence COORD")
 
+## Diagramme de séquence de la création d'un dossier par un employé de la RAMQ
+
+### Explications
+
+Dans cette séquence, on a un employé de la RAMQ qui tente de se connecter au
+système avec son identifiant à travers un interface utilisateur. Dans le cas
+d'un refus, l'employé reçoit un message d'une connexion refusée. Dans le cas
+d'une connexion acceptée, l'employé de la RAMQ utlise l'interface utilisateur
+pour créer un dossier à partir d'information qu'il possède. Par la suite, le
+système de dossiers crée un dossier d'un patient. Un patient a des coordonnées
+lors de la création d'un dossier mais n'a pas d'antécédents ni de visites lors
+de la création du dossier (antécdent et visite sont des listes vides). Ensuite,
+le dossier est écrit dans un base de données. Enfin, un message de confirmation
+est envoyé à l'employé de la RAMQ par l'entremise de l'interface utilisateur.
+
+### Diagramme
+![Diagramme de sequence CREER](diagrammes/SEQRAMQCREER.png "Diagramme de sequence creation de dossier")
+
+## Diagramme de séquence de la reconstruction d'un dossier par un employé de la
+## RAMQ
+
+### Explications
+
+Dans cette séquence, on a un employé de la RAMQ qui tente se connecter au système avec son identifiant à travers un interface utilisateur. Dans le cas d'un refus, l'employé reçoit un message d'une connexion refusée. Dans le cas d'une connexion acceptée,  l'employé de la RAMQ utilise l'interface utilisateur
+pour lire le dossier d'un patient. Si le dossier du patient n'existe pas, un message lui est envoyé de l'inexistence du dossier et l'employé doit suivre la
+séquence de création d'un dossier. Dans le cas où le dossier du patient existe, l'employé utilise l'interface utilisateur pour faire la requête de
+reconstruction d'un dossier à partir des informations qu'il possède (à partir d'une date par exemple). Le système se charge de la création du dossier en communiquant avec dossier et patient qui se charge de la modification des coordonnées, des visites et des antécédents. Par la suite, le dossier est écrit
+dans une base de données. Enfin, un message est envoyé à l'employé de la RAMQ par l'entremise de l'interface utilisateur que le dossier est reconstruit.
+
+### Diagramme 
+![Diagramme de sequence RECON](diagrammes/SEQRAMQRECONSTRUIT.png "Diagramme de sequence de reconstruction de dossier")
+
+
 ## Diagramme(s) de package <a name="package"></a>
 
 ### Explications
@@ -108,7 +159,7 @@ Nous avons décidé de couper notre programme en plusieurs couches. Chacune de c
 
 ### Explications
 
-La carte d'assurance-maladie permet, à travers l'application médecin, d'accéder à un dossier et de le lire ou y faire des modifications, tout dépendant des privilèges de l'utilisateur. Le site web permet au patient d'accéder à une partie du dossier et en modifier les coordonnées.
+Les utilisateurs ont acces a plusieurs interfaces d'utilisation pour acceder au *SystemeDossier*. Celui-ci gere les requetes des utilisateurs et fait les appels a la BD.
 
 ### Diagramme
 
@@ -118,7 +169,8 @@ La carte d'assurance-maladie permet, à travers l'application médecin, d'accéd
 
 ### Explications
 
-Un diagramme de déploiement est une représentation de la topologie des composantes physiques d'un système et les liens de communications entre ces composantes. Elle sert entre autres à donner un portrait général du matériel d'un système que l'on veut représenter. Dans notre cas, nous avons des utilisateurs (médecin, patient et personnel de la santé) qui accèdent au système par un site web ou une application mobile ou un logiciel de gestion. Ceux-ci sont connectés à internet et communiquent avec un serveur web qui se charge de la communication avec une base de données ayant les informations sur les dossiers de patients.
+Un diagramme de déploiement est une représentation de la topologie des composantes physiques d'un système et les liens de communications entre ces composantes. Elle sert à donner un portrait général du matériel d'un système que l'on veut représenter. Dans notre cas, nous avons des patients qui accèdent à leur dossier par l'entremise d'un navigateur web à partir d'un PC ou par l'entremise d'une application mobile d'un téléphone mobile. Nous avons également des professionnels médical ( des médecins ou autres) et des employés de la RAMQ qui accèdent au système par un logiciel de gestion installé sur un ordinateur.  Les PC, téléphones mobiles et ordinateurs sont connectés à
+internet et communiquent avec un serveur web (la couche présentation). Celui-ci communique avec un serveur application (couche logique) qui se charge de la communication avec une base de données SQLite3.
 
 
 ### Diagramme
@@ -133,7 +185,7 @@ Dans nos couches de présentation nous utilisons le patron de contrôleur dans l
 
 ### Patron Polymorphisme
 
-Nos sous-classes de la classe abstraite *Utilisateur* et *Etablissement* utilisent le patron de polymorphisme. Nous pouvons ainsi leur donner des comportements différents lorsque la même fonction est appelée sur les classes ainsi que dans les divers contextes d'utilisation.
+Nos sous-classes de la classe abstraite *Utilisateur*, *InterfaceUtilisateur* et *Etablissement* utilisent le patron de polymorphisme. Nous pouvons ainsi leur donner des comportements différents lorsque la même fonction est appelée sur les classes ainsi que dans les divers contextes d'utilisation.
 
 ### Patron Spécialiste de l'information
 

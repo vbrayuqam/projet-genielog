@@ -1,0 +1,39 @@
+@startuml connectionApplicationMedecin
+title Connection Application Medecin
+
+participant Medecin as M
+participant ApplicationMedecin as IU
+participant SystemeDossier as SD
+participant ConnecteurBD as BD
+
+M -> IU: connexion(identifiant)
+activate IU
+IU -> SD: connexion(identifiant)
+activate SD
+SD -> BD: verifMotDePasse(identifiant)
+activate BD
+BD --> SD
+deactivate BD
+alt succès
+    SD --> IU: retour true
+    deactivate SD
+    IU --> M: Affichage de l'interface
+else connection refusee
+    SD --> IU: retour false
+    deactivate SD
+    IU --> M: Affichage de message d'erreur
+    deactivate IU
+end
+
+ @enduml
+
+ Dans les trois cas, le processus est le meme: l'utilisateur
+ entre ses identifiants dans l'interface utilisateur, qui 
+ ensuite envoie une demande de connexion au Systeme Dossier. Celui-ci 
+ envoie une demande de verification des identifiants au connecteur BD,
+ qui verifie la validite de ceux-ci et retourne un succes ou un echec.
+ Le resultat est ensuite renvoye au Systeme Dossier et finalement a
+ l'interface utilisateur, qui affiche un message d'erreur ou connecte l'utilisateur,
+ tout dependant du resultat
+
+

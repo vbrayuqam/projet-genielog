@@ -1,0 +1,27 @@
+@startuml connectionSiteWeb
+title Connection Site Web
+
+participant Patient as M
+participant SiteWeb as IU
+participant SystemeDossier as SD
+participant ConnecteurBD as BD
+
+M -> IU: connexion(identifiant)
+activate IU
+IU -> SD: connexion(identifiant)
+activate SD
+SD -> BD: verifMotDePasse(identifiant)
+activate BD
+BD --> SD
+deactivate BD
+alt succès
+    SD --> IU: retour true
+    deactivate SD
+    IU --> M: Affichage de l'interface
+else connection refusee
+    SD --> IU: retour false
+    deactivate SD
+    IU --> M: Affichage de message d'erreur
+end
+
+ @enduml
