@@ -85,7 +85,7 @@ Il s'agit ici de la séquence de modification du dossier d'un patient par un mé
 
 ### Sequence de modification des coordonnees
 
-Il s'agit ici de la séquence de modification des coordonnées d'un patient par celui-ci. Le patient accède au dossier à travers le site web avec son numéro d'assurance maladie. Ayant obtenu les informations du dossier, il fait la demande de modification des coordonnées dans le dossier du patient. Le système accède a l'objet Patient pour pouvoir accèder à l'objet Coordonnées et en modifier le contenu. Suite, à un engregistrement des modifications dans la base de données, une confirmation de la modification est finalement acheminée à l'utilisateur.
+Il s'agit ici de la séquence de modification des coordonnées d'un patient par celui-ci. Le patient accède au dossier à travers le site web avec son numéro d'assurance maladie. Ayant obtenu les informations du dossier, il fait la demande de modification des coordonnées dans le dossier du patient. Le système accède a l'objet Patient pour pouvoir accèder à l'objet Coordonnées et en modifier le contenu. Suite à un engregistrement des modifications dans la base de données, une confirmation de la modification est finalement acheminée à l'utilisateur.
 
 ### Diagramme
 
