@@ -127,18 +127,17 @@ Un diagramme de déploiement est une représentation de la topologie des composa
 
 ## Justifications GRASP <a name="grasp"></a>
 
-
 ### Patron Contrôleur
 
 Dans nos couches de présentation nous utilisons le patron de contrôleur dans le cadre d'un modèle MVC (Modèle/Vue/Contrôleur). Le contrôleur, propre à chacune des couches, coordonne les messages externes sans se coupler aux objet internes.
 
 ### Patron Polymorphisme
 
-Nos sous-classes de la classe abstraite *Utilisateur* utilisent le patron de polymorphisme. Nous pouvons ainsi leur donner des comportements différents lorsque la même fonction est appelée sur les classes ainsi que dans les divers contextes d'utilisation.
+Nos sous-classes de la classe abstraite *Utilisateur* et *Etablissement* utilisent le patron de polymorphisme. Nous pouvons ainsi leur donner des comportements différents lorsque la même fonction est appelée sur les classes ainsi que dans les divers contextes d'utilisation.
 
 ### Patron Spécialiste de l'information
 
-Pour les classes *Établissement*, *Coordonnées*, *InfoPatient*, *Visite* et *Antécédent* nous utilisons le patron de spécialiste de l'information. Toutes ces classes représentent des concepts distincts qui contiennent plusieurs données internes. Ces données sont donc encapsulées dans ces classes et elles peuvent poser des actions envers celles-ci (les données) car se sont elles (les classes) qui les connaissent.
+Nous utilisons le paton de spécialiste de l'information pour la plupart de nos classes. Elles s'occupent de faire les opérations concernant les données qu'elles encapsulent.
 
 ### Patron Créateur
 
@@ -147,3 +146,11 @@ Pour la majorité des classes qui contiennent des objets issus d'autre classes (
 ### Patron Forte cohésion
 
 Nous utilisons le patron forte cohésion dans notre conception. Ainsi, plusieurs de nos classes peuvent être utilisées à des fins que nous n'avons pas prévus. Par exemple, la classe *Coordonnées* peut être utiliser pour représenter des coordonnées autres que celle d'établissements ou de patients.
+
+### Patron Faible couplage
+
+Nous utilisons le patron de faible couplage dans notre conception. Ainsi, nous minimisons les dépendences entre les objets afin de réduire l'impact des changements.
+
+### Patron protégé des variations
+
+Nous utilisons le patron protégé des variations dans notre conception. Nous avons identifier les comportements de lecture et de modification et les avons encapsuler dans deux interfaces que plusieurs de nos objets peuvent implémenté.
