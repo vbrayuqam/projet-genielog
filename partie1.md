@@ -64,7 +64,7 @@ Nous étions un peu confus sur quoi modéliser exactement dû à notre manque d'
 
 ### Sequence pour la lecture d'un dossier
 
-L'utilisateur va appeler sa methode *lireDossier* avec un numero de dossier en paramètre. Le *Dossier* en question va transformer toutes les informations qu'il contient en structure texte et retourner le tout pour que celui-ci puisse être affiché.
+L'utilisateur va appeler sa methode *lireDossier* avec un numero de dossier en paramètre. Après avoir été acquéris via la base de données, le *Dossier* en question va transformer toutes les informations qu'il contient en structure texte et retourner le tout pour que celui-ci puisse être affiché.
 
 
 ### Diagramme
@@ -75,7 +75,7 @@ L'utilisateur va appeler sa methode *lireDossier* avec un numero de dossier en p
 ### Séquence de modification d'un dossier d'un patient
 
 
-Il s'agit ici de la séquence de modification du dossier d'un patient par un médecin dans le dossier du patient. Le médecin accède au dossier du patient par le logiciel de gestion (par exemple) avec le numéro d'assurance maladie du patient. Ayant obtenu les informations du dossier, il fait la demande de modification du dossier dans le dossier du patient. La classe *Dossier* génère une nouvelle instance pour le patient avec les nouvelles informations. Ensuite, elle crée des instances d'antécédents, de visites et de coordonnées ainsi qu'*InfoPatient* pour le nouveau dossier. Une confirmation de la modification est finalement acheminée à l'utilisateur.
+Il s'agit ici de la séquence de modification du dossier d'un patient par un médecin dans le dossier du patient. Le médecin accède au dossier du patient par le logiciel de gestion (par exemple) avec le numéro d'assurance maladie du patient. Ayant obtenu les informations du dossier, il fait la demande de modification du dossier dans le dossier du patient. La classe *Dossier* génère une nouvelle instance pour le patient avec les nouvelles informations. Ensuite, elle crée des instances d'antécédents, de visites et de coordonnées ainsi que les informations du patient pour le nouveau dossier. Suite, à un engregistrement des modifications dans la base de données, une confirmation de la modification est finalement acheminée à l'utilisateur.
 
 ### Diagramme
 
@@ -85,7 +85,7 @@ Il s'agit ici de la séquence de modification du dossier d'un patient par un mé
 
 ### Sequence de modification des coordonnees
 
-Il s'agit ici de la séquence de modification des coordonnées d'un patient par celui-ci. Le patient accède au dossier à travers le site web avec son numéro d'assurance maladie. Ayant obtenu les informations du dossier, il fait la demande de modification des coordonnées dans le dossier du patient. Une instance *InfoPatient* est générée par la suite et c'est celle-ci qui se charge de la création des nouvelles coordonnées. Par la suite, les antécédents et les visites sont mise à jour. Une confirmation de la modification est finalement acheminée à l'utilisateur.
+Il s'agit ici de la séquence de modification des coordonnées d'un patient par celui-ci. Le patient accède au dossier à travers le site web avec son numéro d'assurance maladie. Ayant obtenu les informations du dossier, il fait la demande de modification des coordonnées dans le dossier du patient. Le système accède a l'objet Patient pour pouvoir accèder à l'objet Coordonnées et en modifier le contenu. Suite, à un engregistrement des modifications dans la base de données, une confirmation de la modification est finalement acheminée à l'utilisateur.
 
 ### Diagramme
 
@@ -96,7 +96,7 @@ Il s'agit ici de la séquence de modification des coordonnées d'un patient par 
 
 ### Explications
 
-Nous avons décidé de couper notre programme en plusieurs couches. Chacune de ces couches sera encapsulée dans son propre package. Ceci nous permet de réutiliser/réusiner une couche pour l'utiliser dans une autre conception plus tard. Nous avons deux couches de présentation: une pour le côté web et une pour le côté mobile. Chacune d'elles encapsule un modèle MVC. La logique d'affaire du programme se trouve dans la couche logique. Dans la couche données nous avons mis la classe qui servira de connecteur à la base de données du système.
+Nous avons décidé de couper notre programme en plusieurs couches. Chacune de ces couches sera encapsulée dans son propre package. Ceci nous permet de réutiliser/réusiner une couche pour l'utiliser dans une autre conception plus tard. Nous avons une couche de présentation qui contient les objet que nous utiliserons pour intéragir avec les différentes applications (web, mobile) du système. La logique d'affaire du programme se trouve dans la couche logique. Dans la couche données nous avons mis la classe qui servira de connecteur à la base de données du système.
 
 ### Diagramme
 
