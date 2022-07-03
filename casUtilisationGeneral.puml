@@ -4,7 +4,7 @@ title Cas d'utilisation general
 
 left to right direction
 actor EmployeRAMQ as RAMQ
-actor "Medecin" as m
+actor Medecin as m
 actor Patient as p
 actor profMedical as pm
 rectangle SystemeDossierMedical {

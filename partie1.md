@@ -44,6 +44,7 @@ Date de remise: 3 juillet 2022
 
 ## Diagramme(s) de cas d'utilisation <a name="cas"></a>
  
+Le diagramme d'utilisation represente les fonctionnalites offertes au utilisateurs du systeme et precise quels utilisateurs ont acces a quelles fonctionnalites. Par exemple, le patient, bien qu'il puisse lire son propre dossier, n'a pas acces a une vue complete de celui-ci. Aussi il interagit avec le systeme de dossier avec des interfaces (app mobile, site web) qui sont differentes de celles utilisees par le personnel medical et le personnel de la RAMQ (app medecin) 
 
 ![Diagramme de cas d'utilisation](/diagrammes/CAS.png "Diagramme de cas d'utilisation")
 
@@ -110,7 +111,7 @@ Il s'agit ici de la séquence de modification des coordonnées d'un patient par 
 
 ![Diagramme de séquence COORD](/diagrammes/SEQCOORD.png "Diagramme de séquence COORD")
 
-## Diagramme de séquence de la création d'un dossier par un employé de la RAMQ
+### Diagramme de séquence de la création d'un dossier par un employé de la RAMQ
 
 ### Explications
 
@@ -128,8 +129,7 @@ est envoyé à l'employé de la RAMQ par l'entremise de l'interface utilisateur.
 ### Diagramme
 ![Diagramme de sequence CREER](diagrammes/SEQRAMQCREER.png "Diagramme de sequence creation de dossier")
 
-## Diagramme de séquence de la reconstruction d'un dossier par un employé de la
-## RAMQ
+### Diagramme de séquence de la reconstruction d'un dossier par un employé de la RAMQ
 
 ### Explications
 

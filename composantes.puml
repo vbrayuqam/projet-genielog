@@ -24,7 +24,3 @@ S - WWW
 
 
 @enduml
-
-Les utilisateurs ont acces a plusieurs interfaces
-d'utilisation pour acceder au systeme dossier. Celui-ci gere les
-requetes des utilisateurs et fait les appels a la BD

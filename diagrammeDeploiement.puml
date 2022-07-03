@@ -19,11 +19,11 @@ node Telephone {
 }
 
 node ServeurWeb {
-    component couchePrésentation
+    node couchePrésentation
 }
 
 node ServeurApplication {
-    component coucheLogique
+    node coucheLogique
 }
 
 database BaseDeDonnée {
