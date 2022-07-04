@@ -44,7 +44,7 @@ Date de remise: 3 juillet 2022
 
 ## Diagramme(s) de cas d'utilisation <a name="cas"></a>
  
-Le diagramme de cas d'utilisation représente les fonctionnalités offertes aux utilisateurs du système et précise quels utilisateurs ont accès à quelles fonctionnalités. Il devrait être noté que le patient, bien qu'il puisse lire son propre dossier, n'a pas accès à une vue complète de celui-ci. Aussi, il interagit avec le système de dossier avec des interfaces (app mobile, site web) qui sont différentes de celles utilisées par le personnel médical et le personnel de la RAMQ (app médecin) 
+Le diagramme de cas d'utilisation représente les fonctionnalités offertes aux utilisateurs du système et précise quels utilisateurs ont accès à quelles fonctionnalités. Il devrait être noté que le patient, bien qu'il puisse lire son propre dossier, n'a pas accès à une vue complète de celui-ci. Aussi, il interagit avec le système de dossier avec des interfaces (app mobile, site web) qui sont différentes de celles utilisées par le personnel médical et le personnel de la RAMQ (app médecin).
 
 ![Diagramme de cas d'utilisation](/diagrammes/CAS.png "Diagramme de cas d'utilisation")
 
@@ -61,7 +61,7 @@ Nous avons commencé par constater que nous avions besoin d'une classe *Utilisat
 
 ## Diagramme(s) de séquence <a name="sequence"></a>
 
-### Sequence pour la connection a un interface
+### Séquence pour la connection à un interface
 
  Dans les trois cas, le processus est le même: l'utilisateur
  entre ses identifiants dans l'interface utilisateur, qui 
@@ -80,7 +80,7 @@ Nous avons commencé par constater que nous avions besoin d'une classe *Utilisat
 
 ![Diagramme de connection siter web](/diagrammes/SEQCONNECTWEB.png "Diagramme de connection site web")
 
-### Sequence pour la lecture d'un dossier
+### Séquence pour la lecture d'un dossier
 
 L'utilisateur va appeler sa méthode *lireDossier* avec un numéro de dossier en paramètre. Après avoir été acquis via la base de données, le *Dossier* en question va transformer toutes les informations qu'il contient en structure texte et retourner le tout pour que celui-ci puisse être affiché.
 
@@ -90,7 +90,7 @@ L'utilisateur va appeler sa méthode *lireDossier* avec un numéro de dossier en
 ![Diagramme de séquence LIRE](/diagrammes/SEQLIRE.png "Diagramme de séquence LIRE")
 
 
-### Séquence de modification d'un dossier d'un patient
+### Séquence de modification du dossier d'un patient
 
 
 Il s'agit ici de la séquence de modification du dossier d'un patient par un médecin dans le dossier du patient. Le médecin accède au dossier du patient par le logiciel de gestion (par exemple) avec le numéro d'assurance maladie du patient. Ayant obtenu les informations du dossier, il fait la demande de modification du dossier dans le dossier du patient. À la suite de quoi la méthode modifier() est appelée sur le dossier. Ensuite, les instances d'antécédents, de visites et de coordonnées ainsi que les informations du patient sont modifiés/créés au besoin. Suite à un enregistrement des modifications dans la base de données, une confirmation de la modification est finalement acheminée à l'utilisateur.
@@ -101,7 +101,7 @@ Il s'agit ici de la séquence de modification du dossier d'un patient par un mé
 ![Diagramme de séquence MOD](/diagrammes/SEQMOD.png "Diagramme de séquence MOD")
 
 
-### Sequence de modification des coordonnees
+### Séquence de modification des coordonnées
 
 Il s'agit ici de la séquence de modification des coordonnées d'un patient par celui-ci. Le patient accède au dossier à travers le site web avec son numéro d'assurance maladie. Ayant obtenu les informations du dossier, il fait la demande de modification des coordonnées dans le dossier du patient. Le système accède a l'objet *Patient* pour pouvoir accèder à l'objet *Coordonnées* et en modifier le contenu. Suite à un enregistrement des modifications dans la base de données, une confirmation de la modification est finalement acheminée à l'utilisateur.
 
@@ -154,7 +154,7 @@ Nous avons décidé de couper notre programme en plusieurs couches. Chacune de c
 
 ### Explications
 
-Les utilisateurs ont accès à plusieurs interfaces d'utilisation pour accéder au *SystemeDossier*. Celui-ci gère les requêtes des utilisateurs et fait les appels a la BD.
+Les utilisateurs ont accès à plusieurs interfaces d'utilisation pour accéder au *SystemeDossier*. Celui-ci gère les requêtes des utilisateurs et fait les appels à la BD. Chaque interface utilise un medium d'interaction différent et accorde des privilèges d'accès différents et ils doivent donc être distincts.
 
 ### Diagramme
 
