@@ -1,0 +1,41 @@
+@startuml Classes
+
+title Proxy - Classes
+
+class SystemeDossier{
+    creerDossier()
+    lireDossier(dossier)
+    modifierDossier(dossier)
+    modifierCoordonnees(dossier)
+    reconstruireDossier(dossier)
+
+}
+
+class ConnecteurDB{
+}
+
+ConnecteurDB -- SystemeDossier
+
+
+class Dossier{
+    - code: String
+    - date: Version
+    lire()
+    modifier()
+}
+
+class ProxyDossier{
+    lire()
+    modifier()
+}
+
+Dossier "1" --> "1" ProxyDossier
+SystemeDossier "1" o-- "0..*" ProxyDossier
+Patient "1" o-- "0..1" Dossier
+Dossier "1" o-- "0..*" Antecedent
+Dossier "1" o-- "0..*" Visite
+Dossier .. ConnecteurDB
+ProxyDossier ..ConnecteurDB
+
+@enduml
+
