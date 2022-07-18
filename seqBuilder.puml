@@ -1,0 +1,40 @@
+@startuml seqBuilder
+
+title "Sequence Builder"
+
+participant SystemeDossier as SD
+participant BuilderConcret as BC
+participant Visite as V
+participant Antecedent as A
+participant Dossier as D
+
+-> SD: creerDossier()
+activate SD
+SD -> BC: creerVisites()
+activate BC
+loop
+    BC -> V: new()
+    activate V
+    V --> BC
+    deactivate V
+end
+SD -> BC : creerAntecedents()
+loop
+    BC -> A: new()
+
+    A --> BC
+
+end
+BC --> SD
+deactivate BC
+
+SD -> BC: creerDossier()
+activate BC
+BC -> D: new()
+BC -> D: setAntecedents()
+BC -> D: setVisites()
+BC --> SD
+deactivate BC
+<-- SD 
+deactivate SD
+@enduml

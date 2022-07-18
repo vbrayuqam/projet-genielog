@@ -1,0 +1,34 @@
+@startuml builderclasses
+
+title "Diagramme de Classes - Patron Builder"
+
+
+' class EmployeRAMQ{}
+
+' abstract Utilisateur{}
+
+
+class SystemeDossier{
+    -Creer():Dossier
+}
+
+Interface Builder{
+    - creerVisites():List<Visites>
+    - creerAntecedent():List<Antecedent>
+    - retourDossier(): Dossier
+}
+
+class BuilderConcret{
+    - creerVisites():List<Visites>
+    - creerAntecedent():List<Antecedent>
+    - retourDossier(): Dossier
+}
+
+class Dossier{}
+
+SystemeDossier "1" *-- "1" Builder
+BuilderConcret ..|> Builder
+Dossier .. Builder
+
+
+@enduml
