@@ -1,0 +1,100 @@
+@startuml sequenceModificationPatient
+
+title Sequence - Modification des dossiers (Proxy)
+
+participant Medecin as M
+participant InterfaceUtilisateur as U
+participant SystemeDossier as S
+participant ProxyDossier as PD
+participant Dossier as D
+participant Patient as P
+participant Antecedent as A
+participant Visite as V
+participant Coordonnees as C
+participant ConnecteurDB as DB
+
+
+M -> U: modifierDossier(info)
+activate M
+activate U
+U -> S: modifierDossier(info)
+activate S
+S -> PD: modifier(info)
+activate PD
+PD -> D: modifier(info)
+activate D
+D --> P: modifier(info)
+activate P
+P --> C: modifier(info)
+activate C
+C --> P
+deactivate C
+
+loop "pour chaque antecedent"
+  P -> A: modifier(info)
+  activate A
+  A --> P
+  deactivate A
+end loop
+
+loop "pour chaque antecedent"
+  P -> V: modifier(info)
+  activate V
+  V --> P
+  deactivate V
+end loop
+
+P --> D
+deactivate P
+D --> PD
+deactivate D
+PD --> S
+deactivate PD
+S -> DB: ecrireBaseDonnees(proxyDossier)
+activate DB
+DB --> PD: lire()
+activate PD
+PD --> D: lire()
+activate D
+
+
+
+D --> P: lire()
+activate P
+P --> C: lire()
+activate C
+C --> P
+deactivate C
+
+loop "pour chaque antecedent"
+  P -> A: lire()
+  activate A
+  A --> P
+  deactivate A
+end loop
+
+loop "pour chaque antecedent"
+  P -> V: lire()
+  activate V
+  V --> P
+  deactivate V
+end loop
+
+P --> D
+deactivate P
+D --> PD
+deactivate D
+PD --> DB
+deactivate PD
+
+
+DB --> S
+deactivate DB
+S --> U
+deactivate S
+U --> M
+deactivate U
+deactivate M
+
+@enduml
+
