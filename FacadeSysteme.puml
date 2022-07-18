@@ -1,0 +1,156 @@
+@startuml Classes
+
+title Classes
+
+class FacadeSysteme{
+    creerDossier()
+    lireDossier()
+    modifierDossier()
+    modifierCoordonnees()
+    reconstruireDossier()
+    connexion()
+
+}
+
+
+class SystemeDossier{
+    creerDossier()
+    lireDossier()
+    modifierDossier()
+    modifierCoordonnees()
+    reconstruireDossier()
+
+
+}
+
+class ConnecteurDB{
+    ecrireBaseDonnees()
+    lireBaseDonnees()
+}
+
+ConnecteurDB -- SystemeDossier
+
+
+class SiteWeb{
+
+}
+
+
+Utilisateur *-- Identifiants
+
+
+
+class ApplicationMedecin{
+
+}
+
+class ApplicationMobile{
+
+}
+
+abstract InterfaceUtilisateur{
+    connexion()
+}
+
+ApplicationMedecin --|> InterfaceUtilisateur
+ApplicationMobile --|> InterfaceUtilisateur
+SiteWeb --|> InterfaceUtilisateur
+
+InterfaceUtilisateur .. SystemeDossier
+FacadeSysteme .. InterfaceUtilisateur
+FacadeSysteme -- SystemeDossier
+FacadeSysteme .. Utilisateur
+
+class Dossier{
+}
+
+interface Lisible{}
+interface Modifiable{}
+
+Dossier ..|> Lisible
+Dossier ..|> Modifiable
+
+class Antecedent{
+   
+}
+
+Antecedent ..|> Lisible
+Antecedent ..|> Modifiable
+
+class Visite{
+    
+}
+
+Visite ..|> Lisible
+Visite ..|> Modifiable
+
+class Medecin{
+    modifierDossier()
+
+}
+
+class Coordonnees{
+    
+}
+
+Coordonnees ..|> Lisible
+Coordonnees ..|> Modifiable
+
+class professionnelMedical{
+    
+}
+
+class Patient{
+    modifierCoordonnees()
+    lireDossier()
+}
+
+class RAMQ{}
+
+RAMQ *-- EmployeRAMQ
+
+class EmployeRAMQ{
+    creerDossier()
+    reconstruireDossier()
+}
+
+class SalleEvaluation{}
+class PosteDeTravail{}
+
+
+abstract Utilisateur{
+    lireDossier()
+}
+
+class Hopital{}
+class Clinique{}
+
+abstract Etablissement{
+}
+
+Patient --|> Utilisateur
+professionnelMedical --|> Utilisateur
+
+
+
+Hopital --|> Etablissement
+Clinique --|> Etablissement
+EmployeRAMQ --|> Utilisateur
+Etablissement "1" *-- "1" Coordonnees
+Etablissement "1" *-- "0..*" SalleEvaluation
+SalleEvaluation "1" *-- "1..*" PosteDeTravail
+Patient "1" o-- "0..1" Coordonnees
+Medecin --|> professionnelMedical
+professionnelMedical "0..*" --o "1" PosteDeTravail
+SystemeDossier "1" o-- "0..*" Dossier
+
+Patient "1" o-- "0..1" Dossier
+
+Dossier "1" o-- "0..*" Antecedent
+
+Dossier "1" o-- "0..*" Visite
+
+Etablissement "1" -- "*" Visite
+
+@enduml
+
