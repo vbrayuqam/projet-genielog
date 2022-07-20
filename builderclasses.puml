@@ -3,11 +3,6 @@
 title "Diagramme de Classes - Patron Builder"
 
 
-' class EmployeRAMQ{}
-
-' abstract Utilisateur{}
-
-
 class SystemeDossier{
     -Creer():Dossier
 }
@@ -18,7 +13,7 @@ Interface Builder{
     - retourDossier(): Dossier
 }
 
-class BuilderConcret{
+class ConnecteurDB{
     - creerVisites():List<Visites>
     - creerAntecedent():List<Antecedent>
     - retourDossier(): Dossier
@@ -27,7 +22,7 @@ class BuilderConcret{
 class Dossier{}
 
 SystemeDossier "1" *-- "1" Builder
-BuilderConcret ..|> Builder
+ConnecteurDB ..|> Builder
 Dossier .. Builder
 
 
