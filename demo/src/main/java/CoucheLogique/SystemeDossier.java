@@ -1,5 +1,5 @@
 package CoucheLogique;
 
-public interface SystemeDossier {
+public class SystemeDossier {
     
 }
