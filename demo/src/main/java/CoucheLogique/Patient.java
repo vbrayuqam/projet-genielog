@@ -1,6 +1,6 @@
 package CoucheLogique;
 
-public class Patient {
+public class Patient extends Utilisateur{
     Patient(){
         
     }

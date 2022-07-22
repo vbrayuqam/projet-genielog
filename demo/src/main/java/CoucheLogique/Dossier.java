@@ -1,10 +1,13 @@
 package CoucheLogique;
 
+import java.util.Date;
+
 public class Dossier {
     
-    Antecedent[] antecedents;
-    Visite[] visites;
-    Patient patient;
+    private Antecedent[] antecedents;
+    private Visite[] visites;
+    private Patient patient;
+    private Date date;
 
     Dossier(){
 
