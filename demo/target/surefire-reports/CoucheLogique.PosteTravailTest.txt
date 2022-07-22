@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: inf5153_groupe8_tp.AppTest
+Test set: CoucheLogique.PosteTravailTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in inf5153_groupe8_tp.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in CoucheLogique.PosteTravailTest

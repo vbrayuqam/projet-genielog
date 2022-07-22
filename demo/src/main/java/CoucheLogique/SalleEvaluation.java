@@ -19,4 +19,20 @@ public class SalleEvaluation {
     public void setNumeroSalle(String numeroSalle) {
         this.numeroSalle = numeroSalle;
     }
+
+    public List<PosteTravail> getPostes() {
+        return postes;
+    }
+
+    public void setPostes(List<PosteTravail> postes) {
+        this.postes = postes;
+    }
+
+    public void ajouterPoste(PosteTravail poste) {
+        postes.add(poste);
+    }
+
+    public PosteTravail extrairePoste(int index) {
+        return postes.get(index);
+    }
 }
