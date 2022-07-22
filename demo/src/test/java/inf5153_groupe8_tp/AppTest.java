@@ -1,7 +1,6 @@
 package inf5153_groupe8_tp;
 
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 /**
