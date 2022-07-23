@@ -5,7 +5,7 @@ public class Identifiants {
     private String nomUtilisateur;
     private String motDePasse;
 
-    Identifiants() {
+    public Identifiants() {
 
     }
 

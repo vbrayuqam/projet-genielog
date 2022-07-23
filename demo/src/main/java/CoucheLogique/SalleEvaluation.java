@@ -8,7 +8,7 @@ public class SalleEvaluation {
     private String numeroSalle;
     private List<PosteTravail> postes;
 
-    SalleEvaluation() {
+    public SalleEvaluation() {
         this.postes = new ArrayList<>();
     }
 

@@ -4,8 +4,7 @@ import java.util.Date;
 
 public class Patient extends Utilisateur {
 
-    private String nom;
-    private String prenom;
+
     private Date dateNaissance;
     private String genre;
     private String mere;
@@ -14,24 +13,8 @@ public class Patient extends Utilisateur {
     private String nas;
     private Coordonnees coords;
 
-    Patient(){
+    public Patient(){
         
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
     }
 
     public Date getDateNaissance() {

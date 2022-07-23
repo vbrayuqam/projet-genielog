@@ -5,7 +5,7 @@ public class PosteTravail {
     private String numeroPoste;
     private ProfMedical examinateur;
 
-    PosteTravail() {
+    public PosteTravail() {
 
     }
 

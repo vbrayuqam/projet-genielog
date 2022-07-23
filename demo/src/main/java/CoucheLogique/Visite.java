@@ -12,7 +12,7 @@ public class Visite {
     private String notes;
     private Etablissement etablissement;
 
-    Visite(){
+    public Visite(){
 
     }
 

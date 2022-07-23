@@ -9,7 +9,7 @@ public class Dossier {
     private Patient patient;
     private Date date;
 
-    Dossier(){
+    public Dossier(){
 
     }
 
