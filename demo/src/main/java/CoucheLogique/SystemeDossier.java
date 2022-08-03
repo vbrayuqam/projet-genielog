@@ -12,7 +12,7 @@ public class SystemeDossier {
     }
 
     public boolean connexion(String usr, String pwd){
-        return (usr == "Bob");
+        return (usr.equals("Bob"));
 
     }
 
