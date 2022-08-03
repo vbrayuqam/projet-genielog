@@ -6,14 +6,12 @@ import java.sql.*;
 
 
 public class ConnecteurBD {
-    
-     Connection conn = null;
 
-     public static Connection ConnectionDB(){
-
+     public static Connection connectionBD(){
+         Connection conn = null;
          try{
              Class.forName("org.sqlite.JDBC");
-             Connection conn = DriverManager.getConnection("jdbc:sqlite:src/bd/BD.db");
+             conn = DriverManager.getConnection("jdbc:sqlite:src/bd/BD.db");
              System.out.println("Connexion reussie");
              return conn;
          }
