@@ -24,8 +24,7 @@ public class SystemeDossier {
     }
 
     public JSONObject lireDossier() {
-        JSONObject dossierJSON = JSONObject.fromObject(dossier.getDossier());
-        return dossierJSON;
+        return dossier.lireDossier();
     }
 
     public void modifierDossier(JSONObject dossierJSON) {

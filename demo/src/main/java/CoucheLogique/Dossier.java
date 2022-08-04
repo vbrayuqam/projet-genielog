@@ -1,5 +1,7 @@
 package CoucheLogique;
 
+import net.sf.json.JSONObject;
+
 import java.util.Date;
 
 public class Dossier {
@@ -45,5 +47,7 @@ public class Dossier {
         this.date = date;
     }
 
-
+    public JSONObject lireDossier() {
+        return JSONObject.fromObject(this);
+    }
 }
