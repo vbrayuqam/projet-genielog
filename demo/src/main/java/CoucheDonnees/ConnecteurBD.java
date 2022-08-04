@@ -1,6 +1,9 @@
 package CoucheDonnees;
 
+import CoucheLogique.Antecedent;
 import CoucheLogique.Coordonnees;
+import CoucheLogique.Identifiants;
+import CoucheLogique.Visite;
 
 import java.sql.*;
 
@@ -88,7 +91,9 @@ public class ConnecteurBD {
 
 
 
-// ------------------------- début des fonction de lecture de la table patient ----------------------------------
+
+
+// ------------------------- début des fonctions de lecture de la table patient ----------------------------------
 
     public String patientNom( String assMaladieNum) {
 
@@ -336,12 +341,102 @@ public class ConnecteurBD {
         Coordonnees patientCoordonnee = new Coordonnees();
         patientCoordonnee.setAdresse(patientAdresseResident);
         patientCoordonnee.setTelephone(patientTelephone);
-        patientCoordonnee.setCourriel(patientCourriel);;
+        patientCoordonnee.setCourriel(patientCourriel);
 
 
 
         return patientCoordonnee;
     }
+
+// ------------------------------ fin de la lecture des coordonnées d'un patient --------------------------------
+
+
+
+
+
+
+// ------------------------------ début de la lecture des antécédents --------------------------------------------
+
+
+// ------------------------------ fin de la lecture des antécédents -----------------------------------------------
+
+
+
+
+
+
+// ------------------------------ début de la lecture des visites --------------------------------------------
+
+
+// ------------------------------ fin de la lecture des visites -----------------------------------------------
+
+
+
+
+
+// ------------------------------ début  écriture d'antécédents dans la BD --------------------------------------------
+    
+    public static void ecritureBDAntecedent (Antecedent unAntecedent, String assMaladieNum){
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        ResultSet resultat = null;
+        String diagnostic = unAntecedent.getDiagnostic();
+        String traitement = unAntecedent.getTraitement();
+        String medecinTraitant = unAntecedent.getMedecin().getNom();
+        String debutMaladie = String.valueOf(unAntecedent.getDebut());
+        String finMaladie = String.valueOf(unAntecedent.getFin());
+
+
+        try {
+            String requeteSQL = "INSERT INTO antecedents(diagnostic, traitement, medecinTraitant, debutMaladie, finMaladie, id_assMaladie) VALUES(?,?,?,?,?,?)";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, diagnostic);
+            preRequete.setString(2, traitement);
+            preRequete.setString(3, medecinTraitant);
+            preRequete.setString(4, debutMaladie);
+            preRequete.setString(5, finMaladie);
+            preRequete.setString(6, assMaladieNum);
+            preRequete.executeUpdate();
+
+        } catch(SQLException e) {
+            System.out.println(" requete patientCoordonnee échouée");
+
+        } finally {
+            try {
+                resultat.close();
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+
+
+    }
+
+ // ------------------------------ fin  écriture d'antécédents dans la BD --------------------------------------------
+
+
+
+
+// ------------------------------ début  écriture de visites dans la BD --------------------------------------------
+    public static void ecritureBDVisite( Visite nouvelleVisite ) {
+/*
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        ResultSet resultat = null;
+        String etablissement = nouvelleVisite.getEtablissement()    // etablissement est un string dans la bd (un nom)
+                                                                    // et notre implémentation a seulement
+                                                                    // des coordonnées et une liste de salles
+*/
+
+
+
+    }
+
+// ------------------------------ fin  écriture de visites dans la BD --------------------------------------------
 
 
 }
