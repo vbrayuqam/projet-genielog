@@ -1,8 +1,8 @@
 package CouchePresentation;
 
+import CoucheLogique.SystemeDossier;
+
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,14 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import CoucheLogique.SystemeDossier;
+public class PageConnexion {
 
-public class PageConnexion implements ActionListener{
-
-    SystemeDossier sd = new SystemeDossier();
+    SystemeDossier sd;
 
     // Elements interface graphique
-    JFrame frame = new JFrame("Connexion Usager");
+    JFrame page = new JFrame("Connexion Usager");
 
     JButton bConnexion = new JButton("Connexion");
     JButton bReset = new JButton("Reset");
@@ -31,8 +29,10 @@ public class PageConnexion implements ActionListener{
     JLabel resultat = new JLabel();
 
     public PageConnexion(SystemeDossier systemeDossier) {
+
         sd = systemeDossier;
 
+        // Creation de l'interface graphique
         lUsager.setBounds(50, 50, 150, 25);
         lmotDePasse.setBounds(50, 100, 150, 25);
 
@@ -40,41 +40,33 @@ public class PageConnexion implements ActionListener{
         motDePasse.setBounds(175, 100, 250, 25);
 
         bConnexion.setBounds(175, 150, 125, 25);
-        bConnexion.addActionListener(this);
+        bConnexion.addActionListener(e -> {
+            String usr = usager.getText();
+            String pwd = String.valueOf(motDePasse.getPassword());
+
+            if (sd.connexion(usr, pwd)) {
+                resultat.setText("Connexion Acceptee!!");
+                page.dispose();
+                ApplicationMedecin appMed = new ApplicationMedecin(sd);
+            } else {
+                resultat.setText("Connexion Refusee!!");
+            }
+        });
 
         resultat.setBounds(125, 200, 250, 35);
         resultat.setFont(new Font(null, Font.PLAIN, 14));
 
-        frame.add(lUsager);
-        frame.add(lmotDePasse);
-        frame.add(usager);
-        frame.add(motDePasse);
-        frame.add(bConnexion);
-        frame.add(resultat);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 300);
-        frame.setLayout(null);
-        frame.setVisible(true);
+        page.add(lUsager);
+        page.add(lmotDePasse);
+        page.add(usager);
+        page.add(motDePasse);
+        page.add(bConnexion);
+        page.add(resultat);
+        page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        page.setSize(500, 300);
+        page.setLayout(null);
+        page.setVisible(true);
 
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource()==bConnexion){
-
-            String usr = usager.getText();
-            String pwd = String.valueOf(motDePasse.getPassword());
-
-            if (sd.connexion(usr,pwd)){
-                resultat.setText("Connexion Acceptee!!");
-            }
-            else{
-                resultat.setText("Connexion Refusee!!");
-            }
-
-
-
-        }
     }
 
 }
