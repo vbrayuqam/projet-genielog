@@ -50,6 +50,33 @@ public class ConnecteurBD {
          return medecinPass;
      }
 
+    public String medecinNom( String medecinId) {
 
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        ResultSet resultat = null;
+        String medecinNom = null;
+
+        try {
+            String requeteSQL = "SELECT nom FROM medecin where id_medecin = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, medecinId);
+            resultat = preRequete.executeQuery();
+            medecinNom = resultat.getString(1);
+        } catch(SQLException e) {
+            System.out.println(" medecin login échoué");
+
+        } finally {
+            try {
+                resultat.close();
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+        return medecinNom;
+    }
 
 }
