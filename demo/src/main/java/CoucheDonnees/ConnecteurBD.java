@@ -1,5 +1,7 @@
 package CoucheDonnees;
 
+import CoucheLogique.Coordonnees;
+
 import java.sql.*;
 
 //import sqlite3;
@@ -291,7 +293,55 @@ public class ConnecteurBD {
 
         return patientVilleNaissance;
     }
-    
+
 
 // ------------------------ fin des fonctions de lecture de la table patient ------------------------------------
+
+
+
+
+// ------------------------ Lecture des coordonnées d'un patient ------------------------------------------------
+
+    public Coordonnees patientCoordonnee(String assMaladieNum) {
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        ResultSet resultat = null;
+        String patientAdresseResident = null;
+        String patientTelephone = null;
+        String patientCourriel = null;
+
+        try {
+            String requeteSQL = "SELECT * FROM patient where assMaladieNum = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            resultat = preRequete.executeQuery();
+            patientAdresseResident = resultat.getString("adresseResident");
+            patientTelephone = resultat.getString("telephone");
+            patientCourriel = resultat.getString("courriel");
+
+        } catch(SQLException e) {
+            System.out.println(" requete patientCoordonnee échouée");
+
+        } finally {
+            try {
+                resultat.close();
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+        Coordonnees patientCoordonnee = new Coordonnees();
+        patientCoordonnee.setAdresse(patientAdresseResident);
+        patientCoordonnee.setTelephone(patientTelephone);
+        patientCoordonnee.setCourriel(patientCourriel);;
+
+
+
+        return patientCoordonnee;
+    }
+
+
 }
