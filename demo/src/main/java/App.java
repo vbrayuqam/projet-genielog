@@ -9,7 +9,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        // tests couches logique
+        // tests couche logique
         Dossier test = new Dossier();
         Patient pat = new Patient();
         pat.setNas("ayy lmao");

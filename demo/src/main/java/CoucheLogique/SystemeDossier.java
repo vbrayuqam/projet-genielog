@@ -11,12 +11,16 @@ public class SystemeDossier {
     public SystemeDossier() {
     }
 
-    public boolean connexion(String usr, String pwd){
-        return (usr.equals("Bob"));
-    }
-
     public void setDossier(ProxyDossier dossier) {
         this.dossier = dossier;
+    }
+
+    public boolean connexion(String utilisateur, String mdp){
+        // fetch de la db les identifiants
+        // veirifie la validité
+
+        // retourne le résultat
+        return (utilisateur.equals("Bob"));
     }
 
     public JSONObject lireDossier() {
