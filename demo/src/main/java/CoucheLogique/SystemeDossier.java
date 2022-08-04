@@ -11,5 +11,10 @@ public class SystemeDossier {
         this.dossiers = new ArrayList<ProxyDossier>();
     }
 
+    public boolean connexion(String usr, String pwd){
+        return (usr.equals("Bob"));
+
+    }
+
 
 }

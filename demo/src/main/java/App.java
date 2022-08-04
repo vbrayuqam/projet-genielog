@@ -9,6 +9,7 @@ public class App
 {
     public static void main( String[] args )
     {
+
         Dossier test = new Dossier();
         Patient pat = new Patient();
         test.setPatient(pat);
@@ -18,8 +19,10 @@ public class App
         System.out.println(js.toString());
 
 
+        SystemeDossier systemeDossier = new SystemeDossier();
+        PageConnexion pageConnexion = new PageConnexion(systemeDossier);
+        ApplicationMedecin appMed = new ApplicationMedecin();
 
-        // ApplicationMedecin appMed = new ApplicationMedecin();
     }
 }
 
