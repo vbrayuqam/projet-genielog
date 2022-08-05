@@ -1,11 +1,12 @@
 package CoucheLogique;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 
 public class SalleEvaluationTest {
@@ -26,26 +27,11 @@ public class SalleEvaluationTest {
         poste1.setNumeroPoste("1");
         poste1.setNumeroPoste("2");
 
-        List<PosteTravail> listePostes = new ArrayList<>();
-        listePostes.add(poste1);
-        listePostes.add(poste2);
+        PosteTravail[] postes = new PosteTravail[2];
+        postes[0] = poste1;
+        postes[1] = poste2;
 
-        List<PosteTravail> listeVide = new ArrayList<>();
-
-        salle.setPostes(listePostes);
-        assertTrue(listePostes.equals(salle.getPostes()));
-        assertFalse(listeVide.equals(salle.getPostes()));
-    }
-
-    @Test
-    public void testPoste() {
-        List<PosteTravail> listeVide = new ArrayList<>();
-        PosteTravail poste = new PosteTravail();
-        PosteTravail posteBidon = new PosteTravail();
-
-        salle.setPostes(listeVide);
-        salle.ajouterPoste(poste);
-        assertTrue(poste.equals(salle.extrairePoste(0)));
-        assertFalse(posteBidon.equals(salle.extrairePoste(0)));
+        salle.setPostes(postes);
+        assertArrayEquals(postes, salle.getPostes());
     }
 }

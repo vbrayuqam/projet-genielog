@@ -6,7 +6,7 @@ import java.util.List;
 public class SalleEvaluation {
 
     private String numeroSalle;
-    private List<PosteTravail> postes = new ArrayList<>();
+    private PosteTravail[] postes;
 
     public SalleEvaluation() {
     }
@@ -19,19 +19,11 @@ public class SalleEvaluation {
         this.numeroSalle = numeroSalle;
     }
 
-    public List<PosteTravail> getPostes() {
+    public PosteTravail[] getPostes() {
         return postes;
     }
 
-    public void setPostes(List<PosteTravail> postes) {
+    public void setPostes(PosteTravail[] postes) {
         this.postes = postes;
-    }
-
-    public void ajouterPoste(PosteTravail poste) {
-        postes.add(poste);
-    }
-
-    public PosteTravail extrairePoste(int index) {
-        return postes.get(index);
     }
 }

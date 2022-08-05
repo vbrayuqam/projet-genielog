@@ -3,10 +3,11 @@ package CoucheLogique;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Etablissement {
+public class Etablissement {
 
     private Coordonnees coords;
-    private List<SalleEvaluation> salles = new ArrayList<>();
+    private String type;
+    private SalleEvaluation[] salles;
 
     public Coordonnees getCoords() {
         return coords;
@@ -16,16 +17,16 @@ public abstract class Etablissement {
         this.coords = coords;
     }
 
-    public List<SalleEvaluation> getSalles() {
+    public SalleEvaluation[] getSalles() {
         return salles;
     }
 
-    public void setSalles(List<SalleEvaluation> salles) {
+    public void setSalles(SalleEvaluation[] salles) {
         this.salles = salles;
     }
 
-    public void ajouterSalle(SalleEvaluation salle) {
-        this.salles.add(salle);
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getType() {

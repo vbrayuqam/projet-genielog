@@ -8,28 +8,27 @@ import java.util.List;
 
 public class Dossier {
     
-    private List<Antecedent> antecedents;
-    private List<Visite> visites;
+    private Antecedent[] antecedents;
+    private Visite[] visites;
     private Patient patient;
     private Date date;
 
     public Dossier(){
-
     }
 
-    public List<Antecedent> getAntecedents() {
+    public Antecedent[] getAntecedents() {
         return antecedents;
     }
 
-    public void setAntecedents(List<Antecedent> antecedents) {
+    public void setAntecedents(Antecedent[] antecedents) {
         this.antecedents = antecedents;
     }
 
-    public List<Visite> getVisites() {
+    public Visite[] getVisites() {
         return visites;
     }
 
-    public void setVisites(List<Visite> visites) {
+    public void setVisites(Visite[] visites) {
         this.visites = visites;
     }
 

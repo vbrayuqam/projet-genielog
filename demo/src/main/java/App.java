@@ -1,15 +1,12 @@
-import CoucheDonnees.*;
 import CoucheLogique.*;
 import CouchePresentation.*;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
-import net.sf.json.JsonConfig;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+
 
 public class App
 {
@@ -53,18 +50,24 @@ public class App
         PosteTravail poste = new PosteTravail();
         poste.setNumeroPoste("2");
         poste.setExaminateur(medecin);
+        PosteTravail[] postes = new PosteTravail[1];
+        postes[0] = poste;
 
         SalleEvaluation salle = new SalleEvaluation();
         salle.setNumeroSalle("1");
-        salle.ajouterPoste(poste);
+        salle.setPostes(postes);
+        SalleEvaluation[] salles = new SalleEvaluation[1];
+        salles[0] = salle;
 
-        Etablissement hopital = new Hopital();
+        Etablissement hopital = new Etablissement();
         hopital.setCoords(coords);
-        hopital.ajouterSalle(salle);
+        hopital.setSalles(salles);
+        hopital.setType("hopital");
 
-        Etablissement clinique = new Clinique();
+        Etablissement clinique = new Etablissement();
         clinique.setCoords(coords2);
-        clinique.ajouterSalle(salle);
+        clinique.setSalles(salles);
+        clinique.setType("clinique");
 
         Visite visite = new Visite();
         visite.setDiagnostic("une jambe en moins");
@@ -79,15 +82,14 @@ public class App
         antecedent.setMedecin(medecin);
         antecedent.setTraitement("non");
 
-        ArrayList<Antecedent> ants = new ArrayList<>();
-        ants.add(antecedent);
-        ants.add(antecedent);
+        Antecedent[] ants = new Antecedent[2];
+        ants[0] = antecedent;
+        ants[1] = antecedent;
 
-
-        ArrayList<Visite> vis = new ArrayList<>();
-        vis.add(visite);
-        vis.add(visite);
-        vis.add(visite);
+        Visite[] vis = new Visite[3];
+        vis[0] = visite;
+        vis[1] = visite;
+        vis[2] = visite;
 
         Dossier doss = new Dossier();
         doss.setPatient(pat);
@@ -95,9 +97,10 @@ public class App
         doss.setAntecedents(ants);
 
         ProxyDossier proxy = new ProxyDossier(doss);
-        System.out.println(JSONObject.fromObject(doss).toString(4));
 
-
+        JSONObject js = JSONObject.fromObject(doss);
+        Object bean = JSONObject.toBean(js, Dossier.class);
+        Dossier dosbean = (Dossier) bean;
 
         // La methode pour acceder au JSON dummy est lireDossier, invoqué sur proxy, j'ai pas set les dates encore
 
