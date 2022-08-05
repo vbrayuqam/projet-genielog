@@ -5,7 +5,7 @@ import java.util.Date;
 public class Patient extends Utilisateur {
 
 
-    private Date dateNaissance;
+    private DateSys dateNaissance;
     private String genre;
     private String mere;
     private String pere;
@@ -17,11 +17,11 @@ public class Patient extends Utilisateur {
         
     }
 
-    public Date getDateNaissance() {
+    public DateSys getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(DateSys dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Visite {
 
     private Medecin medecin;
-    private Date date;
+    private DateSys date;
     private String diagnostic;
     private String traitement;
     private String resume;
@@ -24,11 +24,11 @@ public class Visite {
         this.medecin = medecin;
     }
 
-    public Date getDate() {
+    public DateSys getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateSys date) {
         this.date = date;
     }
 
