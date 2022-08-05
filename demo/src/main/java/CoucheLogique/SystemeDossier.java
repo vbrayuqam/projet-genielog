@@ -1,6 +1,7 @@
 package CoucheLogique;
 
 
+import CoucheDonnees.ConnecteurBD;
 import net.sf.json.JSONObject;
 
 
@@ -16,11 +17,15 @@ public class SystemeDossier {
     }
 
     public boolean connexion(String utilisateur, String mdp){
-        // fetch de la db les identifiants
-        // veirifie la validité
+        boolean valide = false;
+        ConnecteurBD bd  = new ConnecteurBD();
+        String pass = bd.medecinLoginPass(utilisateur);
 
-        // retourne le résultat
-        return (utilisateur.equals("Bob"));
+        if(mdp.equals(pass)) {
+            valide = true;
+        }
+
+        return valide;
     }
 
     public JSONObject lireDossier() {

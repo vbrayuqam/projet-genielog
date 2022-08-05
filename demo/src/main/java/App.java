@@ -22,8 +22,6 @@ public class App
 
         SystemeDossier systemeDossier = new SystemeDossier();
         PageConnexion pageConnexion = new PageConnexion(systemeDossier);
-        ApplicationMedecin appMed = new ApplicationMedecin();
-
     }
 }
 
