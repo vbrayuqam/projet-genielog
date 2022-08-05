@@ -39,6 +39,7 @@ public class SystemeDossier {
 
         this.setDossier(proxy);
 
+        System.out.println(dossierJSON.toString(4));
         // ajouter les trucs pour modifier la db éventuellement
     }
 }

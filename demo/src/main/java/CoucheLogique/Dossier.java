@@ -1,10 +1,9 @@
 package CoucheLogique;
 
-import net.sf.json.JSONObject;
 
-import java.util.ArrayList;
+import net.sf.json.JSONObject;
 import java.util.Date;
-import java.util.List;
+
 
 public class Dossier {
     

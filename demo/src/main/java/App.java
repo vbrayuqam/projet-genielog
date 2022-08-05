@@ -63,11 +63,13 @@ public class App
         hopital.setCoords(coords);
         hopital.setSalles(salles);
         hopital.setType("hopital");
+        hopital.setNom("test123");
 
         Etablissement clinique = new Etablissement();
         clinique.setCoords(coords2);
         clinique.setSalles(salles);
         clinique.setType("clinique");
+        clinique.setNom("test123");
 
         Visite visite = new Visite();
         visite.setDiagnostic("une jambe en moins");
@@ -98,9 +100,9 @@ public class App
 
         ProxyDossier proxy = new ProxyDossier(doss);
 
-        JSONObject js = JSONObject.fromObject(doss);
-        Object bean = JSONObject.toBean(js, Dossier.class);
-        Dossier dosbean = (Dossier) bean;
+        SystemeDossier sd = new SystemeDossier();
+        sd.setDossier(proxy);
+    
 
         // La methode pour acceder au JSON dummy est lireDossier, invoqué sur proxy, j'ai pas set les dates encore
 
