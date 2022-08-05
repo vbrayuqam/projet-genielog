@@ -3,7 +3,7 @@ package CoucheLogique;
 public class DateSys {
 
     private int annee;
-    private String mois;
+    private int mois;
     private int jour;
 
     public DateSys() {
@@ -25,13 +25,11 @@ public class DateSys {
         this.jour = jour;
     }
 
-    public String getMois() {
+    public int getMois() {
         return mois;
     }
 
-    public void setMois(String mois) {
+    public void setMois(int mois) {
         this.mois = mois;
     }
-
-
 }

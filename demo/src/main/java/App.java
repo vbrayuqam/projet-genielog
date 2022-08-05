@@ -16,7 +16,7 @@ public class App
         DateSys date = new DateSys();
         date.setJour(4);
         date.setAnnee(2100);
-        date.setMois("juin");
+        date.setMois(6);
 
         // dossier dummy
         Coordonnees coords = new Coordonnees();
