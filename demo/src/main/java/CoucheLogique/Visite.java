@@ -71,4 +71,5 @@ public class Visite {
     public void setEtablissement(Etablissement etablissement) {
         this.etablissement = etablissement;
     }
+
 }

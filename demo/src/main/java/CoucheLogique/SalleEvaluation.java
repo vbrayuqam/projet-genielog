@@ -6,10 +6,9 @@ import java.util.List;
 public class SalleEvaluation {
 
     private String numeroSalle;
-    private List<PosteTravail> postes;
+    private List<PosteTravail> postes = new ArrayList<>();
 
     public SalleEvaluation() {
-        this.postes = new ArrayList<>();
     }
 
     public String getNumeroSalle() {

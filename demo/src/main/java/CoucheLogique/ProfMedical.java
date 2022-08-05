@@ -11,4 +11,8 @@ public class ProfMedical extends Utilisateur {
     public String getType() {
         return type;
     }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

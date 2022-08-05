@@ -2,12 +2,14 @@ package CoucheLogique;
 
 import net.sf.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Dossier {
     
-    private Antecedent[] antecedents;
-    private Visite[] visites;
+    private List<Antecedent> antecedents;
+    private List<Visite> visites;
     private Patient patient;
     private Date date;
 
@@ -15,19 +17,19 @@ public class Dossier {
 
     }
 
-    public Antecedent[] getAntecedents() {
+    public List<Antecedent> getAntecedents() {
         return antecedents;
     }
 
-    public void setAntecedents(Antecedent[] antecedents) {
+    public void setAntecedents(List<Antecedent> antecedents) {
         this.antecedents = antecedents;
     }
 
-    public Visite[] getVisites() {
+    public List<Visite> getVisites() {
         return visites;
     }
 
-    public void setVisites(Visite[] visites) {
+    public void setVisites(List<Visite> visites) {
         this.visites = visites;
     }
 
