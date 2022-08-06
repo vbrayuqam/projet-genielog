@@ -11,7 +11,7 @@ mvn package
 ``` 
 
 ## Exécution
-Pour exécuter le programme, se rendre a la racine du projer (le dossier demo) et lancer cette commande :
+Pour exécuter le programme, se rendre a la racine du projet (le dossier demo) et lancer cette commande :
 ``` 
 mvn exec:java
 ``` 
