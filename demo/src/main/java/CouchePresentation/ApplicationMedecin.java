@@ -64,12 +64,20 @@ public class ApplicationMedecin extends JFrame {
     JPanel pSauvegarde = new JPanel();
     JButton bSauvegarde = new JButton("Sauvegarder");
 
+
+    public String formatDate(JSONObject dateN){
+        
+
+        return dateN.getString("annee") + "-" + String.format("%02d", dateN.getInt("mois")) + "-"+ String.format("%02d",dateN.getInt("jour"));
+
+    }
     void lectureDossier(String am) {
        
         patient = sd.lireDossier(am);
         nom.setText(patient.getJSONObject("patient").getString("nom"));
         prenom.setText(patient.getJSONObject("patient").getString("prenom"));
-        dateNaissance.setText(patient.getJSONObject("patient").getString("dateNaissance"));
+        JSONObject dateN = patient.getJSONObject("patient").getJSONObject("dateNaissance");
+        dateNaissance.setText(formatDate(dateN));
         genre.setText(patient.getJSONObject("patient").getString("genre")); 
         mere.setText(patient.getJSONObject("patient").getString("mere"));   
         pere.setText(patient.getJSONObject("patient").getString("pere"));  
@@ -80,13 +88,11 @@ public class ApplicationMedecin extends JFrame {
 
     void modificationVisites(JSONArray visites){
         patient.put("visites", visites);
-        System.out.println(patient.getString("visites"));
     }
 
 
     void modificationAntecedents(JSONArray antecedents){
         patient.put("antecedents", antecedents);
-        System.out.println(patient.getString("antecedents"));
     }
 
     public ApplicationMedecin(SystemeDossier systemeDossier) {

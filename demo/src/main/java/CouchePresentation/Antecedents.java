@@ -18,6 +18,8 @@ public class Antecedents {
     JButton sauvegarder;
     JButton ajouter;
 
+    ApplicationMedecin appMed;
+
 
     private List<JTextField> nomsTF;
     private List<JTextField> prenomsTF;
@@ -78,7 +80,7 @@ public class Antecedents {
         pDebut.setLayout(new BoxLayout(pDebut, BoxLayout.Y_AXIS));
         JLabel lDebut = new JLabel("Debut");
         JTextField debut = new JTextField(15);
-        debut.setText(antecedent.getString("debut"));
+        debut.setText(appMed.formatDate(antecedent.getJSONObject("debut")));
         debutsTF.add(debut);
         pDebut.add(lDebut);
         pDebut.add(debut);
@@ -87,7 +89,7 @@ public class Antecedents {
         pFin.setLayout(new BoxLayout(pFin, BoxLayout.Y_AXIS));
         JLabel lFin = new JLabel("Fin");
         JTextField fin = new JTextField(15);
-        fin.setText(antecedent.getString("fin"));
+        fin.setText(appMed.formatDate(antecedent.getJSONObject("fin")));
         finTF.add(fin);
         pFin.add(lFin);
         pFin.add(fin);
@@ -100,7 +102,9 @@ public class Antecedents {
         return pAntecedent;
     }
 
-    public Antecedents(ApplicationMedecin appMed) {
+    public Antecedents(ApplicationMedecin applicationMedecin) {
+
+        appMed = applicationMedecin;
 
         page = new JFrame("Antecedents");
         boutons = new JPanel();

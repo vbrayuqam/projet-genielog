@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Visites {
 
+    ApplicationMedecin appMed;
+
     // Elements interface graphique
     JFrame page;
     JPanel boutons;
@@ -60,7 +62,7 @@ public class Visites {
         pDate.setLayout(new BoxLayout(pDate, BoxLayout.Y_AXIS));
         JLabel lDate = new JLabel("Date");
         JTextField date = new JTextField(15);
-        date.setText(visite.getString("date"));
+        date.setText(appMed.formatDate(visite.getJSONObject("date")));
         datesTF.add(date);
         pDate.add(lDate);
         pDate.add(date);
@@ -110,7 +112,9 @@ public class Visites {
         return pVisite;
     }
 
-    public Visites(ApplicationMedecin appMed) {
+    public Visites(ApplicationMedecin applicationMedecin) {
+        
+        appMed = applicationMedecin;
 
         page = new JFrame("Visites");
         boutons = new JPanel();
