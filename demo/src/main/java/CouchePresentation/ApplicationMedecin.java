@@ -66,7 +66,7 @@ public class ApplicationMedecin extends JFrame {
 
     void lectureDossier(String am) {
        
-        patient = sd.lireDossier();
+        patient = sd.lireDossier(am);
         nom.setText(patient.getJSONObject("patient").getString("nom"));
         prenom.setText(patient.getJSONObject("patient").getString("prenom"));
         dateNaissance.setText(patient.getJSONObject("patient").getString("dateNaissance"));

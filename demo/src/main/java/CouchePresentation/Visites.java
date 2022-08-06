@@ -165,7 +165,6 @@ public class Visites {
             visiteTemp.put("notes", "");
 
             page.add(affichageVisite(visiteTemp));
-            System.out.println(visites.getJSONObject(0).toString(4));
             page.pack();
 
         });

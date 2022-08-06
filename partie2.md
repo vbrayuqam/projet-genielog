@@ -29,14 +29,14 @@ Date de remise: 7 aout 2022
 ![Diagramme de classes proxy](/diagrammes/PROXYCLASS.png "Diagramme de classes proxy")
 ![Diagramme de séquence proxy](/diagrammes/PROXYSEQ.png "Diagramme de séquence proxy")
 ### Explications
-La classe ProxyDossier sert de proxy pour accéder à la classe Dossier. Ainsi dans un contexte où l'application est plus large et différentes vues ou accès sur les dossiers doivent être nécessaires, il est possible de les gérer en utilisant le proxy. Il suffit d'invoquer la fonction désirer sur le proxy et celui-ci fera ce qui est nécessaire dans chaques cas.
+La classe `ProxyDossier` sert de proxy pour accéder à la classe `Dossier`. Ainsi dans un contexte où l'application est plus large et différentes vues ou accès sur les dossiers doivent être nécessaires, il est possible de les gérer en utilisant le proxy. Il suffit d'invoquer la fonction désirer sur le proxy et celui-ci fera ce qui est nécessaire dans chaques cas.
 
 ## Patron Facade <a name="facade"></a>
 ### Diagrammes
 ![Diagramme de classes facade](/diagrammes/FACADESYSTEME.png "Diagramme de classes facade")
 ![Diagramme de séquence facade](/diagrammes/FACADESEQ.png "Diagramme de séquence facade")
 ### Explications
-La facade SystemeDossier permet de découpler les accès à la base de données et les interfaces du reste du système. Ainsi les divers services et fonctionnement interne du système sont abstrait par la facade lorsque celle-ci intéragit avec la db et les diverses interfaces.
+La facade `SystemeDossier` permet de découpler les accès à la base de données et les interfaces du reste du système. Ainsi les divers services et fonctionnement interne du système sont abstrait par la facade lorsque celle-ci intéragit avec la db et les diverses interfaces.
 
 
 ## Patron Builder <a name="sequence"></a>
