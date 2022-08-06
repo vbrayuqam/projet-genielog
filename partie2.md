@@ -41,5 +41,7 @@ La facade SystemeDossier permet de découpler les accès à la base de données 
 
 ## Patron Builder <a name="sequence"></a>
 ### Diagrammes
+![Diagramme de classes builder](/diagrammes/BUILDERCLASSES.png "Diagramme de classes builder")
+![Diagramme de séquence builder](/diagrammes/SEQBUILDER.png "Diagramme de séquence builder")
 ### Explications
-
+Étant donné que `Dossier` est un objet composite qui contient plusieurs autres objets qui, eux-mêmes, contiennent plusieurs objets, nous utilisons une classe builder, en l'occurence la classe `ConnecteurBD`, pour gérer la création des dossiers et leurs composants.
