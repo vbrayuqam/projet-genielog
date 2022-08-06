@@ -477,6 +477,7 @@ public class ConnecteurBD {
             resultat = preRequete.executeQuery();
 
             while(resultat.next()) {
+                System.out.println(tabInit + "TOURS DE BOUCLE");
 
                 patientAntecedents[tabInit] = new Antecedent();
                 medecin[tabInit] = new Medecin();
@@ -487,6 +488,7 @@ public class ConnecteurBD {
                 dateDebutAnneeParse = Integer.parseInt(dateDebut.substring(0,4));
                 dateDebutMoisParse = Integer.parseInt(dateDebut.substring(5,7));
                 dateDebutJourParse = Integer.parseInt(dateDebut.substring(8,10));
+                dateDebutResultat[tabInit] = new DateSys(); 
                 dateDebutResultat[tabInit].setAnnee(dateDebutAnneeParse);
                 dateDebutResultat[tabInit].setMois(dateDebutMoisParse);
                 dateDebutResultat[tabInit].setJour(dateDebutJourParse);
@@ -495,6 +497,7 @@ public class ConnecteurBD {
                 dateFinAnneeParse = Integer.parseInt(dateFin.substring(0,4));
                 dateFinMoisParse = Integer.parseInt(dateFin.substring(5,7));
                 dateFinJourParse = Integer.parseInt(dateFin.substring(8,10));
+                dateFinResultat[tabInit] = new DateSys();
                 dateFinResultat[tabInit].setAnnee(dateFinAnneeParse);
                 dateFinResultat[tabInit].setMois(dateFinMoisParse);
                 dateFinResultat[tabInit].setJour(dateFinJourParse);
@@ -605,7 +608,7 @@ public class ConnecteurBD {
 
         try {
 
-            String requeteSQL = "SELECT * FROM visites where assMaladieNum = ?";
+            String requeteSQL = "SELECT * FROM visites where id_assMaladie = ?";
             preRequete = conn.prepareStatement(requeteSQL);
             preRequete.setString(1, assMaladieNum);
             resultat = preRequete.executeQuery();
@@ -616,6 +619,7 @@ public class ConnecteurBD {
                 medecin[tabInit] = new Medecin();
                 medecin[tabInit].setNom(resultat.getString("medecinVuNom"));
                 medecin[tabInit].setPrenom(resultat.getString("medecinVuPrenom"));
+                etablissement[tabInit] = new Etablissement();
                 etablissement[tabInit].setNom(resultat.getString("etablissement"));
 
 
@@ -623,6 +627,7 @@ public class ConnecteurBD {
                 dateVisiteAnneeParse = Integer.parseInt(dateVisiteParse.substring(0,4));
                 dateVisiteMoisParse = Integer.parseInt(dateVisiteParse.substring(5,7));
                 dateVisiteJourParse = Integer.parseInt(dateVisiteParse.substring(8,10));
+                dateVisite[tabInit] = new DateSys();
                 dateVisite[tabInit].setAnnee(dateVisiteAnneeParse);
                 dateVisite[tabInit].setMois(dateVisiteMoisParse);
                 dateVisite[tabInit].setJour(dateVisiteJourParse);
@@ -671,7 +676,7 @@ public class ConnecteurBD {
 
         try {
 
-            String requeteSQL = "SELECT COUNT(*) FROM visites where assMaladieNum = ?";
+            String requeteSQL = "SELECT COUNT(*) FROM visites where id_assMaladie = ?";
             preRequete = conn.prepareStatement(requeteSQL);
             preRequete.setString(1, assMaladieNum);
             resultat = preRequete.executeQuery();
