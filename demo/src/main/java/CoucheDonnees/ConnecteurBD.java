@@ -401,7 +401,19 @@ public class ConnecteurBD {
 
         Antecedent[] patientAntecedents = new Antecedent[numAntecedents];
         Medecin[] medecin = new Medecin[numAntecedents];
+        DateSys[] dateDebutResultat = new DateSys[numAntecedents];
+        DateSys[] dateFinResultat = new DateSys[numAntecedents];
         int tabInit = 0;
+
+        String dateDebut = "";
+        int dateDebutAnneeParse;
+        int dateDebutMoisParse;
+        int dateDebutJourParse;
+
+        String dateFin = "";
+        int dateFinAnneeParse;
+        int dateFinMoisParse;
+        int dateFinJourParse;
 
 
         try {
@@ -415,16 +427,35 @@ public class ConnecteurBD {
 
                 patientAntecedents[tabInit] = new Antecedent();
                 medecin[tabInit] = new Medecin();
+                medecin[tabInit].setNom(resultat.getString("medecinTraitantNom"));
+                medecin[tabInit].setPrenom(resultat.getString("medecinTraitantPrenom"));
+
+                dateDebut = resultat.getString("debutMaladie");
+                dateDebutAnneeParse = Integer.parseInt(dateDebut.substring(0,5));
+                dateDebutMoisParse = Integer.parseInt(dateDebut.substring(6,8));
+                dateDebutJourParse = Integer.parseInt(dateDebut.substring(9,11));
+                dateDebutResultat[tabInit].setAnnee(dateDebutAnneeParse);
+                dateDebutResultat[tabInit].setMois(dateDebutMoisParse);
+                dateDebutResultat[tabInit].setJour(dateDebutJourParse);
+
+                dateFin = resultat.getString("finMaladie");
+                dateFinAnneeParse = Integer.parseInt(dateFin.substring(0,5));
+                dateFinMoisParse = Integer.parseInt(dateFin.substring(6,8));
+                dateFinJourParse = Integer.parseInt(dateFin.substring(9,11));
+                dateFinResultat[tabInit].setAnnee(dateFinAnneeParse);
+                dateFinResultat[tabInit].setMois(dateFinMoisParse);
+                dateFinResultat[tabInit].setJour(dateFinJourParse);
+
+
 
                 patientAntecedents[tabInit].setDiagnostic(resultat.getString("diagnostic"));
                 patientAntecedents[tabInit].setTraitement(resultat.getString("traitement"));
-                patientAntecedents[tabInit].setMedecin(resultat.getString("medecinTraitant"));
-                patientAntecedents[tabInit].setDebut(resultat.getString("debutMaladie"));
-                patientAntecedents[tabInit].setFin(resultat.getString("finMaladie"));
+                patientAntecedents[tabInit].setMedecin(medecin[tabInit]);
+                patientAntecedents[tabInit].setDebut(dateDebutResultat[tabInit]);
+                patientAntecedents[tabInit].setFin(dateFinResultat[tabInit]);
 
                 tabInit++;
-
-
+                
             }
 
 
@@ -440,9 +471,6 @@ public class ConnecteurBD {
 
             }
         }
-
-
-
 
 
         return patientAntecedents;
