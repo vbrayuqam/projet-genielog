@@ -83,6 +83,12 @@ public class ApplicationMedecin extends JFrame {
         System.out.println(patient.getString("visites"));
     }
 
+
+    void modificationAntecedents(JSONArray antecedents){
+        patient.put("antecedents", antecedents);
+        System.out.println(patient.getString("antecedents"));
+    }
+
     public ApplicationMedecin(SystemeDossier systemeDossier) {
 
         sd = systemeDossier;
@@ -129,7 +135,7 @@ public class ApplicationMedecin extends JFrame {
             Visites visites = new Visites(this, patient);
         });
         bAntecedents.addActionListener(e -> {
-            // Antecedents antecedents = new Antecedents(sd, "BOBOBO");
+            Antecedents antecedents = new Antecedents(this, patient);
         });
         pVisitesAntecedents.add(bAntecedents);
         pVisitesAntecedents.add(bVisites);
