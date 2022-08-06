@@ -7,8 +7,8 @@ public class Antecedent {
     private String diagnostic;
     private String traitement;
     private Medecin medecin;
-    private Date debut;
-    private Date fin;
+    private DateSys debut;
+    private DateSys fin;
 
     public Antecedent(){
 
@@ -38,19 +38,19 @@ public class Antecedent {
         this.medecin = medecin;
     }
 
-    public Date getDebut() {
+    public DateSys getDebut() {
         return debut;
     }
 
-    public void setDebut(Date debut) {
+    public void setDebut(DateSys debut) {
         this.debut = debut;
     }
 
-    public Date getFin() {
+    public DateSys getFin() {
         return fin;
     }
 
-    public void setFin(Date fin) {
+    public void setFin(DateSys fin) {
         this.fin = fin;
     }
 }

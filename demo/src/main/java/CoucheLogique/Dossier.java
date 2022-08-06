@@ -10,7 +10,7 @@ public class Dossier {
     private Antecedent[] antecedents;
     private Visite[] visites;
     private Patient patient;
-    private Date date;
+    private DateSys date;
 
     public Dossier(){
     }
@@ -39,11 +39,11 @@ public class Dossier {
         this.patient = patient;
     }
 
-    public Date getDate() {
+    public DateSys getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateSys date) {
         this.date = date;
     }
 

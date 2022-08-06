@@ -118,17 +118,6 @@ public class App
         sd.setDossier(proxy);
 
 
-        JSONObject js = proxy.lireDossier();
-        JSONArray jsvis = js.getJSONArray("visites");
-        System.out.println(jsvis.toString(4));
-        JSONObject jstemp = jsvis.getJSONObject(0);
-        System.out.println(jstemp.toString(4));
-        jstemp.put("notes", "non.jpeg");
-        System.out.println(jstemp.toString(4));
-
-        System.out.println(jsvis.toString(4));
-        JSONObject js2;
-
 
         PageConnexion pageConnexion = new PageConnexion(sd);
     }
