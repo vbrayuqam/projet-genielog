@@ -621,7 +621,7 @@ public class ConnecteurBD {
 
                 dateVisiteParse = resultat.getString("dateVisite");
                 dateVisiteAnneeParse = Integer.parseInt(dateVisiteParse.substring(0,4));
-                dateVisiteMoisParse = Integer.parseInt(dateVisiteParse.substring(5,7);
+                dateVisiteMoisParse = Integer.parseInt(dateVisiteParse.substring(5,7));
                 dateVisiteJourParse = Integer.parseInt(dateVisiteParse.substring(8,10));
                 dateVisite[tabInit].setAnnee(dateVisiteAnneeParse);
                 dateVisite[tabInit].setMois(dateVisiteMoisParse);
