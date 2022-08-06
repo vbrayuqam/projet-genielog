@@ -243,9 +243,9 @@ public class ConnecteurBD {
             preRequete.setString(1, assMaladieNum);
             resultat = preRequete.executeQuery();
             patientDateNaissance = resultat.getString(1);
-            patientDateAnnee = Integer.parseInt(patientDateNaissance.substring(0,5));
-            patientDateMois = Integer.parseInt(patientDateNaissance.substring(6,8));
-            patientDateJour = Integer.parseInt(patientDateNaissance.substring(9,11));
+            patientDateAnnee = Integer.parseInt(patientDateNaissance.substring(0,4));
+            patientDateMois = Integer.parseInt(patientDateNaissance.substring(5,7));
+            patientDateJour = Integer.parseInt(patientDateNaissance.substring(8,10));
             dateNaissance.setAnnee(patientDateAnnee);
             dateNaissance.setMois(patientDateMois);
             dateNaissance.setJour(patientDateJour);
@@ -484,17 +484,17 @@ public class ConnecteurBD {
                 medecin[tabInit].setPrenom(resultat.getString("medecinTraitantPrenom"));
 
                 dateDebut = resultat.getString("debutMaladie");
-                dateDebutAnneeParse = Integer.parseInt(dateDebut.substring(0,5));
-                dateDebutMoisParse = Integer.parseInt(dateDebut.substring(6,8));
-                dateDebutJourParse = Integer.parseInt(dateDebut.substring(9,11));
+                dateDebutAnneeParse = Integer.parseInt(dateDebut.substring(0,4));
+                dateDebutMoisParse = Integer.parseInt(dateDebut.substring(5,7));
+                dateDebutJourParse = Integer.parseInt(dateDebut.substring(8,10));
                 dateDebutResultat[tabInit].setAnnee(dateDebutAnneeParse);
                 dateDebutResultat[tabInit].setMois(dateDebutMoisParse);
                 dateDebutResultat[tabInit].setJour(dateDebutJourParse);
 
                 dateFin = resultat.getString("finMaladie");
-                dateFinAnneeParse = Integer.parseInt(dateFin.substring(0,5));
-                dateFinMoisParse = Integer.parseInt(dateFin.substring(6,8));
-                dateFinJourParse = Integer.parseInt(dateFin.substring(9,11));
+                dateFinAnneeParse = Integer.parseInt(dateFin.substring(0,4));
+                dateFinMoisParse = Integer.parseInt(dateFin.substring(5,7));
+                dateFinJourParse = Integer.parseInt(dateFin.substring(8,10));
                 dateFinResultat[tabInit].setAnnee(dateFinAnneeParse);
                 dateFinResultat[tabInit].setMois(dateFinMoisParse);
                 dateFinResultat[tabInit].setJour(dateFinJourParse);
@@ -620,9 +620,9 @@ public class ConnecteurBD {
 
 
                 dateVisiteParse = resultat.getString("dateVisite");
-                dateVisiteAnneeParse = Integer.parseInt(dateVisiteParse.substring(0,5));
-                dateVisiteMoisParse = Integer.parseInt(dateVisiteParse.substring(6,8));
-                dateVisiteJourParse = Integer.parseInt(dateVisiteParse.substring(9,11));
+                dateVisiteAnneeParse = Integer.parseInt(dateVisiteParse.substring(0,4));
+                dateVisiteMoisParse = Integer.parseInt(dateVisiteParse.substring(5,7);
+                dateVisiteJourParse = Integer.parseInt(dateVisiteParse.substring(8,10));
                 dateVisite[tabInit].setAnnee(dateVisiteAnneeParse);
                 dateVisite[tabInit].setMois(dateVisiteMoisParse);
                 dateVisite[tabInit].setJour(dateVisiteJourParse);
