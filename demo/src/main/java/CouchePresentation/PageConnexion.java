@@ -2,13 +2,10 @@ package CouchePresentation;
 
 import CoucheLogique.SystemeDossier;
 
-import java.awt.Font;
+import java.awt.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
+
 
 public class PageConnexion {
 
@@ -49,7 +46,8 @@ public class PageConnexion {
                 page.dispose();
                 ApplicationMedecin appMed = new ApplicationMedecin(sd);
             } else {
-                resultat.setText("Connexion Refusee!!");
+                resultat.setForeground(Color.RED);
+                resultat.setText("Connexion Refusee");
             }
         });
 

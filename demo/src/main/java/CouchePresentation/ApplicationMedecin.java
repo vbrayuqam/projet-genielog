@@ -1,7 +1,9 @@
 package CouchePresentation;
 
 import java.awt.*;
-import java.util.Map;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +16,8 @@ import CoucheLogique.SystemeDossier;
 public class ApplicationMedecin extends JFrame {
 
     SystemeDossier sd;
+    JSONObject patient;
+
     // Elements interface graphique
     JFrame page = new JFrame("Lecture/Modification des dossiers");
 
@@ -61,9 +65,22 @@ public class ApplicationMedecin extends JFrame {
     JButton bSauvegarde = new JButton("Sauvegarder");
 
     void lectureDossier(String am) {
-
+       
+        patient = sd.lireDossier();
+        nom.setText(patient.getJSONObject("patient").getString("nom"));
+        prenom.setText(patient.getJSONObject("patient").getString("prenom"));
+        dateNaissance.setText(patient.getJSONObject("patient").getString("dateNaissance"));
+        genre.setText(patient.getJSONObject("patient").getString("genre")); 
+        mere.setText(patient.getJSONObject("patient").getString("mere"));   
+        pere.setText(patient.getJSONObject("patient").getString("pere"));  
+        villeNaissance.setText(patient.getJSONObject("patient").getString("villeNaissance"));          
         affichageDossier.setVisible(true);
 
+    }
+
+    void modificationVisites(JSONArray visites){
+        patient.put("visites", visites);
+        System.out.println(patient.getString("visites"));
     }
 
     public ApplicationMedecin(SystemeDossier systemeDossier) {
@@ -109,10 +126,10 @@ public class ApplicationMedecin extends JFrame {
 
         pVisitesAntecedents.setLayout(new FlowLayout());
         bVisites.addActionListener(e -> {
-            Visites visites = new Visites(sd, "BOBOBO");
+            Visites visites = new Visites(this, patient);
         });
         bAntecedents.addActionListener(e -> {
-            Antecedents antecedents = new Antecedents(sd, "BOBOBO");
+            // Antecedents antecedents = new Antecedents(sd, "BOBOBO");
         });
         pVisitesAntecedents.add(bAntecedents);
         pVisitesAntecedents.add(bVisites);

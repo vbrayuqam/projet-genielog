@@ -107,8 +107,8 @@ public class App
         // La methode pour acceder au JSON dummy est lireDossier, invoqué sur proxy, j'ai pas set les dates encore
 
 
-        SystemeDossier systemeDossier = new SystemeDossier();
-        PageConnexion pageConnexion = new PageConnexion(systemeDossier);
+
+        PageConnexion pageConnexion = new PageConnexion(sd);
     }
 }
 
