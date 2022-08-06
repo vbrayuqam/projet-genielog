@@ -30,7 +30,7 @@ public class Visites {
     JPanel affichageVisite(JSONObject visite) {
         JPanel pVisite = new JPanel();
         pVisite.setLayout(new FlowLayout());
-        JSONObject med = visite.getJSONObject("medecin");
+        JSONObject med = visite.getJSONObject("medecin");System.out.println(med.toString());
 
         JPanel pMed = new JPanel();
         pMed.setLayout(new BoxLayout(pMed, BoxLayout.Y_AXIS));

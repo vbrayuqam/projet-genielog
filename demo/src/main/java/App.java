@@ -99,11 +99,10 @@ public class App
         ants[0] = antecedent;
         ants[1] = antecedent;
 
-        Visite[] vis = new Visite[4];
+        Visite[] vis = new Visite[3];
         vis[0] = visite;
         vis[1] = visite;
         vis[2] = visite;
-        vis[3] = visite2;
 
         Dossier doss = new Dossier();
         doss.setPatient(pat);
