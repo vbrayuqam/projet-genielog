@@ -26,6 +26,48 @@ public class ConnecteurBD {
      }
 
 
+// ------------------------------------ PROXY DOSSIER ---------------------------------------------------------
+
+   
+
+// -------------------------------------   DOSSIER  -----------------------------------------------------------
+
+
+     public Dossier constructionDossier( String assMaladieNum) {
+
+         Dossier dossierPatient = new Dossier();
+         dossierPatient.setAntecedents(patientAntecedents(assMaladieNum));
+         dossierPatient.setVisites(patientVisites(assMaladieNum));
+         dossierPatient.setPatient(patient( assMaladieNum));
+         // la date de version est à null pour le moment
+
+
+         return dossierPatient;
+     }
+
+// -------------------------------------  PATIENT  -----------------------------------------------------------
+
+    public Patient patient( String assMaladieNum) {
+
+         Patient lePatient = new Patient();
+
+         lePatient.setNom(patientNom( assMaladieNum));
+         lePatient.setPrenom(patientPrenom( assMaladieNum));
+         lePatient.setGenre(patientGenre( assMaladieNum));
+         lePatient.setCoords(patientCoordonnee( assMaladieNum));
+         lePatient.setPere(patientPere( assMaladieNum));
+         lePatient.setMere(patientMere( assMaladieNum));
+         lePatient.setVilleNaissance( patientVilleNaissance( assMaladieNum));
+         lePatient.setDateNaissance( patientDateNaissance( assMaladieNum));
+         // villeOrigine est à null et le nas est le string donné en argument de la fonction patient
+
+
+         return lePatient;
+
+    }
+
+
+
 // --------------------------------début des fonctions de lecture de la table médecin ---------------------------------
 
      public String medecinLoginPass( String medecinId) {
