@@ -408,8 +408,6 @@ public class ConnecteurBD {
 
         Connection conn = connectionBD();
         PreparedStatement preRequete = null;
-        //PreparedStatement preRequeteCount = null;
-        //ResultSet resultatCount = null;
         ResultSet resultat = null;
 
         Antecedent[] patientAntecedents = new Antecedent[numAntecedents];
@@ -490,6 +488,7 @@ public class ConnecteurBD {
     }
 
 // -------------------------------------------------------------------------------------------------------------
+
     public int numAntecedents (String assMaladieNum) {
 
         Connection conn = connectionBD();
@@ -534,11 +533,86 @@ public class ConnecteurBD {
 
 
 
-
-
-
 // ------------------------------ début de la lecture des visites --------------------------------------------
 
+
+    public Visite[] patientVisites(String assMaladieNum) {
+
+        int numVisites = numVisites(assMaladieNum);
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        ResultSet resultat = null;
+
+        Visite[] patientVisites = new Visite[numVisites];
+        Medecin[] medecin = new Medecin[numVisites];
+        Etablissement[] etablissement = new Etablissement[numVisites];
+        DateSys[] dateVisite = new DateSys[numVisites];
+        int tabInit = 0;
+
+        String dateVisiteParse = "";
+        int dateVisiteAnneeParse;
+        int dateVisiteMoisParse;
+        int dateVisiteJourParse;
+
+
+        try {
+
+            String requeteSQL = "SELECT * FROM visites where assMaladieNum = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            resultat = preRequete.executeQuery();
+
+            while(resultat.next()) {
+
+                patientVisites[tabInit] = new Visite();
+                medecin[tabInit] = new Medecin();
+                medecin[tabInit].setNom(resultat.getString("medecinVuNom"));
+                medecin[tabInit].setPrenom(resultat.getString("medecinVuPrenom"));
+                etablissement[tabInit].setNom(resultat.getString("etablissement"));
+
+
+                dateVisiteParse = resultat.getString("dateVisite");
+                dateVisiteAnneeParse = Integer.parseInt(dateVisiteParse.substring(0,5));
+                dateVisiteMoisParse = Integer.parseInt(dateVisiteParse.substring(6,8));
+                dateVisiteJourParse = Integer.parseInt(dateVisiteParse.substring(9,11));
+                dateVisite[tabInit].setAnnee(dateVisiteAnneeParse);
+                dateVisite[tabInit].setMois(dateVisiteMoisParse);
+                dateVisite[tabInit].setJour(dateVisiteJourParse);
+
+
+                patientVisites[tabInit].setDiagnostic(resultat.getString("diagnosticEtablit"));
+                patientVisites[tabInit].setTraitement(resultat.getString("traitementEtablit"));
+                patientVisites[tabInit].setResume(resultat.getString("resumeVisite"));
+                patientVisites[tabInit].setNotes(resultat.getString("notesMedecin"));
+                patientVisites[tabInit].setMedecin(medecin[tabInit]);
+                patientVisites[tabInit].setEtablissement(etablissement[tabInit]);
+                patientVisites[tabInit].setDate(dateVisite[tabInit]);
+
+
+                tabInit++;
+
+            }
+
+
+        } catch(SQLException e) {
+            System.out.println(" requete patientAntecedents échouée");
+
+        } finally {
+            try {
+                resultat.close();
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+
+        return patientVisites;
+    }
+
+//  --------------------------------------------------------------------------------------------------------------
 
     public int numVisites (String assMaladieNum) {
 
@@ -579,13 +653,15 @@ public class ConnecteurBD {
     }
 
 
+// ------------------------------ fin de la lecture des visites ---------------------------------------------------
 
 
 
 
-// ------------------------------ fin de la lecture des visites -----------------------------------------------
 
 
+
+// -------------------------------------- ÉCRITURE -----------------------------------------------------------------
 
 
 
