@@ -35,6 +35,7 @@ La classe ProxyDossier sert de proxy pour accéder à la classe Dossier. Ainsi d
 ### Diagrammes
 ![Diagramme de classes facade](/diagrammes/FACADESYSTEME.png "Diagramme de classes facad")
 ### Explications
+La facade SystemeDossier permet de découpler les accès à la base de données et les interfaces du reste du système. Ainsi les divers services et fonctionnement interne du système sont abstrait par la facade lorsque celle-ci intéragit avec la db et les diverses interfaces.
 
 
 ## Patron Builder <a name="sequence"></a>
