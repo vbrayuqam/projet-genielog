@@ -71,7 +71,7 @@ public class ConnecteurBD {
             resultat = preRequete.executeQuery();
             medecinNom = resultat.getString(1);
         } catch(SQLException e) {
-            System.out.println(" medecin login échoué");
+            System.out.println(" medecinNom échoué");
 
         } finally {
             try {
@@ -84,6 +84,36 @@ public class ConnecteurBD {
         }
 
         return medecinNom;
+    }
+
+
+    public String medecinPrenom( String medecinId) {
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        ResultSet resultat = null;
+        String medecinPrenom = null;
+
+        try {
+            String requeteSQL = "SELECT prenom FROM medecin where id_medecin = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, medecinId);
+            resultat = preRequete.executeQuery();
+            medecinPrenom = resultat.getString(1);
+        } catch(SQLException e) {
+            System.out.println(" medecinPrenom échoué");
+
+        } finally {
+            try {
+                resultat.close();
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+        return medecinPrenom;
     }
 
 // ------------------------- fin des fonctions de lecture de la table médecin -----------------------------------
@@ -383,14 +413,15 @@ public class ConnecteurBD {
 
             while(resultat.next()) {
 
-                /*patientAntecedents[tabInit] = new Antecedent();
+                patientAntecedents[tabInit] = new Antecedent();
                 medecin[tabInit] = new Medecin();
+
                 patientAntecedents[tabInit].setDiagnostic(resultat.getString("diagnostic"));
                 patientAntecedents[tabInit].setTraitement(resultat.getString("traitement"));
                 patientAntecedents[tabInit].setMedecin(resultat.getString("medecinTraitant"));
                 patientAntecedents[tabInit].setDebut(resultat.getString("debutMaladie"));
                 patientAntecedents[tabInit].setFin(resultat.getString("finMaladie"));
-*/
+
                 tabInit++;
 
 
