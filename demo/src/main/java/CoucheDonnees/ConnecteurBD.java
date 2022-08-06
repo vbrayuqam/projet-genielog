@@ -471,7 +471,7 @@ public class ConnecteurBD {
 
         try {
 
-            String requeteSQL = "SELECT * FROM antecedents where assMaladieNum = ?";
+            String requeteSQL = "SELECT * FROM antecedents where id_assMaladie = ?";
             preRequete = conn.prepareStatement(requeteSQL);
             preRequete.setString(1, assMaladieNum);
             resultat = preRequete.executeQuery();
@@ -542,7 +542,7 @@ public class ConnecteurBD {
 
         try {
 
-            String requeteSQL = "SELECT COUNT(*) FROM antecedents where assMaladieNum = ?";
+            String requeteSQL = "SELECT COUNT(*) FROM antecedents where id_assMaladie = ?";
             preRequete = conn.prepareStatement(requeteSQL);
             preRequete.setString(1, assMaladieNum);
             resultat = preRequete.executeQuery();
