@@ -12,9 +12,18 @@ public class Patient extends Utilisateur {
     private String villeNaissance;
     private String nas;
     private Coordonnees coords;
+    private String villeOrigine;
 
     public Patient(){
         
+    }
+
+    public String getVilleOrigine() {
+        return villeOrigine;
+    }
+
+    public void setVilleOrigine(String villeOrigine) {
+        this.villeOrigine = villeOrigine;
     }
 
     public DateSys getDateNaissance() {

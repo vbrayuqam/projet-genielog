@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.JarOutputStream;
 
 
 public class App
@@ -87,6 +88,8 @@ public class App
         visite.setNotes("ouin.jpeg");
         visite.setDate(date);
 
+        Visite visite2 = new Visite();
+
         Antecedent antecedent = new Antecedent();
         antecedent.setDiagnostic("2 jambes en moins");
         antecedent.setMedecin(medecin);
@@ -96,10 +99,11 @@ public class App
         ants[0] = antecedent;
         ants[1] = antecedent;
 
-        Visite[] vis = new Visite[3];
+        Visite[] vis = new Visite[4];
         vis[0] = visite;
         vis[1] = visite;
         vis[2] = visite;
+        vis[3] = visite2;
 
         Dossier doss = new Dossier();
         doss.setPatient(pat);
@@ -112,6 +116,19 @@ public class App
 
         SystemeDossier sd = new SystemeDossier();
         sd.setDossier(proxy);
+
+
+        JSONObject js = proxy.lireDossier();
+        JSONArray jsvis = js.getJSONArray("visites");
+        System.out.println(jsvis.toString(4));
+        JSONObject jstemp = jsvis.getJSONObject(0);
+        System.out.println(jstemp.toString(4));
+        jstemp.put("notes", "non.jpeg");
+        System.out.println(jstemp.toString(4));
+
+        System.out.println(jsvis.toString(4));
+        JSONObject js2;
+
 
         PageConnexion pageConnexion = new PageConnexion(sd);
     }
