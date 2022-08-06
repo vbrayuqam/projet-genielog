@@ -1,7 +1,5 @@
 package CouchePresentation;
 
-import CoucheLogique.SystemeDossier;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -111,7 +109,7 @@ public class Visites {
         return pVisite;
     }
 
-    public Visites(ApplicationMedecin appMed, JSONObject patient) {
+    public Visites(ApplicationMedecin appMed) {
 
         page = new JFrame("Visites");
         boutons = new JPanel();
@@ -126,7 +124,7 @@ public class Visites {
         resumesTF = new ArrayList<JTextField>();
         notesTF = new ArrayList<JTextField>();
 
-        JSONArray visites = patient.getJSONArray("visites");
+        JSONArray visites = appMed.patient.getJSONArray("visites");
 
         sauvegarder.addActionListener(e -> {
             if( visites.size() < nomsTF.size()){

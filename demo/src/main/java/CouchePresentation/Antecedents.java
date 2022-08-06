@@ -99,12 +99,13 @@ public class Antecedents {
         return pAntecedent;
     }
 
-    public Antecedents(ApplicationMedecin appMed, JSONObject patient) {
+    public Antecedents(ApplicationMedecin appMed) {
 
         page = new JFrame("Antecedents");
         boutons = new JPanel();
         sauvegarder = new JButton("Sauvegarder");
         ajouter = new JButton("Ajouter");
+
 
         nomsTF = new ArrayList<JTextField>();
         prenomsTF = new ArrayList<JTextField>();
@@ -114,7 +115,7 @@ public class Antecedents {
         debutsTF = new ArrayList<JTextField>();
         finTF = new ArrayList<JTextField>();
 
-        JSONArray antecedents = patient.getJSONArray("antecedents");
+        JSONArray antecedents = appMed.patient.getJSONArray("antecedents");
 
         sauvegarder.addActionListener(e -> {
             if( antecedents.size() < nomsTF.size()){

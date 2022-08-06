@@ -132,10 +132,10 @@ public class ApplicationMedecin extends JFrame {
 
         pVisitesAntecedents.setLayout(new FlowLayout());
         bVisites.addActionListener(e -> {
-            Visites visites = new Visites(this, patient);
+            Visites visites = new Visites(this);
         });
         bAntecedents.addActionListener(e -> {
-            Antecedents antecedents = new Antecedents(this, patient);
+            Antecedents antecedents = new Antecedents(this);
         });
         pVisitesAntecedents.add(bAntecedents);
         pVisitesAntecedents.add(bVisites);
