@@ -537,6 +537,7 @@ public class ConnecteurBD {
         PreparedStatement preRequete = null;
         ResultSet resultat = null;
         int numAntecedents = 0;
+        String dummyString = null;
 
 
         try {
@@ -546,7 +547,11 @@ public class ConnecteurBD {
             preRequete.setString(1, assMaladieNum);
             resultat = preRequete.executeQuery();
 
-            numAntecedents = resultat.getInt(1);
+            dummyString = resultat.getString(1);
+            numAntecedents = Integer.parseInt(dummyString);
+
+
+            //numAntecedents = resultat.getInt(1);
 
 
 
