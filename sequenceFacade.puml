@@ -1,0 +1,73 @@
+@startuml sequenceModificationPatient
+
+title Sequence - Utilisation de la facade
+
+
+participant InterfaceUtilisateur as U
+participant SystemeDossier as S
+participant ProxyDossier as PD
+participant Dossier as D
+participant ConnecteurDB as DB
+
+
+U -> S: connexion(id, mdp)
+activate U
+activate S
+S -> DB : medecinLoginPass(id, dmp)
+activate DB
+DB --> S
+deactivate DB
+S --> U
+deactivate S
+deactivate U
+
+U -> S: lireDossier(info)
+activate U
+activate S
+S -> DB: lireDossier(info)
+activate DB
+DB -> D: Dossier()
+activate D
+D --> DB
+deactivate D
+DB -> PD: ProxyDossier(dossier)
+activate PD
+PD --> DB
+deactivate PD
+DB --> S
+deactivate DB
+S --> U
+deactivate S
+deactivate U
+
+
+
+U -> S: modifierDossier(info)
+activate U
+activate S
+S -> PD: modifier(info)
+activate PD
+PD -> D: modifier(info)
+activate D
+D --> PD
+deactivate D
+PD --> S
+deactivate PD
+S -> DB: ecrireBaseDonnees(proxyDossier)
+activate DB
+DB --> PD: lire()
+activate PD
+PD --> D: lire()
+activate D
+D --> PD
+deactivate D
+PD --> DB
+deactivate PD
+DB --> S
+deactivate DB
+S --> U
+deactivate S
+deactivate U
+
+@enduml
+
