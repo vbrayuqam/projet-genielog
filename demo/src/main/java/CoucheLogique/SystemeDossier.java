@@ -28,8 +28,12 @@ public class SystemeDossier {
         return valide;
     }
 
-    public JSONObject lireDossier() {
-        return dossier.lireDossier();
+    public JSONObject lireDossier(String assMaladieNum) {
+        ConnecteurBD bd = new ConnecteurBD();
+        Dossier dossier = bd.constructionDossier(assMaladieNum);
+        ProxyDossier proxy = new ProxyDossier(dossier);
+        this.setDossier(proxy);
+        return proxy.lireDossier();
     }
 
     public void modifierDossier(JSONObject dossierJSON) {
