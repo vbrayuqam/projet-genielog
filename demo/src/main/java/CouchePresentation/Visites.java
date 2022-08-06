@@ -1,4 +1,5 @@
 package CouchePresentation;
+import CoucheLogique.Visite;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -150,16 +151,21 @@ public class Visites {
 
         ajouter.addActionListener(e -> {
             JSONObject visite = visites.getJSONObject(0);
-            JSONObject medecin = visite.getJSONObject("medecin");
+            Object temp = JSONObject.toBean(visite, Visite.class);
+            Visite temp2 = (Visite)temp;
+            JSONObject visiteTemp = JSONObject.fromObject(temp2);
+            JSONObject medecin = visiteTemp.getJSONObject("medecin");
+
             medecin.put("nom", "");
             medecin.put("prenom", "");
-            visite.put("date", "");
-            visite.put("diagnostic", "");
-            visite.put("traitement", "");
-            visite.put("resume", "");
-            visite.put("notes", "");
+            visiteTemp.put("date", "");
+            visiteTemp.put("diagnostic", "");
+            visiteTemp.put("traitement", "");
+            visiteTemp.put("resume", "");
+            visiteTemp.put("notes", "");
 
-            page.add(affichageVisite(visite));
+            page.add(affichageVisite(visiteTemp));
+            System.out.println(visites.getJSONObject(0).toString(4));
             page.pack();
 
         });

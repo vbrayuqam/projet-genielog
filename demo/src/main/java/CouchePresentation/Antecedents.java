@@ -1,4 +1,5 @@
 package CouchePresentation;
+import CoucheLogique.Antecedent;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -140,15 +141,18 @@ public class Antecedents {
 
         ajouter.addActionListener(e -> {
             JSONObject antecedent = antecedents.getJSONObject(0);
-            JSONObject medecin = antecedent.getJSONObject("medecin");
+            Object temp = JSONObject.toBean(antecedent, Antecedent.class);
+            Antecedent temp2 = (Antecedent)temp;
+            JSONObject antecedentTemp = JSONObject.fromObject(temp2);
+            JSONObject medecin = antecedentTemp.getJSONObject("medecin");
             medecin.put("nom", "");
             medecin.put("prenom", "");
-            antecedent.put("diagnostic", "");
-            antecedent.put("traitement", "");
-            antecedent.put("debut", "");
-            antecedent.put("fin", "");
+            antecedentTemp.put("diagnostic", "");
+            antecedentTemp.put("traitement", "");
+            antecedentTemp.put("debut", "");
+            antecedentTemp.put("fin", "");
 
-            page.add(affichageAntecedent(antecedent));
+            page.add(affichageAntecedent(antecedentTemp));
             page.pack();
 
         });
