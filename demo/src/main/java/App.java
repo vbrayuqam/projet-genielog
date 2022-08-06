@@ -12,6 +12,12 @@ public class App
 {
     public static void main( String[] args )
     {
+
+        DateSys date = new DateSys();
+        date.setJour(4);
+        date.setAnnee(2100);
+        date.setMois(6);
+
         // dossier dummy
         Coordonnees coords = new Coordonnees();
         coords.setAdresse("164 rue des tests");
@@ -41,6 +47,7 @@ public class App
         pat.setNom("Burger");
         pat.setPrenom("Bob");
         pat.setIdentifiants(id);
+        pat.setDateNaissance(date);
 
         Medecin medecin = new Medecin();
         medecin.setIdentifiants(id);
@@ -78,6 +85,7 @@ public class App
         visite.setNotes("aucunes");
         visite.setEtablissement(hopital);
         visite.setNotes("ouin.jpeg");
+        visite.setDate(date);
 
         Antecedent antecedent = new Antecedent();
         antecedent.setDiagnostic("2 jambes en moins");
@@ -100,13 +108,10 @@ public class App
 
         ProxyDossier proxy = new ProxyDossier(doss);
 
+        System.out.println(proxy.lireDossier().toString(4));
+
         SystemeDossier sd = new SystemeDossier();
         sd.setDossier(proxy);
-    
-
-        // La methode pour acceder au JSON dummy est lireDossier, invoqué sur proxy, j'ai pas set les dates encore
-
-
 
         PageConnexion pageConnexion = new PageConnexion(sd);
     }
