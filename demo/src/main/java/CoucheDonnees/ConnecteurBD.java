@@ -1,11 +1,10 @@
 package CoucheDonnees;
 
-import CoucheLogique.Antecedent;
-import CoucheLogique.Coordonnees;
-import CoucheLogique.Identifiants;
-import CoucheLogique.Visite;
+import CoucheLogique.*;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //import sqlite3;
 
@@ -16,7 +15,7 @@ public class ConnecteurBD {
          Connection conn = null;
          try{
              Class.forName("org.sqlite.JDBC");
-             conn = DriverManager.getConnection("jdbc:sqlite:src/bd/BD.db");
+             conn = DriverManager.getConnection("jdbc:sqlite:src/bd/BD2.db");
              System.out.println("Connexion reussie");
              return conn;
          }
@@ -357,6 +356,105 @@ public class ConnecteurBD {
 
 // ------------------------------ début de la lecture des antécédents --------------------------------------------
 
+    public Antecedent[] patientAntecedents(String assMaladieNum) {
+
+
+
+        int numAntecedents = numAntecedents(assMaladieNum);
+
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        //PreparedStatement preRequeteCount = null;
+        //ResultSet resultatCount = null;
+        ResultSet resultat = null;
+
+        Antecedent[] patientAntecedents = new Antecedent[numAntecedents];
+        Medecin[] medecin = new Medecin[numAntecedents];
+        int tabInit = 0;
+
+
+        try {
+
+            String requeteSQL = "SELECT * FROM antecedents where assMaladieNum = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            resultat = preRequete.executeQuery();
+
+            while(resultat.next()) {
+
+                /*patientAntecedents[tabInit] = new Antecedent();
+                medecin[tabInit] = new Medecin();
+                patientAntecedents[tabInit].setDiagnostic(resultat.getString("diagnostic"));
+                patientAntecedents[tabInit].setTraitement(resultat.getString("traitement"));
+                patientAntecedents[tabInit].setMedecin(resultat.getString("medecinTraitant"));
+                patientAntecedents[tabInit].setDebut(resultat.getString("debutMaladie"));
+                patientAntecedents[tabInit].setFin(resultat.getString("finMaladie"));
+*/
+                tabInit++;
+
+
+            }
+
+
+        } catch(SQLException e) {
+            System.out.println(" requete patientAntecedents échouée");
+
+        } finally {
+            try {
+                resultat.close();
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+
+
+
+
+        return patientAntecedents;
+    }
+
+// -------------------------------------------------------------------------------------------------------------
+    public int numAntecedents (String assMaladieNum) {
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        ResultSet resultat = null;
+        int numAntecedents = 0;
+
+
+        try {
+
+            String requeteSQL = "SELECT COUNT(*) FROM antecedents where assMaladieNum = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            resultat = preRequete.executeQuery();
+
+            numAntecedents = resultat.getInt(1);
+
+
+
+        } catch(SQLException e) {
+            System.out.println(" requete numAntecedents échouée");
+
+        } finally {
+            try {
+                resultat.close();
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+
+        return numAntecedents;
+
+    }
+
 
 // ------------------------------ fin de la lecture des antécédents -----------------------------------------------
 
@@ -365,7 +463,52 @@ public class ConnecteurBD {
 
 
 
+
+
 // ------------------------------ début de la lecture des visites --------------------------------------------
+
+
+    public int numVisites (String assMaladieNum) {
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        ResultSet resultat = null;
+        int numVisites = 0;
+
+
+        try {
+
+            String requeteSQL = "SELECT COUNT(*) FROM visites where assMaladieNum = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            resultat = preRequete.executeQuery();
+
+            numVisites = resultat.getInt(1);
+
+
+
+        } catch(SQLException e) {
+            System.out.println(" requete numVisites échouée");
+
+        } finally {
+            try {
+                resultat.close();
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+
+        return numVisites;
+
+
+    }
+
+
+
+
 
 
 // ------------------------------ fin de la lecture des visites -----------------------------------------------
@@ -421,7 +564,7 @@ public class ConnecteurBD {
 
 
 // ------------------------------ début  écriture de visites dans la BD --------------------------------------------
-    public static void ecritureBDVisite( Visite nouvelleVisite ) {
+    public static void ecritureBDVisite( Visite nouvelleVisite, String assMaladieNum) {
 /*
 
         Connection conn = connectionBD();
