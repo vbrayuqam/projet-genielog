@@ -182,19 +182,32 @@ public class ConnecteurBD {
         return patientPrenom;
     }
 
-    public String patientDateNaissance( String assMaladieNum) {
+    public DateSys patientDateNaissance( String assMaladieNum) {
 
         Connection conn = connectionBD();
         PreparedStatement preRequete = null;
         ResultSet resultat = null;
         String patientDateNaissance = null;
+        DateSys dateNaissance = new DateSys();
+        int patientDateAnnee;
+        int patientDateMois;
+        int patientDateJour;
+
 
         try {
+
             String requeteSQL = "SELECT dateNaissance FROM patient where assMaladieNum = ?";
             preRequete = conn.prepareStatement(requeteSQL);
             preRequete.setString(1, assMaladieNum);
             resultat = preRequete.executeQuery();
             patientDateNaissance = resultat.getString(1);
+            patientDateAnnee = Integer.parseInt(patientDateNaissance.substring(0,5));
+            patientDateMois = Integer.parseInt(patientDateNaissance.substring(6,8));
+            patientDateJour = Integer.parseInt(patientDateNaissance.substring(9,11));
+            dateNaissance.setAnnee(patientDateAnnee);
+            dateNaissance.setMois(patientDateMois);
+            dateNaissance.setJour(patientDateJour);
+
         } catch(SQLException e) {
             System.out.println(" requete dateNaissance du patient échouée");
 
@@ -208,7 +221,7 @@ public class ConnecteurBD {
             }
         }
 
-        return patientDateNaissance;
+        return dateNaissance;
     }
 
     public String patientGenre( String assMaladieNum) {
@@ -455,7 +468,7 @@ public class ConnecteurBD {
                 patientAntecedents[tabInit].setFin(dateFinResultat[tabInit]);
 
                 tabInit++;
-                
+
             }
 
 
