@@ -4,14 +4,14 @@
 
 
 ## Compilation
-Pour compiler le programme, se rendre a la racine du projet (le dossier demo) et lancer cette commande :
+Pour compiler le programme, se rendre à la racine du projet (le dossier demo) et lancer cette commande :
 
 ``` 
 mvn package
 ``` 
 
 ## Exécution
-Pour exécuter le programme, se rendre a la racine du projet (le dossier demo) et lancer cette commande :
+Pour exécuter le programme, se rendre à la racine du projet (le dossier demo) et lancer cette commande :
 ``` 
 mvn exec:java
 ``` 
