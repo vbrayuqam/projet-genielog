@@ -1,22 +1,6 @@
 # Utilisation générale du programme
 
 ## Base de données
-
-
-## Compilation
-Pour compiler le programme, se rendre à la racine du projet (le dossier demo) et lancer cette commande :
-
-``` 
-mvn package
-``` 
-
-## Exécution
-Pour exécuter le programme, se rendre à la racine du projet (le dossier demo) et lancer cette commande :
-``` 
-mvn exec:java
-
-``` 
-## Création de la BD
 En ce moment, la BD  *BD2.db* est déjà présente dans le fichier *demo/src/bd/* ainsi que le script *BD2.sql*.
 La connection avec la BD se fait par la fonction *connectionBD* dans la classe *ConnecteurBD* de la couche 
 de données.
@@ -35,4 +19,34 @@ Par la suite, il faut lancer dans *sqlite3* la commande suivante :
 ```
 Ainsi, on obtient la BD *BD2.db*
 
+
+## Compilation
+Pour compiler le programme, se rendre à la racine du projet (le dossier demo) et lancer cette commande :
+
+``` 
+mvn package
+``` 
+
+## Exécution
+Pour exécuter le programme, se rendre à la racine du projet (le dossier demo) et lancer cette commande :
+``` 
+mvn exec:java
+
+``` 
+
 ## Utilisation
+Pour le login, 
+utilisateur : login123
+pass : pass123
+ou
+utilisateur : pleine
+pass: lune
+
+Pour le numéro d'assurance maladie,
+TREM01038503
+ou
+FLEM01048602
+ou
+HUBA01058701
+
+Les dates doivent respecter le format *AAAA-MM-JJ*
