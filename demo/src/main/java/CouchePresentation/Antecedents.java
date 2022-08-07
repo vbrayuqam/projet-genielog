@@ -120,7 +120,7 @@ public class Antecedents {
         debutsTF = new ArrayList<JTextField>();
         finTF = new ArrayList<JTextField>();
 
-        JSONArray antecedents = appMed.patient.getJSONArray("antecedents");
+        JSONArray antecedents = appMed.dossier.getJSONArray("antecedents");
 
         sauvegarder.addActionListener(e -> {
             if( antecedents.size() < nomsTF.size()){

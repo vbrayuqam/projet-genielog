@@ -129,7 +129,7 @@ public class Visites {
         resumesTF = new ArrayList<JTextField>();
         notesTF = new ArrayList<JTextField>();
 
-        JSONArray visites = appMed.patient.getJSONArray("visites");
+        JSONArray visites = appMed.dossier.getJSONArray("visites");
 
         sauvegarder.addActionListener(e -> {
             if( visites.size() < nomsTF.size()){

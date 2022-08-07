@@ -16,7 +16,7 @@ import CoucheLogique.SystemeDossier;
 public class ApplicationMedecin extends JFrame {
 
     SystemeDossier sd;
-    JSONObject patient;
+    JSONObject dossier;
 
     // Elements interface graphique
     JFrame page = new JFrame("Lecture/Modification des dossiers");
@@ -79,25 +79,40 @@ public class ApplicationMedecin extends JFrame {
 
     void lectureDossier(String am) {
 
-        patient = sd.lireDossier(am);
-        nom.setText(patient.getJSONObject("patient").getString("nom"));
-        prenom.setText(patient.getJSONObject("patient").getString("prenom"));
-        JSONObject dateN = patient.getJSONObject("patient").getJSONObject("dateNaissance");
+        dossier = sd.lireDossier(am);
+        nom.setText(dossier.getJSONObject("patient").getString("nom"));
+        prenom.setText(dossier.getJSONObject("patient").getString("prenom"));
+        JSONObject dateN = dossier.getJSONObject("patient").getJSONObject("dateNaissance");
         dateNaissance.setText(formatDate(dateN));
-        genre.setText(patient.getJSONObject("patient").getString("genre"));
-        mere.setText(patient.getJSONObject("patient").getString("mere"));
-        pere.setText(patient.getJSONObject("patient").getString("pere"));
-        villeNaissance.setText(patient.getJSONObject("patient").getString("villeNaissance"));
+        genre.setText(dossier.getJSONObject("patient").getString("genre"));
+        mere.setText(dossier.getJSONObject("patient").getString("mere"));
+        pere.setText(dossier.getJSONObject("patient").getString("pere"));
+        villeNaissance.setText(dossier.getJSONObject("patient").getString("villeNaissance"));
         affichageDossier.setVisible(true);
 
     }
 
     void modificationVisites(JSONArray visites) {
-        patient.put("visites", visites);
+        dossier.put("visites", visites);
     }
 
     void modificationAntecedents(JSONArray antecedents) {
-        patient.put("antecedents", antecedents);
+        dossier.put("antecedents", antecedents);
+    }
+
+    String lireDate(String date){
+        if(date.matches("\\d{4}-((0\\d)|(1[0-2]))-(([0-2]\\d)|(3[0-1]))")){
+            String[] dates = date.split("-");
+            String dateLue = String.format("{\"annee\":\"%s\", \"mois\":\"%s\", \"jour\":\"%s\"}", dates[0],dates[1],dates[2]);
+            System.out.println(dateLue);
+            return dateLue;
+        }
+        else{
+            dateNaissance.setText("Date invalide. Utiliser YYYY-MM-JJ");
+            return "";
+        }
+
+
     }
 
     public ApplicationMedecin(SystemeDossier systemeDossier) {
@@ -153,6 +168,14 @@ public class ApplicationMedecin extends JFrame {
 
         pSauvegarde.setLayout(new FlowLayout());
         bSauvegarde.addActionListener(e -> {
+            dossier.getJSONObject("patient").put("nom",nom.getText());
+            dossier.getJSONObject("patient").put("prenom", prenom.getText());
+            dossier.getJSONObject("patient").put("dateNaissance", lireDate(dateNaissance.getText()));
+            dossier.put("genre", genre.getText());
+            dossier.put("mere", mere.getText());
+            dossier.put("pere", pere.getText());
+            dossier.put("villeNaissance", villeNaissance.getText());
+            sd.modifierDossier(dossier);
         });
         pSauvegarde.add(bSauvegarde);
 
