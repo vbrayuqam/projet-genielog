@@ -709,8 +709,9 @@ public class ConnecteurBD {
 
 
 
-
+// ----------------------------------------------------------------------------------------------------------------
 // ------------------------------------   EFFACER LES DONNEES DE LA BD --------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------
 
     public static void effacerAntecedents (String assMaladieNum) {
 
@@ -824,24 +825,49 @@ public class ConnecteurBD {
 
     }
 
+// -------------------------------------- FIN EFFACER ------------------------------------------------------------
 
 
 
+
+// ---------------------------------------------------------------------------------------------------------------
 // -------------------------------------- ÉCRITURE DE LA BD   ----------------------------------------------------
-
+// ---------------------------------------------------------------------------------------------------------------
 
 
 
 // -------------------------------  ECRITURE D'UN DOSSIER : INSERER DOSSIER ---------------------------------------
 
-    public Dossier insererDossier ( Dossier leDossier ) {
+    public static void insererDossier ( Dossier leDossier ) {
 
+         String assMaladie = leDossier.getPatient().getNas();
 
-         return leDossier;
+         effacerAntecedents(assMaladie);
+         effacerVisites(assMaladie);
+         effacerCoordonnees(assMaladie);
+         effacerPatient(assMaladie);
+
+         ecriturePatient(leDossier.getPatient(), assMaladie);
+         ecritureCoordonnee(leDossier.getPatient().getCoords(), assMaladie);
+
+         Visite[] tabVisites = leDossier.getVisites();
+         int tailleTabVisites = tabVisites.length;
+
+         for ( int i = 0; i < tailleTabVisites; i++ ){
+             ecritureBDVisite(tabVisites[i], assMaladie);
+         }
+
+         Antecedent[] tabAntecedents = leDossier.getAntecedents();
+         int tailleTabAntecedents = tabAntecedents.length;
+
+         for ( int i = 0; i < tailleTabAntecedents; i++ ){
+             ecritureBDAntecedent(tabAntecedents[i], assMaladie);
+         }
+
     }
 
 
-
+// ------------------------------  FIN ECRITURE D'UN DOSSIER -----------------------------------------------------
 
 
 
@@ -955,6 +981,12 @@ public class ConnecteurBD {
 
 // ------------------------------ fin  écriture de visites dans la BD --------------------------------------------
 
+
+
+
+
+// ------------------------------ début écriture des coordonnees dans la BD --------------------------------------
+
     public static void ecritureCoordonnee( Coordonnees coord, String assMaladieNum) {
 
 
@@ -989,7 +1021,12 @@ public class ConnecteurBD {
 
     }
 
+// ------------------------------  fin écriture des coordonnées dans la BD -----------------------------------------
 
+
+
+
+// ------------------------------ début écriture d'un patient dans la BD -------------------------------------------
     public static void ecriturePatient( Patient unPatient, String assMaladieNum) {
 
 
@@ -1035,11 +1072,12 @@ public class ConnecteurBD {
             }
         }
 
-
     }
 
+// ------------------------------------  fin écriture d'un patient dans la BD ----------------------------------------
 
 
 
 
-}
+
+} // FIN
