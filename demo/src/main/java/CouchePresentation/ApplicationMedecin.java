@@ -119,7 +119,6 @@ public class ApplicationMedecin extends JFrame {
             System.out.println(dateLue);
             return dateLue;
         } else {
-            dateNaissance.setText("Date invalide. Utiliser YYYY-MM-JJ");
             return "";
         }
 
