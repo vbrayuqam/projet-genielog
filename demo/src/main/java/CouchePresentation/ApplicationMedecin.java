@@ -64,34 +64,39 @@ public class ApplicationMedecin extends JFrame {
     JPanel pSauvegarde = new JPanel();
     JButton bSauvegarde = new JButton("Sauvegarder");
 
+    public String formatDate(JSONObject dateN) {
+        if (dateN.get("annee").equals("") ||
+                dateN.getString("mois").equals("") ||
+                dateN.get("jour").equals("")) {
+            return "";
 
-    public String formatDate(JSONObject dateN){
-        
-
-        return dateN.getString("annee") + "-" + String.format("%02d", dateN.getInt("mois")) + "-"+ String.format("%02d",dateN.getInt("jour"));
-
+        } else {
+            return dateN.getString("annee")
+                    + "-" + String.format("%02d", dateN.getInt("mois")) + "-"
+                    + String.format("%02d", dateN.getInt("jour"));
+        }
     }
+
     void lectureDossier(String am) {
-       
+
         patient = sd.lireDossier(am);
         nom.setText(patient.getJSONObject("patient").getString("nom"));
         prenom.setText(patient.getJSONObject("patient").getString("prenom"));
         JSONObject dateN = patient.getJSONObject("patient").getJSONObject("dateNaissance");
         dateNaissance.setText(formatDate(dateN));
-        genre.setText(patient.getJSONObject("patient").getString("genre")); 
-        mere.setText(patient.getJSONObject("patient").getString("mere"));   
-        pere.setText(patient.getJSONObject("patient").getString("pere"));  
-        villeNaissance.setText(patient.getJSONObject("patient").getString("villeNaissance"));          
+        genre.setText(patient.getJSONObject("patient").getString("genre"));
+        mere.setText(patient.getJSONObject("patient").getString("mere"));
+        pere.setText(patient.getJSONObject("patient").getString("pere"));
+        villeNaissance.setText(patient.getJSONObject("patient").getString("villeNaissance"));
         affichageDossier.setVisible(true);
 
     }
 
-    void modificationVisites(JSONArray visites){
+    void modificationVisites(JSONArray visites) {
         patient.put("visites", visites);
     }
 
-
-    void modificationAntecedents(JSONArray antecedents){
+    void modificationAntecedents(JSONArray antecedents) {
         patient.put("antecedents", antecedents);
     }
 

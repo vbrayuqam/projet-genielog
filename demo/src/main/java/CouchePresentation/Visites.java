@@ -162,11 +162,12 @@ public class Visites {
 
             medecin.put("nom", "");
             medecin.put("prenom", "");
-            visiteTemp.put("date", "");
+            visiteTemp.put("date", "{\"annee\":\"\",\"jour\":\"\",\"mois\":\"\"}");
             visiteTemp.put("diagnostic", "");
             visiteTemp.put("traitement", "");
             visiteTemp.put("resume", "");
             visiteTemp.put("notes", "");
+
 
             page.add(affichageVisite(visiteTemp));
             page.pack();

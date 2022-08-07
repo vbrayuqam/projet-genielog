@@ -153,8 +153,8 @@ public class Antecedents {
             medecin.put("prenom", "");
             antecedentTemp.put("diagnostic", "");
             antecedentTemp.put("traitement", "");
-            antecedentTemp.put("debut", "");
-            antecedentTemp.put("fin", "");
+            antecedentTemp.put("debut", "{\"annee\":\"0000\",\"jour\":\"00\",\"mois\":\"00\"}");
+            antecedentTemp.put("fin", "{\"annee\":\"0000\",\"jour\":\"00\",\"mois\":\"00\"}");
 
             page.add(affichageAntecedent(antecedentTemp));
             page.pack();
