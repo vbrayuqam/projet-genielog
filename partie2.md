@@ -22,6 +22,7 @@ Date de remise: 7 aout 2022
 
 3. [Patron Builder](#builder)
 
+4. [Différences](#diff)
 
 # Contenu
 ## Patron Proxy <a name="proxy"></a>
@@ -45,3 +46,6 @@ La facade `SystemeDossier` permet de découpler les accès à la base de donnée
 ![Diagramme de séquence builder](/diagrammes/SEQBUILDER.png "Diagramme de séquence builder")
 ### Explications
 Étant donné que `Dossier` est un objet composite qui contient plusieurs autres objets qui, eux-mêmes, contiennent plusieurs objets, nous utilisons une classe builder, en l'occurence la classe `ConnecteurBD`, pour gérer la création des dossiers et leurs composants.
+
+## Différences entre l'implémentation et la conception<a name="diff"></a>
+À cause de l'utilisation de `Beans` java, les visites et les antécédents sont contenus dans tes tableaux et non des listes. Les `Beans` nous donnaient aussi des problèmes avec la classe abstraite établissement, ainsi nous en avons fait une simple classe et n'avons pas implémenté les classes `Clinique` et `Hopital`. Les informations entre le système dossier et les interfaces sont faites par des objets JSON, ce qui n'était pas représenté dans notre conception.
