@@ -2,6 +2,8 @@ package CouchePresentation;
 
 import java.awt.*;
 
+import java.util.List;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -25,6 +27,7 @@ public class ApplicationMedecin extends JFrame {
     JLabel lAssuranceM = new JLabel("Numero d'assurance maladie");
     JTextField assuranceM = new JTextField(15);
     JButton bAssuranceM = new JButton("Rechercher");
+    JLabel erreurDate;
 
     // Elements Dossier
     JPanel affichageDossier = new JPanel();
@@ -63,6 +66,8 @@ public class ApplicationMedecin extends JFrame {
 
     JPanel pSauvegarde = new JPanel();
     JButton bSauvegarde = new JButton("Sauvegarder");
+
+
 
     public String formatDate(JSONObject dateN) {
         if (dateN.get("annee").equals("") ||
@@ -120,9 +125,24 @@ public class ApplicationMedecin extends JFrame {
 
     }
 
+    public Boolean validationDate(List<JTextField> dates){
+        boolean valide = true;
+        for(int i = 0; i < dates.size(); i++){
+            if(lireDate(dates.get(i).getText()).equals("")){
+                valide = false;
+            }
+        }
+        return valide;
+    }
+
+
     public ApplicationMedecin(SystemeDossier systemeDossier) {
 
         sd = systemeDossier;
+
+    erreurDate = new JLabel("Format date invalide. Utiliser YYYY-MM-JJ");
+    erreurDate.setForeground(Color.RED);
+    erreurDate.setVisible(false);
 
         pAssuranceM.setLayout(new FlowLayout());
         bAssuranceM.addActionListener(e -> {
@@ -173,6 +193,8 @@ public class ApplicationMedecin extends JFrame {
 
         pSauvegarde.setLayout(new FlowLayout());
         bSauvegarde.addActionListener(e -> {
+            erreurDate.setVisible(false);
+            if(!lireDate(dateNaissance.getText()).equals("")){
             dossier.getJSONObject("patient").put("nom", nom.getText());
             dossier.getJSONObject("patient").put("prenom", prenom.getText());
             dossier.getJSONObject("patient").put("dateNaissance", lireDate(dateNaissance.getText()));
@@ -180,7 +202,10 @@ public class ApplicationMedecin extends JFrame {
             dossier.put("mere", mere.getText());
             dossier.put("pere", pere.getText());
             dossier.put("villeNaissance", villeNaissance.getText());
-            sd.modifierDossier(dossier);
+            sd.modifierDossier(dossier);}
+            else{
+                erreurDate.setVisible(true);
+            }
         });
         pSauvegarde.add(bSauvegarde);
 
@@ -198,6 +223,7 @@ public class ApplicationMedecin extends JFrame {
 
         page.add(pAssuranceM);
         page.add(affichageDossier);
+        affichageDossier.add(erreurDate);
         page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         page.setLayout(new GridLayout(2, 1));
         page.pack();

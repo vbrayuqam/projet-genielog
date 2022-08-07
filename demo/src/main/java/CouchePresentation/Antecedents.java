@@ -18,6 +18,7 @@ public class Antecedents {
     JPanel boutons;
     JButton sauvegarder;
     JButton ajouter;
+    JLabel erreurDate;
 
     private List<JTextField> nomsTF;
     private List<JTextField> prenomsTF;
@@ -102,6 +103,8 @@ public class Antecedents {
         return pAntecedent;
     }
 
+
+
     public Antecedents(ApplicationMedecin applicationMedecin) {
 
         appMed = applicationMedecin;
@@ -111,6 +114,9 @@ public class Antecedents {
         boutons = new JPanel();
         sauvegarder = new JButton("Mise a jour");
         ajouter = new JButton("Ajouter");
+        erreurDate = new JLabel("Format date invalide. Utiliser YYYY-MM-JJ");
+        erreurDate.setForeground(Color.RED);
+        erreurDate.setVisible(false);
 
         nomsTF = new ArrayList<JTextField>();
         prenomsTF = new ArrayList<JTextField>();
@@ -122,24 +128,32 @@ public class Antecedents {
         JSONArray antecedents = appMed.dossier.getJSONArray("antecedents");
 
         sauvegarder.addActionListener(e -> {
-            if (antecedents.size() < nomsTF.size()) {
-                for (int i = antecedents.size(); i < nomsTF.size(); i++) {
-                    antecedents.add(antecedents.getJSONObject(0));
+            erreurDate.setVisible(false);
+            if(appMed.validationDate(debutsTF) && appMed.validationDate(finTF)){
+                if (antecedents.size() < nomsTF.size()) {
+                    for (int i = antecedents.size(); i < nomsTF.size(); i++) {
+                        antecedents.add(antecedents.getJSONObject(0));
+                    }
                 }
+    
+                for (int i = 0; i < nomsTF.size(); i++) {
+                    JSONObject antecedent = antecedents.getJSONObject(i);
+                    JSONObject medecin = antecedent.getJSONObject("medecin");
+                    medecin.put("nom", nomsTF.get(i).getText());
+                    medecin.put("prenom", prenomsTF.get(i).getText());
+                    antecedent.put("medecin", medecin);
+                    antecedent.put("diagnostic", diagnosticsTF.get(i).getText());
+                    antecedent.put("traitement", traitementsTF.get(i).getText());
+                    antecedent.put("debut", appMed.lireDate(debutsTF.get(i).getText()));
+                    antecedent.put("fin", appMed.lireDate(finTF.get(i).getText()));
+                    antecedents.set(i, antecedent);
+                }
+                appMed.modificationAntecedents(antecedents);
             }
-            for (int i = 0; i < nomsTF.size(); i++) {
-                JSONObject antecedent = antecedents.getJSONObject(i);
-                JSONObject medecin = antecedent.getJSONObject("medecin");
-                medecin.put("nom", nomsTF.get(i).getText());
-                medecin.put("prenom", prenomsTF.get(i).getText());
-                antecedent.put("medecin", medecin);
-                antecedent.put("diagnostic", diagnosticsTF.get(i).getText());
-                antecedent.put("traitement", traitementsTF.get(i).getText());
-                antecedent.put("debut", debutsTF.get(i).getText());
-                antecedent.put("fin", finTF.get(i).getText());
-                antecedents.set(i, antecedent);
+            else{
+                erreurDate.setVisible(true);
             }
-            appMed.modificationAntecedents(antecedents);
+            
         });
 
         ajouter.addActionListener(e -> {
@@ -162,6 +176,7 @@ public class Antecedents {
         boutons.add(sauvegarder);
         boutons.add(ajouter);
         page.add(boutons);
+        page.add(erreurDate);
 
         for (int i = 0; i < antecedents.size(); i++) {
 

@@ -880,8 +880,9 @@ public class ConnecteurBD {
         String debutMaladieJour = String.valueOf(unAntecedent.getDebut().getJour());
         debutMaladieMois = checkZero(debutMaladieMois);
         debutMaladieJour = checkZero(debutMaladieJour);
+    
         String debutMaladie = debutMaladieAnnee + "-" + debutMaladieMois + "-" + debutMaladieJour;
-
+System.out.println(debutMaladie);
         String finMaladieAnnee = String.valueOf(unAntecedent.getFin().getAnnee());
         String finMaladieMois = String.valueOf(unAntecedent.getFin().getMois());
         String finMaladieJour = String.valueOf(unAntecedent.getFin().getJour());

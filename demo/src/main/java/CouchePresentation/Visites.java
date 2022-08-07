@@ -19,6 +19,7 @@ public class Visites {
     JPanel boutons;
     JButton sauvegarder;
     JButton ajouter;
+    JLabel erreurDate;
 
 
     private List<JTextField> nomsTF;
@@ -120,6 +121,9 @@ public class Visites {
         boutons = new JPanel();
         sauvegarder = new JButton("Mise a jour");
         ajouter = new JButton("Ajouter");
+        erreurDate = new JLabel("Format date invalide. Utiliser YYYY-MM-JJ");
+        erreurDate.setForeground(Color.RED);
+        erreurDate.setVisible(false);
 
         nomsTF = new ArrayList<JTextField>();
         prenomsTF = new ArrayList<JTextField>();
@@ -132,25 +136,32 @@ public class Visites {
         JSONArray visites = appMed.dossier.getJSONArray("visites");
 
         sauvegarder.addActionListener(e -> {
-            if( visites.size() < nomsTF.size()){
-                for(int i = visites.size(); i < nomsTF.size(); i++){
-                    visites.add(visites.getJSONObject(0));
+            erreurDate.setVisible(false);
+            if(appMed.validationDate(datesTF)){
+                if( visites.size() < nomsTF.size()){
+                    for(int i = visites.size(); i < nomsTF.size(); i++){
+                        visites.add(visites.getJSONObject(0));
+                    }
                 }
+                for (int i = 0; i < nomsTF.size(); i++) {
+                    JSONObject visite = visites.getJSONObject(i);
+                    JSONObject medecin = visite.getJSONObject("medecin");
+                    medecin.put("nom", nomsTF.get(i).getText());
+                    medecin.put("prenom", prenomsTF.get(i).getText());
+                    visite.put("medecin", medecin);
+                    visite.put("date", appMed.lireDate(datesTF.get(i).getText()));
+                    visite.put("diagnostic", diagnosticsTF.get(i).getText());
+                    visite.put("traitement", traitementsTF.get(i).getText());
+                    visite.put("resume", resumesTF.get(i).getText());
+                    visite.put("notes", notesTF.get(i).getText());
+                    visites.set(i, visite);
+                }
+                appMed.modificationVisites(visites);
             }
-            for (int i = 0; i < nomsTF.size(); i++) {
-                JSONObject visite = visites.getJSONObject(i);
-                JSONObject medecin = visite.getJSONObject("medecin");
-                medecin.put("nom", nomsTF.get(i).getText());
-                medecin.put("prenom", prenomsTF.get(i).getText());
-                visite.put("medecin", medecin);
-                visite.put("date", datesTF.get(i).getText());
-                visite.put("diagnostic", diagnosticsTF.get(i).getText());
-                visite.put("traitement", traitementsTF.get(i).getText());
-                visite.put("resume", resumesTF.get(i).getText());
-                visite.put("notes", notesTF.get(i).getText());
-                visites.set(i, visite);
+            else{
+                erreurDate.setVisible(true);
             }
-            appMed.modificationVisites(visites);
+            
         });
 
         ajouter.addActionListener(e -> {
