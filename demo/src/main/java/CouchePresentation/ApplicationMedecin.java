@@ -116,7 +116,6 @@ public class ApplicationMedecin extends JFrame {
             String[] dates = date.split("-");
             String dateLue = String.format("{\"annee\":\"%s\", \"mois\":\"%s\", \"jour\":\"%s\"}", dates[0], dates[1],
                     dates[2]);
-            System.out.println(dateLue);
             return dateLue;
         } else {
             return "";

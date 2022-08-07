@@ -15,7 +15,6 @@ public class ConnecteurBD {
         try {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:src/bd/BD2.db");
-            System.out.println("Connexion reussie");
             return conn;
         } catch (Exception e) {
             System.out.println("Connexion échouée");
@@ -872,7 +871,6 @@ public class ConnecteurBD {
         debutMaladieJour = checkZero(debutMaladieJour);
     
         String debutMaladie = debutMaladieAnnee + "-" + debutMaladieMois + "-" + debutMaladieJour;
-System.out.println(debutMaladie);
         String finMaladieAnnee = String.valueOf(unAntecedent.getFin().getAnnee());
         String finMaladieMois = String.valueOf(unAntecedent.getFin().getMois());
         String finMaladieJour = String.valueOf(unAntecedent.getFin().getJour());
