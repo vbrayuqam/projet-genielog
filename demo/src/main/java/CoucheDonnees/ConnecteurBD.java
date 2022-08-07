@@ -824,6 +824,9 @@ public class ConnecteurBD {
 
     }
 
+
+
+
 // -------------------------------------- ÉCRITURE DE LA BD   ----------------------------------------------------
 
 
@@ -849,7 +852,6 @@ public class ConnecteurBD {
     public static void ecritureBDAntecedent (Antecedent unAntecedent, String assMaladieNum){
         Connection conn = connectionBD();
         PreparedStatement preRequete = null;
-        ResultSet resultat = null;
         String diagnostic = unAntecedent.getDiagnostic();
         String traitement = unAntecedent.getTraitement();
 
@@ -878,14 +880,13 @@ public class ConnecteurBD {
             preRequete.setString(5, debutMaladie);
             preRequete.setString(6, finMaladie);
             preRequete.setString(7, assMaladieNum);
-            preRequete.executeUpdate();
+            preRequete.execute();
 
         } catch(SQLException e) {
-            System.out.println(" requete patientCoordonnee échouée");
+            System.out.println(" requete ecritureBDAntecedent échouée");
 
         } finally {
             try {
-                resultat.close();
                 preRequete.close();
                 conn.close();
             } catch(SQLException e) {
@@ -904,21 +905,141 @@ public class ConnecteurBD {
 
 // ------------------------------ début  écriture de visites dans la BD --------------------------------------------
     public static void ecritureBDVisite( Visite nouvelleVisite, String assMaladieNum) {
-/*
+
 
         Connection conn = connectionBD();
         PreparedStatement preRequete = null;
-        ResultSet resultat = null;
-        String etablissement = nouvelleVisite.getEtablissement()    // etablissement est un string dans la bd (un nom)
-                                                                    // et notre implémentation a seulement
-                                                                    // des coordonnées et une liste de salles
-*/
+        String etablissement = nouvelleVisite.getEtablissement().getNom();
+        String medecinVuPrenom = nouvelleVisite.getMedecin().getPrenom();
+        String medecinVuNom = nouvelleVisite.getMedecin().getNom();
 
+        String dateVisiteAnnee = String.valueOf(nouvelleVisite.getDate().getAnnee());
+        String dateVisiteMois = String.valueOf(nouvelleVisite.getDate().getMois());
+        String dateVisiteJour = String.valueOf(nouvelleVisite.getDate().getJour());
+        String dateVisite = dateVisiteAnnee + "-" + dateVisiteMois + "-" + dateVisiteJour;
+
+        String diagnosticEtablit = nouvelleVisite.getDiagnostic();
+        String traitementEtablit = nouvelleVisite.getTraitement();
+        String resumeVisite = nouvelleVisite.getResume();
+        String notesMedecin = nouvelleVisite.getNotes();
+
+
+        try {
+            String requeteSQL = "INSERT INTO visites(etablissement, medecinVuPrenom, medecinVuNom, dateVisite, diagnosticEtablit, traitementEtablit, resumeVisite, notesMedecin, id_assMaladie) VALUES(?,?,?,?,?,?,?,?,?)";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, etablissement);
+            preRequete.setString(2, medecinVuPrenom);
+            preRequete.setString(3, medecinVuNom);
+            preRequete.setString(4, dateVisite);
+            preRequete.setString(5, diagnosticEtablit);
+            preRequete.setString(6, traitementEtablit);
+            preRequete.setString(7, resumeVisite);
+            preRequete.setString(8, notesMedecin);
+            preRequete.setString(9, assMaladieNum);
+            preRequete.execute();
+
+        } catch(SQLException e) {
+            System.out.println(" requete ecritureBDVisite échouée");
+
+        } finally {
+            try {
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
 
 
     }
 
 // ------------------------------ fin  écriture de visites dans la BD --------------------------------------------
+
+    public static void ecritureCoordonnee( Coordonnees coord, String assMaladieNum) {
+
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        String adresseResident = coord.getAdresse();
+        String telephone = coord.getTelephone();
+        String courriel = coord.getCourriel();
+
+
+        try {
+            String requeteSQL = "INSERT INTO coordonnees(adresseResident, telephone, courriel, id_assMaladie) VALUES(?,?,?,?)";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, adresseResident);
+            preRequete.setString(2, telephone);
+            preRequete.setString(3, courriel);
+            preRequete.setString(4, assMaladieNum);
+            preRequete.execute();
+
+        } catch(SQLException e) {
+            System.out.println(" requete ecritureCoordonnee échouée");
+
+        } finally {
+            try {
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+
+    }
+
+
+    public static void ecriturePatient( Patient unPatient, String assMaladieNum) {
+
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+
+        String nom = unPatient.getNom();
+        String prenom = unPatient.getPrenom();
+
+        String dateNaissanceAnnee = String.valueOf(unPatient.getDateNaissance().getAnnee());
+        String dateNaissanceMois = String.valueOf(unPatient.getDateNaissance().getMois());
+        String dateNaissanceJour = String.valueOf(unPatient.getDateNaissance().getJour());
+        String dateNaissance = dateNaissanceAnnee + "-" + dateNaissanceMois + "-" + dateNaissanceJour;
+
+        String genre = unPatient.getGenre();
+        String pere = unPatient.getPere();
+        String mere = unPatient.getMere();
+        String villeNaissance = unPatient.getVilleNaissance();
+
+
+        try {
+            String requeteSQL = "INSERT INTO patient(assMaladieNum, nom, prenom, dateNaissance, genre, pere, mere, villeNaissance) VALUES(?,?,?,?,?,?,?,?)";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            preRequete.setString(2, nom);
+            preRequete.setString(3, prenom);
+            preRequete.setString(4, dateNaissance);
+            preRequete.setString(5, genre);
+            preRequete.setString(6, pere);
+            preRequete.setString(7, mere);
+            preRequete.setString(8, villeNaissance);
+            preRequete.execute();
+
+        } catch(SQLException e) {
+            System.out.println(" requete ecriturePatient échouée");
+
+        } finally {
+            try {
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+
+    }
+
+
+
 
 
 }
