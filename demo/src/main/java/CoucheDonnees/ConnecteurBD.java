@@ -486,7 +486,6 @@ public class ConnecteurBD {
             resultat = preRequete.executeQuery();
 
             while (resultat.next()) {
-                System.out.println(tabInit + "TOURS DE BOUCLE");
 
                 patientAntecedents[tabInit] = new Antecedent();
                 medecin[tabInit] = new Medecin();
@@ -494,26 +493,18 @@ public class ConnecteurBD {
                 medecin[tabInit].setPrenom(resultat.getString("medecinTraitantPrenom"));
 
                 dateDebut = resultat.getString("debutMaladie");
-                System.out.println(dateDebut);
                 dateDebutAnneeParse = Integer.parseInt(dateDebut.substring(0, 4));
                 dateDebutMoisParse = Integer.parseInt(dateDebut.substring(5, 7));
                 dateDebutJourParse = Integer.parseInt(dateDebut.substring(8, 10));
-                System.out.println(dateDebutAnneeParse);
-                System.out.println(dateDebutMoisParse);
-                System.out.println(dateDebutJourParse);
                 dateDebutResultat[tabInit] = new DateSys();
                 dateDebutResultat[tabInit].setAnnee(dateDebutAnneeParse);
                 dateDebutResultat[tabInit].setMois(dateDebutMoisParse);
                 dateDebutResultat[tabInit].setJour(dateDebutJourParse);
 
                 dateFin = resultat.getString("finMaladie");
-                System.out.println(dateFin);
                 dateFinAnneeParse = Integer.parseInt(dateFin.substring(0, 4));
                 dateFinMoisParse = Integer.parseInt(dateFin.substring(5, 7));
                 dateFinJourParse = Integer.parseInt(dateFin.substring(8, 10));
-                System.out.println(dateFinAnneeParse);
-                System.out.println(dateFinMoisParse);
-                System.out.println(dateFinJourParse);
 
                 dateFinResultat[tabInit] = new DateSys();
                 dateFinResultat[tabInit].setAnnee(dateFinAnneeParse);
@@ -565,8 +556,7 @@ public class ConnecteurBD {
 
             dummyString = resultat.getString(1);
             numAntecedents = Integer.parseInt(dummyString);
-
-            // numAntecedents = resultat.getInt(1);
+            
 
         } catch (SQLException e) {
             System.out.println(" requete numAntecedents échouée");
@@ -648,7 +638,7 @@ public class ConnecteurBD {
             }
 
         } catch (SQLException e) {
-            System.out.println(" requete patientAntecedents échouée");
+            System.out.println(" requete patientVisites échouée");
 
         } finally {
             try {
@@ -1025,7 +1015,6 @@ System.out.println(debutMaladie);
         dateNaissanceMois = checkZero(dateNaissanceMois);
         dateNaissanceJour = checkZero(dateNaissanceJour);
         String dateNaissance = dateNaissanceAnnee + "-" + dateNaissanceMois + "-" + dateNaissanceJour;
-        System.out.println("DATE NAISSANCE " + dateNaissance);
 
         String genre = unPatient.getGenre();
         String pere = unPatient.getPere();
