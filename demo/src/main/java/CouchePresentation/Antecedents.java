@@ -108,7 +108,7 @@ public class Antecedents {
 
         page = new JFrame("Antecedents");
         boutons = new JPanel();
-        sauvegarder = new JButton("Sauvegarder");
+        sauvegarder = new JButton("Mise a jour");
         ajouter = new JButton("Ajouter");
 
 
