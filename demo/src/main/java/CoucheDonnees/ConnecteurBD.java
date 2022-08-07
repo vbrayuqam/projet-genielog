@@ -708,7 +708,128 @@ public class ConnecteurBD {
 // ------------------------------ fin de la lecture des visites ---------------------------------------------------
 
 
-// -------------------------------  CHERCHER DOSSIER -------------------------------------------------------------
+
+
+// ------------------------------------   EFFACER LES DONNEES DE LA BD --------------------------------------------
+
+    public static void effacerAntecedents (String assMaladieNum) {
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+
+
+        try {
+            String requeteSQL = "DELETE FROM antecedents where id_assMaladie = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            preRequete.execute();
+
+        } catch (SQLException e) {
+            System.out.println(" requete effacerAntecedents échouée");
+
+        } finally {
+            try {
+                preRequete.close();
+                conn.close();
+
+            } catch(SQLException e) {
+
+            }
+
+        }
+
+    }
+
+    public static void effacerVisites (String assMaladieNum) {
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+
+
+        try {
+            String requeteSQL = "DELETE FROM visites where id_assMaladie = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            preRequete.execute();
+
+        } catch (SQLException e) {
+            System.out.println(" requete effacerVisites échouée");
+
+        } finally {
+            try {
+                preRequete.close();
+                conn.close();
+
+            } catch(SQLException e) {
+
+            }
+
+        }
+
+    }
+
+    public static void effacerCoordonnees (String assMaladieNum) {
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+
+
+        try {
+            String requeteSQL = "DELETE FROM coordonnees where id_assMaladie = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            preRequete.execute();
+
+        } catch (SQLException e) {
+            System.out.println(" requete effacerCoordonnes échouée");
+
+        } finally {
+            try {
+                preRequete.close();
+                conn.close();
+
+            } catch(SQLException e) {
+
+            }
+
+        }
+
+    }
+
+    public static void effacerPatient (String assMaladieNum) {
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+
+
+        try {
+            String requeteSQL = "DELETE FROM patient where id_assMaladie = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            preRequete.execute();
+
+        } catch (SQLException e) {
+            System.out.println(" requete effacerPatient échouée");
+
+        } finally {
+            try {
+                preRequete.close();
+                conn.close();
+
+            } catch(SQLException e) {
+
+            }
+
+        }
+
+    }
+
+// -------------------------------------- ÉCRITURE DE LA BD   ----------------------------------------------------
+
+
+
+
+// -------------------------------  ECRITURE D'UN DOSSIER : INSERER DOSSIER ---------------------------------------
 
     public Dossier insererDossier ( Dossier leDossier ) {
 
@@ -719,7 +840,7 @@ public class ConnecteurBD {
 
 
 
-// -------------------------------------- ÉCRITURE -----------------------------------------------------------------
+
 
 
 
