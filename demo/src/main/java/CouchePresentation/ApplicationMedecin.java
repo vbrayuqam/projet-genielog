@@ -197,10 +197,10 @@ public class ApplicationMedecin extends JFrame {
             dossier.getJSONObject("patient").put("nom", nom.getText());
             dossier.getJSONObject("patient").put("prenom", prenom.getText());
             dossier.getJSONObject("patient").put("dateNaissance", lireDate(dateNaissance.getText()));
-            dossier.put("genre", genre.getText());
-            dossier.put("mere", mere.getText());
-            dossier.put("pere", pere.getText());
-            dossier.put("villeNaissance", villeNaissance.getText());
+            dossier.getJSONObject("patient").put("genre", genre.getText());
+            dossier.getJSONObject("patient").put("mere", mere.getText());
+            dossier.getJSONObject("patient").put("pere", pere.getText());
+            dossier.getJSONObject("patient").put("villeNaissance", villeNaissance.getText());
             sd.modifierDossier(dossier);}
             else{
                 erreurDate.setVisible(true);
