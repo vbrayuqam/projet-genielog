@@ -40,10 +40,8 @@ public class SystemeDossier {
         Object dossierBean = JSONObject.toBean(dossierJSON, Dossier.class);
         Dossier nouveauDossier = (Dossier) dossierBean;
         ProxyDossier proxy = new ProxyDossier(nouveauDossier);
-
         this.setDossier(proxy);
-
-        System.out.println(dossierJSON.toString(4));
-        // ajouter les trucs pour modifier la db éventuellement
+        ConnecteurBD bd = new ConnecteurBD();
+        bd.insererDossier(proxy.getDossier());
     }
 }
