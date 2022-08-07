@@ -1,4 +1,5 @@
 package CouchePresentation;
+
 import CoucheLogique.Antecedent;
 
 import net.sf.json.JSONArray;
@@ -12,23 +13,22 @@ import java.util.List;
 
 public class Antecedents {
 
-    // Elements interface graphique
+    // Elements de l'interface graphique
     JFrame page;
     JPanel boutons;
     JButton sauvegarder;
     JButton ajouter;
 
-    ApplicationMedecin appMed;
-
-
     private List<JTextField> nomsTF;
     private List<JTextField> prenomsTF;
-    private List<JTextField> datesTF;
     private List<JTextField> diagnosticsTF;
     private List<JTextField> traitementsTF;
     private List<JTextField> debutsTF;
     private List<JTextField> finTF;
 
+    ApplicationMedecin appMed;
+
+    //Affichage de chaque antecedent
     JPanel affichageAntecedent(JSONObject antecedent) {
         JPanel pAntecedent = new JPanel();
         pAntecedent.setLayout(new FlowLayout());
@@ -106,15 +106,14 @@ public class Antecedents {
 
         appMed = applicationMedecin;
 
+        //Initialisation des composantes graphiques
         page = new JFrame("Antecedents");
         boutons = new JPanel();
         sauvegarder = new JButton("Mise a jour");
         ajouter = new JButton("Ajouter");
 
-
         nomsTF = new ArrayList<JTextField>();
         prenomsTF = new ArrayList<JTextField>();
-        datesTF = new ArrayList<JTextField>();
         diagnosticsTF = new ArrayList<JTextField>();
         traitementsTF = new ArrayList<JTextField>();
         debutsTF = new ArrayList<JTextField>();
@@ -123,8 +122,8 @@ public class Antecedents {
         JSONArray antecedents = appMed.dossier.getJSONArray("antecedents");
 
         sauvegarder.addActionListener(e -> {
-            if( antecedents.size() < nomsTF.size()){
-                for(int i = antecedents.size(); i < nomsTF.size(); i++){
+            if (antecedents.size() < nomsTF.size()) {
+                for (int i = antecedents.size(); i < nomsTF.size(); i++) {
                     antecedents.add(antecedents.getJSONObject(0));
                 }
             }
@@ -146,15 +145,15 @@ public class Antecedents {
         ajouter.addActionListener(e -> {
             JSONObject antecedent = antecedents.getJSONObject(0);
             Object temp = JSONObject.toBean(antecedent, Antecedent.class);
-            Antecedent temp2 = (Antecedent)temp;
+            Antecedent temp2 = (Antecedent) temp;
             JSONObject antecedentTemp = JSONObject.fromObject(temp2);
             JSONObject medecin = antecedentTemp.getJSONObject("medecin");
             medecin.put("nom", "");
             medecin.put("prenom", "");
             antecedentTemp.put("diagnostic", "");
             antecedentTemp.put("traitement", "");
-            antecedentTemp.put("debut", "{\"annee\":\"0000\",\"jour\":\"00\",\"mois\":\"00\"}");
-            antecedentTemp.put("fin", "{\"annee\":\"0000\",\"jour\":\"00\",\"mois\":\"00\"}");
+            antecedentTemp.put("debut", "{\"annee\":\"\",\"jour\":\"\",\"mois\":\"\"}");
+            antecedentTemp.put("fin", "{\"annee\":\"\",\"jour\":\"\",\"mois\":\"\"}");
 
             page.add(affichageAntecedent(antecedentTemp));
             page.pack();
@@ -164,15 +163,12 @@ public class Antecedents {
         boutons.add(ajouter);
         page.add(boutons);
 
-
-
         for (int i = 0; i < antecedents.size(); i++) {
 
             JSONObject antecedent = antecedents.getJSONObject(i);
             page.add(affichageAntecedent(antecedent));
 
         }
-
 
         page.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         page.setLayout(new BoxLayout(page.getContentPane(), BoxLayout.Y_AXIS));

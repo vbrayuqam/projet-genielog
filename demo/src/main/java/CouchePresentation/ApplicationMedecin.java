@@ -78,17 +78,23 @@ public class ApplicationMedecin extends JFrame {
     }
 
     void lectureDossier(String am) {
-
+        assuranceM.setForeground(Color.BLACK);
         dossier = sd.lireDossier(am);
-        nom.setText(dossier.getJSONObject("patient").getString("nom"));
-        prenom.setText(dossier.getJSONObject("patient").getString("prenom"));
-        JSONObject dateN = dossier.getJSONObject("patient").getJSONObject("dateNaissance");
-        dateNaissance.setText(formatDate(dateN));
-        genre.setText(dossier.getJSONObject("patient").getString("genre"));
-        mere.setText(dossier.getJSONObject("patient").getString("mere"));
-        pere.setText(dossier.getJSONObject("patient").getString("pere"));
-        villeNaissance.setText(dossier.getJSONObject("patient").getString("villeNaissance"));
-        affichageDossier.setVisible(true);
+        if (dossier.getJSONObject("patient").getString("nas").equals("")) {
+            assuranceM.setForeground(Color.RED);
+            assuranceM.setText("Numero d'assurance maladie inexistant");
+
+        } else {
+            nom.setText(dossier.getJSONObject("patient").getString("nom"));
+            prenom.setText(dossier.getJSONObject("patient").getString("prenom"));
+            JSONObject dateN = dossier.getJSONObject("patient").getJSONObject("dateNaissance");
+            dateNaissance.setText(formatDate(dateN));
+            genre.setText(dossier.getJSONObject("patient").getString("genre"));
+            mere.setText(dossier.getJSONObject("patient").getString("mere"));
+            pere.setText(dossier.getJSONObject("patient").getString("pere"));
+            villeNaissance.setText(dossier.getJSONObject("patient").getString("villeNaissance"));
+            affichageDossier.setVisible(true);
+        }
 
     }
 
@@ -100,18 +106,17 @@ public class ApplicationMedecin extends JFrame {
         dossier.put("antecedents", antecedents);
     }
 
-    String lireDate(String date){
-        if(date.matches("\\d{4}-((0\\d)|(1[0-2]))-(([0-2]\\d)|(3[0-1]))")){
+    String lireDate(String date) {
+        if (date.matches("\\d{4}-((0\\d)|(1[0-2]))-(([0-2]\\d)|(3[0-1]))")) {
             String[] dates = date.split("-");
-            String dateLue = String.format("{\"annee\":\"%s\", \"mois\":\"%s\", \"jour\":\"%s\"}", dates[0],dates[1],dates[2]);
+            String dateLue = String.format("{\"annee\":\"%s\", \"mois\":\"%s\", \"jour\":\"%s\"}", dates[0], dates[1],
+                    dates[2]);
             System.out.println(dateLue);
             return dateLue;
-        }
-        else{
+        } else {
             dateNaissance.setText("Date invalide. Utiliser YYYY-MM-JJ");
             return "";
         }
-
 
     }
 
@@ -168,7 +173,7 @@ public class ApplicationMedecin extends JFrame {
 
         pSauvegarde.setLayout(new FlowLayout());
         bSauvegarde.addActionListener(e -> {
-            dossier.getJSONObject("patient").put("nom",nom.getText());
+            dossier.getJSONObject("patient").put("nom", nom.getText());
             dossier.getJSONObject("patient").put("prenom", prenom.getText());
             dossier.getJSONObject("patient").put("dateNaissance", lireDate(dateNaissance.getText()));
             dossier.put("genre", genre.getText());
