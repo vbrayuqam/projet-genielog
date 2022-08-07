@@ -835,7 +835,7 @@ public class ConnecteurBD {
 
 
         try {
-            String requeteSQL = "DELETE FROM patient where id_assMaladie = ?";
+            String requeteSQL = "DELETE FROM patient where assMaladieNum = ?";
             preRequete = conn.prepareStatement(requeteSQL);
             preRequete.setString(1, assMaladieNum);
             preRequete.execute();
