@@ -51,6 +51,7 @@ public class ConnecteurBD {
 
          Patient lePatient = new Patient();
 
+         lePatient.setNas(patientNas( assMaladieNum));
          lePatient.setNom(patientNom( assMaladieNum));
          lePatient.setPrenom(patientPrenom( assMaladieNum));
          lePatient.setGenre(patientGenre( assMaladieNum));
@@ -165,6 +166,36 @@ public class ConnecteurBD {
 
 
 // ------------------------- début des fonctions de lecture de la table patient ----------------------------------
+
+    public String patientNas( String assMaladieNum) {
+
+        Connection conn = connectionBD();
+        PreparedStatement preRequete = null;
+        ResultSet resultat = null;
+        String patientNas = null;
+
+        try {
+            String requeteSQL = "SELECT assMaladieNum FROM patient where assMaladieNum = ?";
+            preRequete = conn.prepareStatement(requeteSQL);
+            preRequete.setString(1, assMaladieNum);
+            resultat = preRequete.executeQuery();
+            patientNas = resultat.getString(1);
+        } catch(SQLException e) {
+            System.out.println(" requete patientNas du patient échouée");
+
+        } finally {
+            try {
+                resultat.close();
+                preRequete.close();
+                conn.close();
+            } catch(SQLException e) {
+
+            }
+        }
+
+        return patientNas;
+    }
+
 
     public String patientNom( String assMaladieNum) {
 
