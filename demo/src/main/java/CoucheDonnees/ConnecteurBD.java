@@ -708,7 +708,13 @@ public class ConnecteurBD {
 // ------------------------------ fin de la lecture des visites ---------------------------------------------------
 
 
+// -------------------------------  CHERCHER DOSSIER -------------------------------------------------------------
 
+    public Dossier insererDossier ( Dossier leDossier ) {
+
+
+         return leDossier;
+    }
 
 
 
@@ -725,20 +731,32 @@ public class ConnecteurBD {
         ResultSet resultat = null;
         String diagnostic = unAntecedent.getDiagnostic();
         String traitement = unAntecedent.getTraitement();
-        String medecinTraitant = unAntecedent.getMedecin().getNom();
-        String debutMaladie = String.valueOf(unAntecedent.getDebut());
-        String finMaladie = String.valueOf(unAntecedent.getFin());
+
+        Medecin leMedecinTraitant = unAntecedent.getMedecin();
+        String medecinTraitanPrenom = leMedecinTraitant.getPrenom();
+        String medecinTraitantNom = leMedecinTraitant.getNom();
+
+        String debutMaladieAnnee = String.valueOf(unAntecedent.getDebut().getAnnee());
+        String debutMaladieMois = String.valueOf(unAntecedent.getDebut().getMois());
+        String debutMaladieJour = String.valueOf(unAntecedent.getDebut().getJour());
+        String debutMaladie = debutMaladieAnnee + "-" + debutMaladieMois + "-" + debutMaladieJour;
+
+        String finMaladieAnnee = String.valueOf(unAntecedent.getFin().getAnnee());
+        String finMaladieMois = String.valueOf(unAntecedent.getFin().getMois());
+        String finMaladieJour = String.valueOf(unAntecedent.getFin().getJour());
+        String finMaladie = finMaladieAnnee + "-" + finMaladieMois + "-" + finMaladieJour;
 
 
         try {
-            String requeteSQL = "INSERT INTO antecedents(diagnostic, traitement, medecinTraitant, debutMaladie, finMaladie, id_assMaladie) VALUES(?,?,?,?,?,?)";
+            String requeteSQL = "INSERT INTO antecedents(diagnostic, traitement, medecinTraitantPrenom, medecinTraitantNom, debutMaladie, finMaladie, id_assMaladie) VALUES(?,?,?,?,?,?,?)";
             preRequete = conn.prepareStatement(requeteSQL);
             preRequete.setString(1, diagnostic);
             preRequete.setString(2, traitement);
-            preRequete.setString(3, medecinTraitant);
-            preRequete.setString(4, debutMaladie);
-            preRequete.setString(5, finMaladie);
-            preRequete.setString(6, assMaladieNum);
+            preRequete.setString(3, medecinTraitanPrenom);
+            preRequete.setString(4, medecinTraitantNom);
+            preRequete.setString(5, debutMaladie);
+            preRequete.setString(6, finMaladie);
+            preRequete.setString(7, assMaladieNum);
             preRequete.executeUpdate();
 
         } catch(SQLException e) {
