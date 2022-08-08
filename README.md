@@ -8,7 +8,7 @@ Pour supprimer la BD *BD2.db*, il suffit de se rendre dans le fichier *demo/src/
 ```
 rm BD2.db
 ```
-Pour recréer la BD *BD2.db*, il suffit de se rendre dans le fichier *demo/src/bd/ et de lancer la commande :
+Pour recréer la BD *BD2.db*, il suffit de se rendre dans le fichier *demo/src/bd/* et de lancer la commande :
 ```
 sqlit3 BD2.db
 ```
@@ -35,18 +35,18 @@ mvn exec:java
 ``` 
 
 ## Utilisation
-Pour le login, 
-utilisateur : login123
-pass : pass123
-ou
-utilisateur : pleine
-pass: lune
+Pour le login,     
+utilisateur : login123    
+pass : pass123    
+ou    
+utilisateur : pleine    
+pass: lune    
 
-Pour le numéro d'assurance maladie,
-TREM01038503
-ou
-FLEM01048602
-ou
-HUBA01058701
+Pour le numéro d'assurance maladie,    
+TREM01038503     
+ou     
+FLEM01048602     
+ou     
+HUBA01058701     
 
 Les dates doivent respecter le format *AAAA-MM-JJ*
