@@ -50,3 +50,5 @@ ou
 HUBA01058701     
 
 Les dates doivent respecter le format *AAAA-MM-JJ*
+
+Veuillez noter que pour mettre à jour la liste des antécédents et/ou des visites dans la base de donnée, vous devez appuyer sur le bouton Mise à jour dans la fenêtre en question PUIS ensuite appuyer sur sauvegarder dans la page principale.
