@@ -30,6 +30,7 @@ public class Visites {
     private List<JTextField> resumesTF;
     private List<JTextField> notesTF;
 
+    //Affiche chaque visite
     JPanel affichageVisite(JSONObject visite) {
         JPanel pVisite = new JPanel();
         pVisite.setLayout(new FlowLayout());
@@ -135,6 +136,7 @@ public class Visites {
 
         JSONArray visites = appMed.dossier.getJSONArray("visites");
 
+        //Bouton de sauvegarde
         sauvegarder.addActionListener(e -> {
             erreurDate.setVisible(false);
             if(appMed.validationDate(datesTF)){
@@ -164,6 +166,7 @@ public class Visites {
             
         });
 
+        // Bouton Ajouter
         ajouter.addActionListener(e -> {
             JSONObject visite = visites.getJSONObject(0);
             Object temp = JSONObject.toBean(visite, Visite.class);
@@ -184,12 +187,15 @@ public class Visites {
             page.pack();
 
         });
+
+        // Affichage des boutons
         boutons.add(sauvegarder);
         boutons.add(ajouter);
         page.add(boutons);
+        page.add(erreurDate);
 
 
-
+        
         for (int i = 0; i < visites.size(); i++) {
 
             JSONObject visite = visites.getJSONObject(i);

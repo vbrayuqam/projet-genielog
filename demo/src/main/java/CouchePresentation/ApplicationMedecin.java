@@ -68,7 +68,7 @@ public class ApplicationMedecin extends JFrame {
     JButton bSauvegarde = new JButton("Sauvegarder");
 
 
-
+    // Extraction des donnees date et formattage en AAAA-MM-JJ
     public String formatDate(JSONObject dateN) {
         if (dateN.get("annee").equals("") ||
                 dateN.getString("mois").equals("") ||
@@ -82,6 +82,7 @@ public class ApplicationMedecin extends JFrame {
         }
     }
 
+    // Affichage du dossier d'un patient
     void lectureDossier(String am) {
         assuranceM.setForeground(Color.BLACK);
         dossier = sd.lireDossier(am);
@@ -103,6 +104,7 @@ public class ApplicationMedecin extends JFrame {
 
     }
 
+    
     void modificationVisites(JSONArray visites) {
         dossier.put("visites", visites);
     }
@@ -123,6 +125,7 @@ public class ApplicationMedecin extends JFrame {
 
     }
 
+    // Verifie que les dates suivent le bon format
     public Boolean validationDate(List<JTextField> dates){
         boolean valide = true;
         for(int i = 0; i < dates.size(); i++){
