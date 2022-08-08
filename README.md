@@ -10,7 +10,7 @@ rm BD2.db
 ```
 Pour recréer la BD *BD2.db*, il suffit de se rendre dans le fichier *demo/src/bd/* et de lancer la commande :
 ```
-sqlit3 BD2.db
+sqlite3 BD2.db
 ```
 Par la suite, il faut lancer dans *sqlite3* la commande suivante :
 ```
