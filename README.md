@@ -4,7 +4,7 @@
 En ce moment, la BD  *BD2.db* est déjà présente dans le fichier *demo/src/bd/* ainsi que le script *BD2.sql*.
 La connection avec la BD se fait par la fonction *connectionBD* dans la classe *ConnecteurBD* de la couche 
 de données.
-Pour supprimer la BD *BD2.db*, il suffit de se rendre dans le fichier *demo/src/bd/ et de lancer la commande :
+Pour supprimer la BD *BD2.db*, il suffit de se rendre dans le fichier *demo/src/bd/* et de lancer la commande :
 ```
 rm BD2.db
 ```
